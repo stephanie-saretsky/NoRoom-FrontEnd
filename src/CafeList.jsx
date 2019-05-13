@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import "./css/search.css";
 import "./css/main.css";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import Map from "./Map.jsx";
 let path = "http://demo5595251.mockable.io/";
 
-class UnconnectedCafeList extends Component {
+class CafeList extends Component {
   constructor() {
     super();
     this.state = {
@@ -39,7 +39,7 @@ class UnconnectedCafeList extends Component {
   handleSubmit = event => {
     event.preventDefault();
     let search = this.state.searchInput;
-    fetch(path + "search?search=" + search)
+    fetch(path + "search?search=" + search) // https://maps.googleapis.com/maps/api/geocode/json?search=search&key=AIzaSyCWyXDRjjUoo8QrnGjIZAwNj3t3QivVGhs
       .then(response => response.text())
       .then(response => {
         let parsedResponse = JSON.parse(response);
@@ -51,6 +51,10 @@ class UnconnectedCafeList extends Component {
       })
       .catch(err => console.log(err));
     this.setState({ searchInput: "" });
+  };
+
+  renderMap = () => {
+    return <Map />;
   };
 
   render = () => {
@@ -66,6 +70,9 @@ class UnconnectedCafeList extends Component {
             placeholder="Search cafes"
           />
         </form>
+        <button onClick={this.renderMap}>
+          <img src="/public/map.png" height="100" width="100" />
+        </button>
         <ul className="cafe-list-container">
           {this.state.cafes.map(cafe => {
             return (
@@ -79,7 +86,5 @@ class UnconnectedCafeList extends Component {
     );
   };
 }
-
-let CafeList = connect()(UnconnectedCafeList);
 
 export default CafeList;
