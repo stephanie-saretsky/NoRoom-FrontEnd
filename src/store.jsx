@@ -7,14 +7,18 @@ let reducer = (state, action) => {
   if (action.type === "done-edit") {
     return { ...state, editMode: false };
   }
-  if (action.type == "done-details") {
+  if (action.type === "done-details") {
     return { ...state, layoutMode: true };
   }
+  if (action.type === "search-input") {
+    return { ...state, search: action.search };
+  }
+  return state;
 };
 
 let store = createStore(
   reducer,
-  { loggedIn: false, editMode: true, layoutMode: false },
+  { loggedIn: false, editMode: true, layoutMode: false, search: "" },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

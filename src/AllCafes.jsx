@@ -3,9 +3,10 @@ import "../css/search.css";
 import "../css/main.css";
 import { Link } from "react-router-dom";
 import Map from "./Map.jsx";
-let path = "http://demo5595251.mockable.io/";
+import { connect } from "react-redux";
+let path = "http://localhost:4000/";
 
-class CafeList extends Component {
+class UnconnectedAllCafes extends Component {
   constructor() {
     super();
     this.state = {
@@ -60,7 +61,7 @@ class CafeList extends Component {
   render = () => {
     return (
       <div>
-        <h1>Is There Room At Your Fave Cafe?</h1>
+        <h1>All Cafes</h1>
         <form className="search" onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -86,5 +87,9 @@ class CafeList extends Component {
     );
   };
 }
+let mapStateToProps = state => {
+  homeSearch = state.search;
+};
 
-export default CafeList;
+let AllCafes = connect(mapStateToProps)(UnconnectedAllCafes);
+export default AllCafes;

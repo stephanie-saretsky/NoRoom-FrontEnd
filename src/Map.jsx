@@ -1,8 +1,8 @@
 import { Component } from "react";
 import ReactMapGL from "react-map-gl";
-let mapboxApiAccessToken =
-  pk.eyJ1Ijoic25zYXJldHNreSIsImEiOiJjanZtdDhwYWYxNGxlNDRwaDY1dHYyY2I4In0
-    .yDAuKpeinAJb8LCz2eYWHg;
+// let mapboxApiAccessToken =
+//   pk.eyJ1Ijoic25zYXJldHNreSIsImEiOiJjanZtdDhwYWYxNGxlNDRwaDY1dHYyY2I4In0
+//     .yDAuKpeinAJb8LCz2eYWHg;
 
 class Map extends Component {
   state = {
