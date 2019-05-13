@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import "../css/layout.css";
+import { connect } from "react-redux";
+import "../css/edit-layout.css";
 import Chair from "./DraggableChair.jsx";
 import Table from "./DraggableTable.jsx";
 let path = "http://demo5595251.mockable.io/";
 
-class Layout extends Component {
+class UnconnectedEditLayout extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -89,7 +90,16 @@ class Layout extends Component {
       method: "POST",
       body: data,
       credentials: "include"
-    });
+    })
+      .then(header => {
+        return header.text();
+      })
+      .then(body => {
+        let parsed = JSON.parse(body);
+        if (parsed.success) {
+          this.props.dispatch({ type: "done-edit" });
+        }
+      });
   };
 
   render = () => {
@@ -99,7 +109,7 @@ class Layout extends Component {
           onMouseUp={this.mouseUp}
           onMouseMove={this.move}
           onMouseLeave={this.mouseUp}
-          className="layout"
+          className="edit-layout"
         >
           {this.state.chairs.map((c, i) => {
             let deltaX = 0;
@@ -148,4 +158,6 @@ class Layout extends Component {
   };
 }
 
-export default Layout;
+let EditLayout = connect()(UnconnectedEditLayout);
+
+export default EditLayout;
