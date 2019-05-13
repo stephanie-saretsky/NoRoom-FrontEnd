@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../css/layout.css";
 import Chair from "./DraggableChair.jsx";
 import Table from "./DraggableTable.jsx";
+let path = "http://demo5595251.mockable.io/";
 
 class Layout extends Component {
   constructor(props) {
@@ -80,6 +81,17 @@ class Layout extends Component {
     this.setState({ tables: this.state.tables.concat(newTable) });
   };
 
+  submitLayout = () => {
+    let data = new FormData();
+    data.append("chairs", this.state.chairs);
+    data.append("tables", this.state.tables);
+    fetch(path + "add-layout", {
+      method: "POST",
+      body: data,
+      credentials: "include"
+    });
+  };
+
   render = () => {
     return (
       <div className="drag-drop">
@@ -121,6 +133,15 @@ class Layout extends Component {
               />
             );
           })}
+        </div>
+        <div className="instructions">
+          <h3>Instructions: </h3>
+          <p>
+            Drag and drop chairs and tables to roughly match the layout of your
+            café.
+          </p>
+          <p>Make sure to add the exact amount of chairs you have available.</p>
+          <button onClick={this.submitLayout}>Submit</button>
         </div>
       </div>
     );
