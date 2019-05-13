@@ -1,5 +1,5 @@
 .layout {
-  height: 95vh;
+  height: 730px;
   width: 1000px;
   border: 1px solid black;
   margin-left: 20px;
@@ -8,4 +8,11 @@
 
 .drag-drop {
   display: flex;
+}
+
+.instructions {
+  margin-left: 120px;
+  margin-top: 20px;
+  margin-right: 20px;
+  width: 270px;
 }
