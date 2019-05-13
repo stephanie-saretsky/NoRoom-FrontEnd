@@ -3,6 +3,7 @@ import "./css/search.css";
 import "./css/main.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+let path = "http://demo5595251.mockable.io/";
 
 class UnconnectedCafeList extends Component {
   constructor() {
@@ -14,7 +15,7 @@ class UnconnectedCafeList extends Component {
   }
 
   componentDidMount = () => {
-    console.log("shop list rendering");
+    console.log("cafe list rendering");
     fetch(path + "cafes", {
       method: "GET"
     })
