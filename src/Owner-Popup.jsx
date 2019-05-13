@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
-import "./popup.css";
+import "../css/popup.css";
 
 class Popup extends Component {
   constructor(props) {

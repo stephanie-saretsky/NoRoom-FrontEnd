@@ -1,0 +1,11 @@
+.layout {
+  height: 95vh;
+  width: 1000px;
+  border: 1px solid black;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.drag-drop {
+  display: flex;
+}
