@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-let path = "http://demo5595251.mockable.io/";
+let path = "http://localhost:4000/";
 
 class UnconnectedLogin extends Component {
   constructor(props) {
@@ -39,6 +39,7 @@ class UnconnectedLogin extends Component {
           return;
         }
         this.props.dispatch({ type: "login-success" });
+        this.props.closePopup();
       });
     this.setState({ username: "", password: "" });
   };

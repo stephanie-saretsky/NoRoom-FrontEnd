@@ -1,0 +1,11 @@
+.owner-details {
+  display: flex;
+  justify-content: center;
+}
+
+.layout {
+  height: 730px;
+  width: 1000px;
+  border: 1px solid black;
+  margin-top: 20px;
+}

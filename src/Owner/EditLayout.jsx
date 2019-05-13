@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "../css/edit-layout.css";
+import "../../css/edit-layout.css";
 import Chair from "./DraggableChair.jsx";
 import Table from "./DraggableTable.jsx";
-let path = "http://demo5595251.mockable.io/";
+let path = "http://localhost:4000/";
 
 class UnconnectedEditLayout extends Component {
   constructor(props) {
@@ -25,6 +25,10 @@ class UnconnectedEditLayout extends Component {
     this.addTable();
   };
 
+  generateId = () => {
+    return "" + Math.floor(Math.random() * 1000000);
+  };
+
   click = (index, evt, type, copied) => {
     this.setState({
       clicked: index,
@@ -42,7 +46,11 @@ class UnconnectedEditLayout extends Component {
   };
 
   move = evt => {
-    if (this.state.clicked !== undefined && evt.clientX < 970) {
+    if (
+      this.state.clicked !== undefined &&
+      evt.clientX < 990 &&
+      evt.clientY < 705
+    ) {
       this.setState({
         deltaX: evt.clientX - this.state.clickedX,
         deltaY: evt.clientY - this.state.clickedY
@@ -73,19 +81,21 @@ class UnconnectedEditLayout extends Component {
   };
 
   addChair = () => {
-    let newChair = { id: 345, x: 1020, y: 20 };
+    let newChair = { id: this.generateId(), x: 1020, y: 20 };
     this.setState({ chairs: this.state.chairs.concat(newChair) });
   };
 
   addTable = () => {
-    let newTable = { id: 345, x: 1020, y: 120 };
+    let newTable = { id: this.generateId(), x: 1020, y: 120 };
     this.setState({ tables: this.state.tables.concat(newTable) });
   };
 
   submitLayout = () => {
     let data = new FormData();
-    data.append("chairs", this.state.chairs);
-    data.append("tables", this.state.tables);
+    let chairs = this.state.chairs.splice(-1, 1);
+    let tables = this.state.tables.splice(-1, 1);
+    data.append("chairs", chairs);
+    data.append("tables", tables);
     fetch(path + "add-layout", {
       method: "POST",
       body: data,

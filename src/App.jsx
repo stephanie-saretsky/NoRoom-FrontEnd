@@ -4,10 +4,15 @@ import "../css/main.css";
 import { connect } from "react-redux";
 import AllCafes from "./AllCafes.jsx";
 import Homepage from "./Homepage.jsx";
+import Footer from "./Footer.jsx";
+import Owner from "./Owner/Owner.jsx";
 let path = "http://localhost:4000/";
 
 class UnconnectedApp extends Component {
   renderHomepage = () => {
+    if (this.props.loggedIn) {
+      return <Owner />;
+    }
     return <Homepage />;
   };
 
@@ -25,6 +30,7 @@ class UnconnectedApp extends Component {
           <Route exact={true} path="/cafes" render={this.renderCafes} />
           <Route exact={true} path="/cafes/:cid" render={this.cafeDetails} />
         </div>
+        <Footer />
       </BrowserRouter>
     );
   };

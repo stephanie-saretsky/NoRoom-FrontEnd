@@ -2,14 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import OwnerEdit from "./OwnerEdit.jsx";
 import OwnerLayout from "./OwnerLayout.jsx";
+import EditLayout from "./EditLayout.jsx";
 
 class UnconnectedOwner extends Component {
   render = () => {
-    if (this.props.edit) {
-      return <OwnerEdit />;
-    } else {
-      return <OwnerLayout />;
-    }
+    return <EditLayout />;
+    // if (this.props.edit) {
+    //   return <OwnerEdit />;
+    // } else {
+    //   return <OwnerLayout />;
+    // }
   };
 }
 

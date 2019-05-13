@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import EditLayout from "./EditLayout.jsx";
-i;
 
 class UnconnectedOwnerEdit extends Component {
   render = () => {
