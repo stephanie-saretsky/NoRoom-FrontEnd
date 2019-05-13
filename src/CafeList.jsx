@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./css/search.css";
-import "./css/main.css";
+import "../css/search.css";
+import "../css/main.css";
 import { Link } from "react-router-dom";
 import Map from "./Map.jsx";
 let path = "http://demo5595251.mockable.io/";
