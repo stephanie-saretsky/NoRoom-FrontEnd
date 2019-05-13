@@ -6,6 +6,7 @@ import AllCafes from "./AllCafes.jsx";
 import Homepage from "./Homepage.jsx";
 import Footer from "./Footer.jsx";
 import Owner from "./Owner/Owner.jsx";
+import NavBar from "./NavBar.jsx";
 let path = "http://localhost:4000/";
 
 class UnconnectedApp extends Component {
@@ -25,6 +26,7 @@ class UnconnectedApp extends Component {
   render = () => {
     return (
       <BrowserRouter>
+        <NavBar />
         <div className="global">
           <Route exact={true} path="/" render={this.renderHomepage} />
           <Route exact={true} path="/cafes" render={this.renderCafes} />

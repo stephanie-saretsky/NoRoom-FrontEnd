@@ -87,9 +87,9 @@ class UnconnectedAllCafes extends Component {
     );
   };
 }
-let mapStateToProps = state => {
-  homeSearch = state.search;
-};
+// let mapStateToProps = state => {
+//   homeSearch = state.search;
+// };
 
-let AllCafes = connect(mapStateToProps)(UnconnectedAllCafes);
+let AllCafes = connect()(UnconnectedAllCafes);
 export default AllCafes;

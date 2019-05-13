@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../css/main.css";
+import "../css/search.css";
 import { connect } from "react-redux";
 let path = "http://demo5595251.mockable.io/";
-import AllCafes from "./AllCafes.jsx";
 import NavBar from "./NavBar.jsx";
+import { withRouter } from "react-router-dom";
 
 class UnconnectedHomepage extends Component {
   constructor() {
@@ -22,14 +23,16 @@ class UnconnectedHomepage extends Component {
   };
 
   handleSubmit = () => {
-    return <AllCafes />;
+    this.props.history.push("/cafes");
+
+    //use history dot push
   };
 
   render = () => {
     return (
-      <div>
-        <h1>Is There Room At Your Fave Cafe?</h1>
-        <div className="search-container">
+      <div style={{ height: "80vh" }}>
+        <div className="hero-image">
+          <h1>Is There Room At Your Fave Cafe?</h1>
           <form className="search" onSubmit={this.handleSubmit}>
             <input
               type="text"
@@ -57,4 +60,4 @@ class UnconnectedHomepage extends Component {
 
 let Homepage = connect()(UnconnectedHomepage);
 
-export default Homepage;
+export default withRouter(Homepage);

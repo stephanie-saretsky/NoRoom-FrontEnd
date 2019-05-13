@@ -1,5 +1,23 @@
 .search {
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .searchTerm {
+  width: 100%;
+  background-image: url("/search.png");
+  background-repeat: no-repeat;
+  background-position: 97% 50%;
+  background-size: 30px;
+  background-color: #ecc8af;
+  border: none;
+  border-right: none;
+  padding: 8px;
+  height: 20px;
+  outline: none;
+  color: #584d3d;
+  font-size: 13px;
 }

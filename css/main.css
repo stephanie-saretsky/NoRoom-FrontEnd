@@ -87,6 +87,11 @@ video {
   vertical-align: baseline;
 }
 
+.global {
+  min-height: calc(100vh - 90px);
+  padding: 24px 48px 48px;
+}
+
 h1 {
   color: #ba5a31;
   font-family: "Montserrat", sans-serif;
@@ -104,4 +109,13 @@ p {
 
 .button:hover {
   color: #ba5a31;
+}
+
+.hero-image {
+  background-image: url("/cafe.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
