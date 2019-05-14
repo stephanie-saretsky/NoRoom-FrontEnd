@@ -96,7 +96,7 @@ class UnconnectedAllCafes extends Component {
             placeholder="Search cafes"
           />
         </form>
-        <button onClick={this.handleState}>
+        <button className="mapButton" onClick={this.handleState}>
           <img src="/map.png" height="60" />
         </button>
         {this.renderMap()}

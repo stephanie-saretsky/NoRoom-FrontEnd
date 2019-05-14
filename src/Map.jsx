@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactMapGL from "react-map-gl";
+import ReactMapGL, { Marker } from "react-map-gl";
 
 class Map extends Component {
   state = {
@@ -18,7 +18,16 @@ class Map extends Component {
         mapboxApiAccessToken="pk.eyJ1Ijoic25zYXJldHNreSIsImEiOiJjanZtdDhwYWYxNGxlNDRwaDY1dHYyY2I4In0.yDAuKpeinAJb8LCz2eYWHg"
         {...this.state.viewport}
         onViewportChange={viewport => this.setState({ viewport })}
-      />
+      >
+        <Marker
+          latitude={45.5}
+          longitude={-73.57}
+          offsetLeft={-20}
+          offsetTop={-10}
+        >
+          <img src="/cafemap.png" height="50" />
+        </Marker>
+      </ReactMapGL>
     );
   }
 }
