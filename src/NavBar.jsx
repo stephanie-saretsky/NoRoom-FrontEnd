@@ -9,7 +9,9 @@ class NavBar extends Component {
         <Link to={"/"}>
           <img src="/logo.png" height="80px" />
         </Link>
-        <Link to={"/cafes"}>All Cafes</Link>
+        <div className="cafes">
+          <Link to={"/cafes"}>All Cafes</Link>
+        </div>
       </div>
     );
   };

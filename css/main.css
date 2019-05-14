@@ -119,3 +119,13 @@ p {
   background-size: cover;
   position: relative;
 }
+
+.home-head {
+  background-color: rgba(208, 205, 205, 0.93);
+  width: 65%;
+  position: absolute;
+  top: 20%;
+  left: 18%;
+  font-size: 50px;
+  text-align: center;
+}

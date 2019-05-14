@@ -77,7 +77,7 @@ class UnconnectedAllCafes extends Component {
   render = () => {
     return (
       <div>
-        <h1>All Cafes</h1>
+        <h1>All Cafés</h1>
         <form className="search" onSubmit={this.handleSubmit}>
           <input
             type="text"

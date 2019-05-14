@@ -33,31 +33,24 @@ class UnconnectedHomepage extends Component {
     return (
       <div style={{ height: "80vh" }}>
         <div className="hero-image">
-          <h1>Is There Room At Your Fave Cafe?</h1>
+          <h1 className="home-head">Is There Room At Your Fave Café?</h1>
           <form className="search" onSubmit={this.handleSubmit}>
             <input
               type="text"
               className="searchTerm"
               value={this.state.searchInput}
               onChange={this.handleChange}
-              placeholder="Search cafes"
+              placeholder="Search cafés..."
             />
           </form>
         </div>
-        <p>Featured Cafes</p>
+        <p>Featured Cafés</p>
         {/* render 3 cafes */}
         <Link to={"/cafes"}>See more</Link>
       </div>
     );
   };
 }
-//nav bar
-
-// splash image
-
-//search bar
-
-// see more button
 
 let Homepage = connect()(withRouter(UnconnectedHomepage));
 

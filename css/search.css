@@ -1,9 +1,11 @@
 .search {
-  width: 30%;
+  width: 40%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background-color: rgba(208, 205, 205, 0.9);
+  padding: 20px 38px 20px 20px;
 }
 
 .searchTerm {
@@ -11,13 +13,15 @@
   background-image: url("/search.png");
   background-repeat: no-repeat;
   background-position: 97% 50%;
-  background-size: 30px;
+  background-size: 55px;
   background-color: #ecc8af;
   border: none;
   border-right: none;
   padding: 8px;
-  height: 20px;
+  height: 55px;
   outline: none;
   color: #584d3d;
-  font-size: 13px;
+  font-size: 18px;
+  font-family: "Cardo", serif;
+  font-style: italic;
 }
