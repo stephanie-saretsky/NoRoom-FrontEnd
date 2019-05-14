@@ -35,7 +35,6 @@ class UnconnectedEditDetails extends Component {
     event.preventDefault();
     let data = new FormData();
     let files = this.state.files;
-    console.log("FILES =>", this.state.files);
     data.append("name", this.state.name);
     data.append("desc", this.state.description);
     data.append("address", this.state.address);

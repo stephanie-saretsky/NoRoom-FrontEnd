@@ -11,10 +11,14 @@ class UnconnectedEditLayout extends Component {
     this.state = {
       clicked: undefined,
       type: "",
+      copied: "",
       clickedX: 0,
       clickedY: 0,
       deltaX: 0,
       deltaY: 0,
+      x: 0,
+      y: 0,
+      id: "",
       chairs: [],
       tables: []
     };
@@ -29,12 +33,16 @@ class UnconnectedEditLayout extends Component {
     return "" + Math.floor(Math.random() * 1000000);
   };
 
-  click = (index, evt, type, copied) => {
+  click = (index, evt, type, copied, x, y, id) => {
     this.setState({
       clicked: index,
       type: type,
+      copied: copied,
       clickedX: evt.clientX,
-      clickedY: evt.clientY
+      clickedY: evt.clientY,
+      x: x,
+      y: y,
+      id: id
     });
     if (!copied && type === "chair") {
       this.addChair();
@@ -45,11 +53,7 @@ class UnconnectedEditLayout extends Component {
   };
 
   move = evt => {
-    if (
-      this.state.clicked !== undefined &&
-      evt.clientX < 1500 &&
-      evt.clientY < 705
-    ) {
+    if (this.state.clicked !== undefined) {
       this.setState({
         deltaX: evt.clientX - this.state.clickedX,
         deltaY: evt.clientY - this.state.clickedY
@@ -74,18 +78,23 @@ class UnconnectedEditLayout extends Component {
       clickedY: 0,
       deltaX: 0,
       deltaY: 0,
+      x: 0,
+      y: 0,
+      id: "",
+      type: "",
+      copied: "",
       chairs: chairs,
       tables: tables
     });
   };
 
   addChair = () => {
-    let newChair = { id: this.generateId(), x: 1005, y: 145 };
+    let newChair = { id: this.generateId(), x: 1010, y: 0 };
     this.setState({ chairs: this.state.chairs.concat(newChair) });
   };
 
   addTable = () => {
-    let newTable = { id: this.generateId(), x: 1005, y: 200 };
+    let newTable = { id: this.generateId(), x: 1005, y: 60 };
     this.setState({ tables: this.state.tables.concat(newTable) });
   };
 
@@ -93,7 +102,6 @@ class UnconnectedEditLayout extends Component {
     let data = new FormData();
     let chairs = this.state.chairs.slice();
     chairs.splice(-1, 1);
-    console.log("chairs", chairs);
     let tables = this.state.tables.slice();
     tables.splice(-1, 1);
     data.append("chairs", JSON.stringify(chairs));
@@ -117,6 +125,7 @@ class UnconnectedEditLayout extends Component {
   };
 
   render = () => {
+    console.log(this.state.x, this.state.y);
     return (
       <div className="drag-drop">
         <div
@@ -125,10 +134,10 @@ class UnconnectedEditLayout extends Component {
           onMouseLeave={this.mouseUp}
           className="edit-layout"
         >
-          <div className="item-holder" />
           {this.state.chairs.map((c, i) => {
             let deltaX = 0;
             let deltaY = 0;
+
             if (i === this.state.clicked && this.state.type === "chair") {
               deltaX = this.state.deltaX;
               deltaY = this.state.deltaY;
@@ -139,6 +148,7 @@ class UnconnectedEditLayout extends Component {
                 y={c.y + deltaY}
                 click={this.click}
                 index={i}
+                id={c.id}
               />
             );
           })}
@@ -155,6 +165,7 @@ class UnconnectedEditLayout extends Component {
                 y={c.y + deltaY}
                 click={this.click}
                 index={i}
+                id={c.id}
               />
             );
           })}
@@ -163,9 +174,11 @@ class UnconnectedEditLayout extends Component {
           <h2 className="instructions-title">Instructions: </h2>
           <p>
             Drag and drop chairs and tables to roughly match the layout of your
-            café.
+            cafe.
           </p>
-          <p>Make sure to add the exact amount of chairs you have available.</p>
+          <p className="second-p">
+            Make sure to add the exact amount of chairs you have available.
+          </p>
           <div className="edit-button-container">
             <button className="submit-button" onClick={this.submitLayout}>
               Submit

@@ -17,15 +17,6 @@
   width: 300px;
 }
 
-.item-holder {
-  min-width: 100px;
-  max-width: 100px;
-  min-height: 300px;
-  max-height: 300px;
-  border: 1px solid black;
-  float: right;
-}
-
 .instructions-title {
   color: #ba5a31;
   font-size: 20px;
@@ -44,4 +35,8 @@
 
 .submit-button:hover {
   background-color: #ba5a31;
+}
+
+.second-p {
+  margin-top: 20px;
 }
