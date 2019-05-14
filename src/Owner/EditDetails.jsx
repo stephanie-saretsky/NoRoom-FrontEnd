@@ -53,6 +53,7 @@ class UnconnectedEditDetails extends Component {
       .then(responseBody => {
         let response = JSON.parse(responseBody);
         let cafeId = response.cafeId;
+        let address = response.address;
         this.setState({
           name: "",
           description: "",
@@ -61,6 +62,35 @@ class UnconnectedEditDetails extends Component {
         });
         localStorage.setItem(this.props.username + "-layout", "true");
         this.props.dispatch({ type: "done-details", cafeId });
+        let APIkey = "key=AIzaSyCWyXDRjjUoo8QrnGjIZAwNj3t3QivVGhs";
+        return fetch(
+          "https://maps.googleapis.com/maps/api/geocode/json?address=" +
+            address +
+            "&" +
+            APIkey
+        )
+          .then(responseHeader => {
+            return responseHeader.text();
+          })
+          .then(responseBody => {
+            let parsed = JSON.parse(responseBody);
+            let location = JSON.stringify(parsed.results[0].geometry.location);
+            console.log("Location=>", location);
+            let data = new FormData();
+            data.append("location", location);
+            data.append("cafeId", cafeId);
+            return fetch(path + "add-location", {
+              credentials: "include",
+              method: "POST",
+              body: data
+            })
+              .then(responseHeader => {
+                return responseHeader.text();
+              })
+              .then(responseBody => {
+                return console.log(responseBody);
+              });
+          });
       });
   };
 
