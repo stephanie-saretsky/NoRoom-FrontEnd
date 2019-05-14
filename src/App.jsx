@@ -10,6 +10,24 @@ import NavBar from "./NavBar.jsx";
 let path = "http://localhost:4000/";
 
 class UnconnectedApp extends Component {
+  componentDidMount = () => {
+    fetch(path + "login-check", {
+      credentials: "include"
+    })
+      .then(header => {
+        return header.text();
+      })
+      .then(body => {
+        let parsed = JSON.parse(body);
+        if (parsed.success) {
+          this.props.dispatch({
+            type: "login-success",
+            username: parsed.username
+          });
+        }
+      });
+  };
+
   renderHomepage = () => {
     if (this.props.loggedIn) {
       return <Owner />;

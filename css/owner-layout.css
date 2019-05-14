@@ -1,12 +1,44 @@
-.owner-details {
+.owner-container {
   display: flex;
   justify-content: center;
 }
 
+.owner-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.details {
+  display: flex;
+}
+
+.taken-images {
+  margin-right: 40px;
+}
+
 .layout {
-  height: 730px;
-  width: 1000px;
+  min-height: 730px;
+  min-width: 1000px;
+  max-height: 730px;
+  max-width: 1000px;
   border: 1px solid black;
-  margin-top: 20px;
   position: relative;
+}
+
+.instructions-taken {
+  margin-left: 20px;
+}
+
+.details-title {
+  color: #ba5a31;
+  font-size: 18px;
+}
+
+.taken-p {
+  margin-bottom: 40px;
 }

@@ -39,7 +39,6 @@ class UnconnectedLogin extends Component {
           alert("Invalid Username or Password");
           return;
         }
-        console.log("username", username);
         this.props.dispatch({
           type: "login-success",
           username: username
