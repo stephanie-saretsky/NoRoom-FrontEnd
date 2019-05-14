@@ -21,10 +21,11 @@ class UnconnectedHomepage extends Component {
   };
 
   handleSubmit = event => {
+    console.log(this.state.searchInput, "search input");
     event.preventDefault();
     this.props.dispatch({
       type: "search-input",
-      action: this.state.searchInput
+      search: this.state.searchInput
     });
     this.props.history.push("/cafes");
   };

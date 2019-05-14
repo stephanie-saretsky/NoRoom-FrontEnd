@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "../css/search.css";
 import "../css/main.css";
+import "../css/cafes.css";
 import { Link } from "react-router-dom";
 import Map from "./Map.jsx";
 import { connect } from "react-redux";
@@ -11,7 +11,8 @@ class UnconnectedAllCafes extends Component {
     super();
     this.state = {
       cafes: [],
-      searchInput: ""
+      searchInput: "",
+      mapView: false
     };
   }
 
@@ -32,7 +33,8 @@ class UnconnectedAllCafes extends Component {
           }
         });
     } else {
-      fetch(path + "search?search=" + this.props.homeSearch, {
+      console.log(this.props.homeSearch, "search value");
+      fetch(path + "search-cafe?search=" + this.props.homeSearch, {
         method: "GET"
       })
         .then(response => response.text())
@@ -40,8 +42,8 @@ class UnconnectedAllCafes extends Component {
           let parsedResponse = JSON.parse(response);
           console.log("JSON RESPONSE", parsedResponse);
           if (parsedResponse.success) {
-            console.log("array of search", parsedResponse);
-            this.setState({ cafes: parsedResponse });
+            console.log("array of search", parsedResponse.cafes);
+            this.setState({ cafes: parsedResponse.cafes });
           }
         });
     }
@@ -56,14 +58,15 @@ class UnconnectedAllCafes extends Component {
   handleSubmit = event => {
     event.preventDefault();
     let search = this.state.searchInput;
-    fetch(path + "search?search=" + search) // https://maps.googleapis.com/maps/api/geocode/json?search=search&key=AIzaSyCWyXDRjjUoo8QrnGjIZAwNj3t3QivVGhs
+    fetch(path + "search-cafe?search=" + search) // https://maps.googleapis.com/maps/api/geocode/json?search=search&key=AIzaSyCWyXDRjjUoo8QrnGjIZAwNj3t3QivVGhs
       .then(response => response.text())
       .then(response => {
         let parsedResponse = JSON.parse(response);
         console.log("Response", parsedResponse);
         if (parsedResponse.success) {
-          console.log("array of search", parsedResponse);
-          this.setState({ cafes: parsedResponse });
+          console.log("array of search", parsedResponse.cafes);
+          this.setState({ cafes: parsedResponse.cafes });
+          console.log(this.state.cafes, "cafe list");
         }
       })
       .catch(err => console.log(err));
@@ -71,26 +74,33 @@ class UnconnectedAllCafes extends Component {
   };
 
   renderMap = () => {
-    return <Map />;
+    if (this.state.mapView) {
+      return <Map />;
+    }
+  };
+
+  handleState = () => {
+    this.setState({ mapView: true });
   };
 
   render = () => {
     return (
       <div>
         <h1>All Cafés</h1>
-        <form className="search" onSubmit={this.handleSubmit}>
+        <form className="search-list" onSubmit={this.handleSubmit}>
           <input
             type="text"
-            className="searchTerm"
+            className="searchTermList"
             value={this.state.searchInput}
             onChange={this.handleChange}
             placeholder="Search cafes"
           />
         </form>
-        <button onClick={this.renderMap}>
-          <img src="/public/map.png" height="100" width="100" />
+        <button onClick={this.handleState}>
+          <img src="/map.png" height="60" />
         </button>
-        <ul className="cafe-list-container">
+        {this.renderMap()}
+        <ul className="list-container">
           {this.state.cafes.map(cafe => {
             return (
               <div className="cafe-card">
