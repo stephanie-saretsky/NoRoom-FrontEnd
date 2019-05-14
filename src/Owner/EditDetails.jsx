@@ -27,17 +27,22 @@ class UnconnectedEditDetails extends Component {
 
   handleFiles = event => {
     let files = event.target.files;
+
     this.setState({ files: files });
   };
 
   handleSubmit = event => {
     event.preventDefault();
     let data = new FormData();
+    let files = this.state.files;
+    console.log("FILES =>", this.state.files);
     data.append("name", this.state.name);
     data.append("desc", this.state.description);
     data.append("address", this.state.address);
-    data.append("files", this.state.files);
-    console.log("FICHIER ENVOYE=>", this.state.files);
+    Array.from(files).forEach(ele => {
+      data.append("files", ele);
+    });
+
     fetch(path + "add-cafe", {
       method: "POST",
       body: data,
