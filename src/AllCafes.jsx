@@ -80,7 +80,11 @@ class UnconnectedAllCafes extends Component {
   };
 
   handleState = () => {
-    this.setState({ mapView: true });
+    if (!this.state.mapView) {
+      this.setState({ mapView: true });
+    } else {
+      this.setState({ mapView: false });
+    }
   };
 
   render = () => {
