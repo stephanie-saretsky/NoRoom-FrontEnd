@@ -4,6 +4,9 @@ let reducer = (state, action) => {
   if (action.type === "login-success") {
     return { ...state, loggedIn: true, username: action.username };
   }
+  if (action.type === "logout-success") {
+    return { ...state, loggedIn: false, username: "" };
+  }
   if (action.type === "done-edit") {
     return { ...state, editMode: false };
   }

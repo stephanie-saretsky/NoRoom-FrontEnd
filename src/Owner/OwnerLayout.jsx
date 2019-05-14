@@ -41,22 +41,37 @@ class OwnerLayout extends Component {
 
   render = () => {
     return (
-      <div className="owner-details">
-        <div className="layout">
-          {this.state.chairs.map(chair => {
-            return <ClickableChair x={chair.x} y={chair.y} />;
-          })}
-          {this.state.tables.map(table => {
-            return <ClickableTable x={table.x} y={table.y} />;
-          })}
-        </div>
-        <div className="details">
-          <h1>{this.state.name}</h1>
-          <p>{this.state.description}</p>
-          <p>{this.state.address}</p>
-          {this.state.images.map(image => {
-            return <img src={image} />;
-          })}
+      <div className="owner-container">
+        <div className="owner-details">
+          <div className="layout-container">
+            <div className="layout">
+              {this.state.chairs.map(chair => {
+                return <ClickableChair x={chair.x} y={chair.y} />;
+              })}
+              {this.state.tables.map(table => {
+                return <ClickableTable x={table.x} y={table.y} />;
+              })}
+            </div>
+            <div className="instructions-taken">
+              <h2 className="instructions-title">Instructions:</h2>
+              <p>
+                Click on a seat to turn it orange and indicate it has been
+                taken.
+              </p>
+            </div>
+          </div>
+          <h2 className="instructions-title">{this.state.name + ":"}</h2>
+          <div className="details">
+            <div className="taken-images">
+              {this.state.images.map(image => {
+                return <img height="300px" src={image} />;
+              })}
+            </div>
+            <div>
+              <p className="taken-p">{"Description: " + this.state.desc}</p>
+              <p className="taken-p">{"Address: " + this.state.address}</p>
+            </div>
+          </div>
         </div>
       </div>
     );
