@@ -37,6 +37,7 @@ class UnconnectedEditDetails extends Component {
     data.append("desc", this.state.description);
     data.append("address", this.state.address);
     data.append("files", this.state.files);
+    console.log("FICHIER ENVOYE=>", this.state.files);
     fetch(path + "add-cafe", {
       method: "POST",
       body: data,

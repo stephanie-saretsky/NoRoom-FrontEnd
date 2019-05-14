@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
+import { connect } from "react-redux";
+let path = "http://localhost:4000/";
 
-class Map extends Component {
+class UnconnectedMap extends Component {
   state = {
     viewport: {
       width: 1250,
@@ -9,7 +11,12 @@ class Map extends Component {
       latitude: 45.5017,
       longitude: -73.5673,
       zoom: 13
-    }
+    },
+    cafes: []
+  };
+
+  componentDidMount = () => {
+    fetch(path + "/cafes");
   };
 
   render() {
@@ -19,17 +26,25 @@ class Map extends Component {
         {...this.state.viewport}
         onViewportChange={viewport => this.setState({ viewport })}
       >
-        <Marker
-          latitude={45.5}
-          longitude={-73.57}
-          offsetLeft={-20}
-          offsetTop={-10}
-        >
-          <img src="/cafemap.png" height="50" />
-        </Marker>
+        {this.state.cafes.map(c => {
+          <Marker
+            latitude={c.latitude}
+            longitude={c.longitude}
+            offsetLeft={-20}
+            offsetTop={-10}
+          >
+            <img src="/cafemap.png" height="50" />
+          </Marker>;
+        })}
       </ReactMapGL>
     );
   }
 }
+
+let mapStateToProps = state => {
+  return { search: state.search };
+};
+
+let Map = connect(mapStateToProps)(UnconnectedMap);
 
 export default Map;
