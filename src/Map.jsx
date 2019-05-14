@@ -7,7 +7,7 @@ class UnconnectedMap extends Component {
   state = {
     viewport: {
       width: 1330,
-      height: 600,
+      height: 590,
       latitude: 45.5232,
       longitude: -73.587,
       zoom: 12.5
