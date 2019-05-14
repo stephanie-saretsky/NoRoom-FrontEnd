@@ -8,7 +8,7 @@ let reducer = (state, action) => {
     return { ...state, editMode: false };
   }
   if (action.type === "done-details") {
-    return { ...state, layoutMode: true };
+    return { ...state, layoutMode: true, cafeId: action.cafeId };
   }
   if (action.type === "search-input") {
     return { ...state, search: action.search };
@@ -23,7 +23,8 @@ let store = createStore(
     editMode: true,
     layoutMode: false,
     search: "",
-    username: ""
+    username: "",
+    cafeId: ""
   },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

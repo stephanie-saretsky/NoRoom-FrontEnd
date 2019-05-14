@@ -47,10 +47,22 @@ class UnconnectedEditDetails extends Component {
       method: "POST",
       body: data,
       credentials: "include"
-    });
-    this.setState({ name: "", description: "", address: "", files: undefined });
-    localStorage.setItem(this.props.username + "-layout", "true");
-    this.props.dispatch({ type: "done-details" });
+    })
+      .then(responseHeader => {
+        return responseHeader.text();
+      })
+      .then(responseBody => {
+        let response = JSON.parse(responseBody);
+        let cafeId = response.cafeId;
+        this.setState({
+          name: "",
+          description: "",
+          address: "",
+          files: undefined
+        });
+        localStorage.setItem(this.props.username + "-layout", "true");
+        this.props.dispatch({ type: "done-details", cafeId });
+      });
   };
 
   render = () => {

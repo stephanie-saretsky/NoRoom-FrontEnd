@@ -98,7 +98,7 @@ class UnconnectedEditLayout extends Component {
     tables.splice(-1, 1);
     data.append("chairs", JSON.stringify(chairs));
     data.append("tables", JSON.stringify(tables));
-
+    data.append("cafeId", this.props.cafeId);
     fetch(path + "add-layout", {
       method: "POST",
       body: data,
@@ -179,7 +179,8 @@ class UnconnectedEditLayout extends Component {
 
 let mapStateToProps = st => {
   return {
-    username: st.username
+    username: st.username,
+    cafeId: st.cafeId
   };
 };
 
