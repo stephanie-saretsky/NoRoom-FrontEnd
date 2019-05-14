@@ -89,7 +89,7 @@ class UnconnectedEditLayout extends Component {
   };
 
   addChair = () => {
-    let newChair = { id: this.generateId(), x: 1010, y: 0 };
+    let newChair = { id: this.generateId(), x: 1010, y: 0, taken: false };
     this.setState({ chairs: this.state.chairs.concat(newChair) });
   };
 
