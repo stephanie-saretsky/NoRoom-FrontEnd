@@ -103,12 +103,16 @@ p {
 }
 
 .button {
-  color: #d69f73;
+  border: none;
+  background-color: #d69f73;
+  color: white;
   font-size: 16px;
+  padding: 10px;
+  border-radius: 2px;
 }
 
 .button:hover {
-  color: #ba5a31;
+  background-color: #ba5a31;
 }
 
 .hero-image {

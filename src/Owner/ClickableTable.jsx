@@ -15,13 +15,12 @@ class ClickableTable extends Component {
   render = () => {
     let image = "/table.png";
     if (this.state.taken) {
-      image =
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/220px-Square_-_black_simple.svg.png";
+      image = "/table-taken.png";
     }
     return (
       <img
         src={image}
-        height="300px"
+        height="50px"
         onClick={this.changeSeat}
         style={{
           position: "absolute",

@@ -9,8 +9,7 @@ class OwnerLayout extends Component {
     super(props);
     this.state = {
       chairs: [],
-      tables: [],
-      details: []
+      tables: []
     };
   }
 
@@ -24,13 +23,15 @@ class OwnerLayout extends Component {
       })
       .then(body => {
         let parsed = JSON.parse(body);
-        if (parsed.success) {
-          this.setState({
-            chairs: this.parsed.chairs,
-            tables: this.parsed.tables,
-            details: this.parsed.details
-          });
-        }
+        let cafe = parsed[0];
+        this.setState({
+          chairs: cafe.chairs,
+          tables: cafe.tables,
+          name: cafe.name,
+          desc: cafe.desc,
+          address: cafe.address,
+          images: cafe.images
+        });
       });
   };
 

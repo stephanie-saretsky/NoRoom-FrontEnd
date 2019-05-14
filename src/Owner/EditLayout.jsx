@@ -91,10 +91,14 @@ class UnconnectedEditLayout extends Component {
 
   submitLayout = () => {
     let data = new FormData();
-    let chairs = this.state.chairs.splice(-1, 1);
-    let tables = this.state.tables.splice(-1, 1);
-    data.append("chairs", chairs);
-    data.append("tables", tables);
+    let chairs = this.state.chairs.slice();
+    chairs.splice(-1, 1);
+    console.log("chairs", chairs);
+    let tables = this.state.tables.slice();
+    tables.splice(-1, 1);
+    data.append("chairs", JSON.stringify(chairs));
+    data.append("tables", JSON.stringify(tables));
+
     fetch(path + "add-layout", {
       method: "POST",
       body: data,
@@ -156,13 +160,17 @@ class UnconnectedEditLayout extends Component {
           })}
         </div>
         <div className="instructions">
-          <h3>Instructions: </h3>
+          <h2 className="instructions-title">Instructions: </h2>
           <p>
             Drag and drop chairs and tables to roughly match the layout of your
             café.
           </p>
           <p>Make sure to add the exact amount of chairs you have available.</p>
-          <button onClick={this.submitLayout}>Submit</button>
+          <div className="edit-button-container">
+            <button className="submit-button" onClick={this.submitLayout}>
+              Submit
+            </button>
+          </div>
         </div>
       </div>
     );

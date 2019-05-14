@@ -3,7 +3,7 @@
   min-width: 1000px;
   max-height: 730px;
   max-width: 1000px;
-  border: 1px solid black;
+  border: 1px solid #969696;
   margin-left: 20px;
   position: relative;
 }
@@ -13,9 +13,8 @@
 }
 
 .instructions {
-  margin-left: 120px;
-  margin-right: 20px;
-  width: 270px;
+  margin-left: 90px;
+  width: 300px;
 }
 
 .item-holder {
@@ -25,4 +24,24 @@
   max-height: 300px;
   border: 1px solid black;
   float: right;
+}
+
+.instructions-title {
+  color: #ba5a31;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.submit-button {
+  border: none;
+  background-color: #d69f73;
+  color: white;
+  font-size: 16px;
+  padding: 10px 80px 10px 80px;
+  border-radius: 2px;
+  margin-top: 20px;
+}
+
+.submit-button:hover {
+  background-color: #ba5a31;
 }
