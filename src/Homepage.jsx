@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import "../css/main.css";
 import "../css/search.css";
 import { connect } from "react-redux";
-let path = "http://demo5595251.mockable.io/";
-import NavBar from "./NavBar.jsx";
 import { withRouter } from "react-router-dom";
 
 class UnconnectedHomepage extends Component {
@@ -22,10 +20,13 @@ class UnconnectedHomepage extends Component {
     this.setState({ searchInput: newInput });
   };
 
-  handleSubmit = () => {
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.dispatch({
+      type: "search-input",
+      action: this.state.searchInput
+    });
     this.props.history.push("/cafes");
-
-    //use history dot push
   };
 
   render = () => {
@@ -58,6 +59,6 @@ class UnconnectedHomepage extends Component {
 
 // see more button
 
-let Homepage = connect()(UnconnectedHomepage);
+let Homepage = connect()(withRouter(UnconnectedHomepage));
 
-export default withRouter(Homepage);
+export default Homepage;

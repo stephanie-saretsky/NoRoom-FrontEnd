@@ -17,18 +17,34 @@ class UnconnectedAllCafes extends Component {
 
   componentDidMount = () => {
     console.log("cafe list rendering");
-    fetch(path + "cafes", {
-      method: "GET"
-    })
-      .then(x => {
-        return x.text();
+    if (this.props.homeSearch === "") {
+      fetch(path + "cafes", {
+        method: "GET"
       })
-      .then(responseBody => {
-        let body = JSON.parse(responseBody);
-        if (body.success) {
-          this.setState({ cafes: body.cafeList });
-        }
-      });
+        .then(x => {
+          return x.text();
+        })
+        .then(responseBody => {
+          let body = JSON.parse(responseBody);
+          console.log(body, "JSON BODY");
+          if (body.success) {
+            this.setState({ cafes: body.cafeList });
+          }
+        });
+    } else {
+      fetch(path + "search?search=" + this.props.homeSearch, {
+        method: "GET"
+      })
+        .then(response => response.text())
+        .then(response => {
+          let parsedResponse = JSON.parse(response);
+          console.log("JSON RESPONSE", parsedResponse);
+          if (parsedResponse.success) {
+            console.log("array of search", parsedResponse);
+            this.setState({ cafes: parsedResponse });
+          }
+        });
+    }
   };
 
   handleChange = event => {
@@ -87,9 +103,10 @@ class UnconnectedAllCafes extends Component {
     );
   };
 }
-// let mapStateToProps = state => {
-//   homeSearch = state.search;
-// };
 
-let AllCafes = connect()(UnconnectedAllCafes);
+let mapStateToProps = state => {
+  return { homeSearch: state.search };
+};
+
+let AllCafes = connect(mapStateToProps)(UnconnectedAllCafes);
 export default AllCafes;
