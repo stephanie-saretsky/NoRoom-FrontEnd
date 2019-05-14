@@ -6,11 +6,11 @@ let path = "http://localhost:4000/";
 class UnconnectedMap extends Component {
   state = {
     viewport: {
-      width: 1250,
+      width: 1330,
       height: 600,
-      latitude: 45.5017,
-      longitude: -73.5673,
-      zoom: 13
+      latitude: 45.5232,
+      longitude: -73.587,
+      zoom: 12.5
     },
     cafes: []
   };
