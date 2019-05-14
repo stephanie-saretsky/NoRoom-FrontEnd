@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import "../css/main.css";
 import "../css/cafes.css";
-import { Link } from "react-router-dom";
 import Map from "./Map.jsx";
 import { connect } from "react-redux";
+import CafeCard from "./CafeCard.jsx";
+
 let path = "http://localhost:4000/";
 
 class UnconnectedAllCafes extends Component {
@@ -105,13 +106,9 @@ class UnconnectedAllCafes extends Component {
         </button>
         {this.renderMap()}
         <ul className="list-container">
-          {this.state.cafes.map(cafe => {
-            return (
-              <div className="cafe-card">
-                <Link to={"cafe/" + cafe._id}>{cafe.name}</Link>
-              </div>
-            );
-          })}
+          {this.state.cafes.map(cafe => (
+            <CafeCard cafe={cafe} />
+          ))}
         </ul>
       </div>
     );
