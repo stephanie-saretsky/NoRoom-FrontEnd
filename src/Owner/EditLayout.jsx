@@ -36,7 +36,6 @@ class UnconnectedEditLayout extends Component {
       clickedX: evt.clientX,
       clickedY: evt.clientY
     });
-    console.log(this.state.type);
     if (!copied && type === "chair") {
       this.addChair();
     }
@@ -48,7 +47,7 @@ class UnconnectedEditLayout extends Component {
   move = evt => {
     if (
       this.state.clicked !== undefined &&
-      evt.clientX < 990 &&
+      evt.clientX < 1500 &&
       evt.clientY < 705
     ) {
       this.setState({
@@ -81,12 +80,12 @@ class UnconnectedEditLayout extends Component {
   };
 
   addChair = () => {
-    let newChair = { id: this.generateId(), x: 1020, y: 20 };
+    let newChair = { id: this.generateId(), x: 1005, y: 145 };
     this.setState({ chairs: this.state.chairs.concat(newChair) });
   };
 
   addTable = () => {
-    let newTable = { id: this.generateId(), x: 1020, y: 120 };
+    let newTable = { id: this.generateId(), x: 1005, y: 200 };
     this.setState({ tables: this.state.tables.concat(newTable) });
   };
 
@@ -107,6 +106,7 @@ class UnconnectedEditLayout extends Component {
       .then(body => {
         let parsed = JSON.parse(body);
         if (parsed.success) {
+          localStorage.setItem(this.props.username + "-edit", "false");
           this.props.dispatch({ type: "done-edit" });
         }
       });
@@ -121,6 +121,7 @@ class UnconnectedEditLayout extends Component {
           onMouseLeave={this.mouseUp}
           className="edit-layout"
         >
+          <div className="item-holder" />
           {this.state.chairs.map((c, i) => {
             let deltaX = 0;
             let deltaY = 0;
@@ -168,6 +169,12 @@ class UnconnectedEditLayout extends Component {
   };
 }
 
-let EditLayout = connect()(UnconnectedEditLayout);
+let mapStateToProps = st => {
+  return {
+    username: st.username
+  };
+};
+
+let EditLayout = connect(mapStateToProps)(UnconnectedEditLayout);
 
 export default EditLayout;

@@ -21,6 +21,7 @@ class UnconnectedLogin extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    let username = this.state.username;
     let data = new FormData();
     data.append("username", this.state.username);
     data.append("password", this.state.password);
@@ -38,7 +39,11 @@ class UnconnectedLogin extends Component {
           alert("Invalid Username or Password");
           return;
         }
-        this.props.dispatch({ type: "login-success" });
+        console.log("username", username);
+        this.props.dispatch({
+          type: "login-success",
+          username: username
+        });
         this.props.closePopup();
       });
     this.setState({ username: "", password: "" });

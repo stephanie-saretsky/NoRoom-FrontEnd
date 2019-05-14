@@ -2,7 +2,7 @@ import { createStore } from "redux";
 
 let reducer = (state, action) => {
   if (action.type === "login-success") {
-    return { ...state, loggedIn: true };
+    return { ...state, loggedIn: true, username: action.username };
   }
   if (action.type === "done-edit") {
     return { ...state, editMode: false };
@@ -18,7 +18,13 @@ let reducer = (state, action) => {
 
 let store = createStore(
   reducer,
-  { loggedIn: false, editMode: true, layoutMode: false, search: "" },
+  {
+    loggedIn: false,
+    editMode: true,
+    layoutMode: false,
+    search: "",
+    username: ""
+  },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

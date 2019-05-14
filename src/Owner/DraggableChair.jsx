@@ -15,8 +15,8 @@ class Chair extends Component {
   render = () => {
     return (
       <img
-        src="https://png.pngtree.com/element_pic/17/03/25/ae19648580be439490d2e3562c8b4f2a.jpg"
-        height="100px"
+        src="/chair.png"
+        height="50px"
         draggable={false}
         style={{
           position: "absolute",

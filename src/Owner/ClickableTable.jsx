@@ -13,8 +13,7 @@ class ClickableTable extends Component {
   };
 
   render = () => {
-    let image =
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Ski_trail_rating_symbol-blue_square.svg/600px-Ski_trail_rating_symbol-blue_square.svg.png";
+    let image = "/table.png";
     if (this.state.taken) {
       image =
         "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/220px-Square_-_black_simple.svg.png";
@@ -22,7 +21,7 @@ class ClickableTable extends Component {
     return (
       <img
         src={image}
-        height="100px"
+        height="300px"
         onClick={this.changeSeat}
         style={{
           position: "absolute",

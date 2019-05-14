@@ -1,9 +1,11 @@
 .edit-layout {
-  height: 730px;
-  width: 1000px;
+  min-height: 730px;
+  min-width: 1000px;
+  max-height: 730px;
+  max-width: 1000px;
   border: 1px solid black;
   margin-left: 20px;
-  margin-top: 20px;
+  position: relative;
 }
 
 .drag-drop {
@@ -12,7 +14,15 @@
 
 .instructions {
   margin-left: 120px;
-  margin-top: 20px;
   margin-right: 20px;
   width: 270px;
+}
+
+.item-holder {
+  min-width: 100px;
+  max-width: 100px;
+  min-height: 300px;
+  max-height: 300px;
+  border: 1px solid black;
+  float: right;
 }

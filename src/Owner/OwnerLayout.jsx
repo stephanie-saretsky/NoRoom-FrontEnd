@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-let path = "http://demo5595251.mockable.io/";
+let path = "http://localhost:4000/";
 import "../../css/owner-layout.css";
 import ClickableChair from "./ClickableChair.jsx";
 import ClickableTable from "./ClickableTable.jsx";
@@ -14,24 +14,25 @@ class OwnerLayout extends Component {
     };
   }
 
-  // componentDidMount = () => {
-  //   fetch(path + "cafe-owner-details", {
-  //     credentials: "include"
-  //   })
-  //     .then(header => {
-  //       return header.text();
-  //     })
-  //     .then(body => {
-  //       let parsed = JSON.parse(body);
-  //       if (parsed.success) {
-  //         this.setState({
-  //           chairs: this.parsed.chairs,
-  //           tables: this.parsed.tables,
-  //           details: this.parsed.details
-  //         });
-  //       }
-  //     });
-  // };
+  componentDidMount = () => {
+    fetch(path + "cafe-owner-details", {
+      method: "POST",
+      credentials: "include"
+    })
+      .then(header => {
+        return header.text();
+      })
+      .then(body => {
+        let parsed = JSON.parse(body);
+        if (parsed.success) {
+          this.setState({
+            chairs: this.parsed.chairs,
+            tables: this.parsed.tables,
+            details: this.parsed.details
+          });
+        }
+      });
+  };
 
   render = () => {
     return (

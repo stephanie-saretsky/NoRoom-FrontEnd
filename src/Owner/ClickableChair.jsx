@@ -13,15 +13,14 @@ class ClickableChair extends Component {
   };
 
   render = () => {
-    let image =
-      "https://png.pngtree.com/element_pic/17/03/25/ae19648580be439490d2e3562c8b4f2a.jpg";
+    let image = "/chair.png";
     if (this.state.taken) {
       image = "https://i.stack.imgur.com/Q4nm0.png";
     }
     return (
       <img
         src={image}
-        height="100px"
+        height="300px"
         onClick={this.changeSeat}
         style={{
           position: "absolute",

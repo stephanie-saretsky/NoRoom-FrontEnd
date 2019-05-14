@@ -6,18 +6,20 @@ import EditLayout from "./EditLayout.jsx";
 
 class UnconnectedOwner extends Component {
   render = () => {
-    return <EditLayout />;
-    // if (this.props.edit) {
-    //   return <OwnerEdit />;
-    // } else {
-    //   return <OwnerLayout />;
-    // }
+    console.log(this.props.username);
+    let editMode = localStorage.getItem(this.props.username + "-edit");
+    if (editMode === null) {
+      return <OwnerEdit />;
+    } else {
+      return <OwnerLayout />;
+    }
   };
 }
 
 let mapStateToProps = st => {
   return {
-    edit: st.editMode
+    edit: st.editMode,
+    username: st.username
   };
 };
 

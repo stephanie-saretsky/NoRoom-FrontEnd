@@ -15,8 +15,8 @@ class Table extends Component {
   render = () => {
     return (
       <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Ski_trail_rating_symbol-blue_square.svg/600px-Ski_trail_rating_symbol-blue_square.svg.png"
-        height="100px"
+        src="/table.png"
+        height="60x"
         draggable={false}
         onMouseUp={this.mouseUp}
         style={{
