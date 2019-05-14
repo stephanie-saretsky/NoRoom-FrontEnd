@@ -39,12 +39,27 @@ class UnconnectedSignup extends Component {
           alert("Username already exists!");
           return;
         }
-        console.log("username", username);
-        this.props.dispatch({
-          type: "login-success",
-          username: username
-        });
-        this.props.closePopup();
+
+        return fetch(path + "login", {
+          method: "POST",
+          body: data,
+          credentials: "include"
+        })
+          .then(x => {
+            return x.text();
+          })
+          .then(responseBody => {
+            let body = JSON.parse(responseBody);
+            if (!body.success) {
+              alert("login failed");
+              return;
+            }
+            this.props.dispatch({
+              type: "login-success",
+              username: username
+            });
+            this.props.closePopup();
+          });
       });
     this.setState({ username: "", password: "" });
   };
