@@ -36,11 +36,15 @@ class CafeCard extends Component {
 
     return (
       <div className="cafe-card">
-        <button onClick={this.moveLeft} />
+        <button className="button-left" onClick={this.moveLeft}>
+          &lt;
+        </button>
         <Link to={"cafe/" + cafe._id}>
           <img className="cafe-photo" src={this.state.activeImage} />
         </Link>
-        <button onClick={this.moveRight} />
+        <button className="button-right" onClick={this.moveRight}>
+          &gt;
+        </button>
         {cafe.name}
       </div>
     );
