@@ -39,7 +39,6 @@ class UnconnectedSignup extends Component {
           alert("Username already exists!");
           return;
         }
-
         return fetch(path + "login", {
           method: "POST",
           body: data,
