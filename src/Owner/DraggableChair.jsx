@@ -8,7 +8,15 @@ class Chair extends Component {
     };
   }
   mouseDown = evt => {
-    this.props.click(this.props.index, evt, "chair", this.state.copied);
+    this.props.click(
+      this.props.index,
+      evt,
+      "chair",
+      this.state.copied,
+      this.props.x,
+      this.props.y,
+      this.props.id
+    );
     this.setState({ copied: true });
   };
 

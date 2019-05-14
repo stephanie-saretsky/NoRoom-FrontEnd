@@ -9,7 +9,11 @@ class OwnerLayout extends Component {
     super(props);
     this.state = {
       chairs: [],
-      tables: []
+      tables: [],
+      name: "",
+      desc: "",
+      address: "",
+      images: []
     };
   }
 
@@ -44,6 +48,14 @@ class OwnerLayout extends Component {
           })}
           {this.state.tables.map(table => {
             return <ClickableTable x={table.x} y={table.y} />;
+          })}
+        </div>
+        <div className="details">
+          <h1>{this.state.name}</h1>
+          <p>{this.state.description}</p>
+          <p>{this.state.address}</p>
+          {this.state.images.map(image => {
+            return <img src={image} />;
           })}
         </div>
       </div>
