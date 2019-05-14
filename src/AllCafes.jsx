@@ -91,7 +91,6 @@ class UnconnectedAllCafes extends Component {
   render = () => {
     return (
       <div>
-        <h1>All Cafés</h1>
         <form className="search-list" onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -102,7 +101,7 @@ class UnconnectedAllCafes extends Component {
           />
         </form>
         <button className="mapButton" onClick={this.handleState}>
-          <img src="/map.png" height="60" />
+          <img src="/map.png" height="41" />
         </button>
         {this.renderMap()}
         <ul className="list-container">
