@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import "../../css/autocomplete.css";
+let elements = ["vegan", "nice"];
 let path = "http://localhost:4000/";
 
 class UnconnectedEditDetails extends Component {
@@ -14,9 +16,17 @@ class UnconnectedEditDetails extends Component {
       country: "",
       files: undefined,
       tags: [],
-      tag: ""
+      tag: "",
+      auto: ""
     };
   }
+
+  autoValue = c => {
+    event.preventDefault();
+    this.setState({ tag: c }, () => {
+      this.handleOnclick();
+    });
+  };
 
   handleDelete = i => {
     event.preventDefault();
@@ -138,7 +148,27 @@ class UnconnectedEditDetails extends Component {
   };
 
   render = () => {
-    console.log("STATE=>", this.state);
+    let userTyped = this.state.tag;
+    let candidates = elements.filter(e => e.includes(userTyped));
+    let autocompleteBox = undefined;
+    if (userTyped.length > 0 && candidates.length !== 0) {
+      autocompleteBox = (
+        <div className="autocomplete-container">
+          <div className="autocomplete-box">
+            {candidates.map(c => (
+              <div
+                onClick={() => {
+                  this.autoValue(c);
+                }}
+                key={c + ""}
+              >
+                {c}
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -187,12 +217,15 @@ class UnconnectedEditDetails extends Component {
             required
           />
           <input type="file" onChange={this.handleFiles} multiple />
-          <input
-            type="text"
-            placeholder="Add a new tag"
-            onChange={this.handleTags}
-            value={this.state.tag}
-          />
+          <div className="vertical-flex">
+            <input
+              type="text"
+              placeholder="Add a new tag"
+              onChange={this.handleTags}
+              value={this.state.tag}
+            />
+            {autocompleteBox}
+          </div>
           <button onClick={this.handleOnclick}>Add</button>
           <div>
             {this.state.tags.map((tag, i) => {

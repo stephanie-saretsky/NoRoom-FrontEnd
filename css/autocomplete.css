@@ -1,0 +1,19 @@
+.vertical-flex {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+.autocomplete-container {
+  position: relative;
+}
+
+.autocomplete-box {
+  border: 1px solid;
+  position: absolute;
+  background-color: white;
+}
+
+.autocomplete-box :hover {
+  cursor: pointer;
+  background-color: pink;
+}
