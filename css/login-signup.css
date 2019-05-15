@@ -1,0 +1,37 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  min-width: 90%;
+}
+
+.login-input {
+  margin: 10px;
+  font-size: 20px;
+  padding: 5px 5px 5px 15px;
+}
+
+.login-input:focus::-webkit-input-placeholder {
+  color: #8c7051;
+}
+
+.login-input:focus {
+  color: #584d3d;
+}
+
+.login-button {
+  background-color: #d69f73;
+  padding: 5px;
+  border: none;
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.login-button:hover {
+  background-color: #ba5a31;
+}

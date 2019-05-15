@@ -3,35 +3,27 @@ import React, { Component } from "react";
 class Table extends Component {
   constructor(props) {
     super();
-    this.state = {
-      copied: false
-    };
   }
+
   mouseDown = evt => {
-    this.props.click(
-      this.props.index,
-      evt,
-      "table",
-      this.state.copied,
-      this.props.x,
-      this.props.y,
-      this.props.id
-    );
-    this.setState({ copied: true });
+    this.props.click(this.props.index, evt, "table", this.props.id);
   };
 
   render = () => {
+    let src = "/table.png";
+    if (this.props.out) {
+      src = "/table-delete.png";
+    }
     return (
       <img
-        src="/table.png"
+        src={src}
         height="60x"
         draggable={false}
-        onMouseUp={this.mouseUp}
         style={{
           position: "absolute",
           left: this.props.x + "px",
           top: this.props.y + "px",
-          zIndex: 10
+          zIndex: 20
         }}
         onMouseDown={this.mouseDown}
       />

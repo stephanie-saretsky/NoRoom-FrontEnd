@@ -13,7 +13,6 @@
 }
 
 .instructions {
-  margin-left: 90px;
   width: 300px;
 }
 
@@ -39,4 +38,16 @@
 
 .second-p {
   margin-top: 20px;
+}
+
+.edit-images {
+  padding-right: 20px;
+}
+
+.edit-chair {
+  margin-left: 9px;
+}
+
+.edit-table {
+  margin-left: 5px;
 }

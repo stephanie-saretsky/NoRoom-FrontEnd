@@ -11,7 +11,6 @@ class UnconnectedAllCafes extends Component {
   constructor() {
     super();
     this.state = {
-      cafes: [],
       searchInput: "",
       mapView: false
     };
@@ -30,7 +29,7 @@ class UnconnectedAllCafes extends Component {
           let body = JSON.parse(responseBody);
           console.log(body, "JSON BODY");
           if (body.success) {
-            this.setState({ cafes: body.cafeList });
+            this.props.dispatch({ type: "cafe-results", cafes: body.cafeList });
           }
         });
     } else {
@@ -44,10 +43,16 @@ class UnconnectedAllCafes extends Component {
           console.log("JSON RESPONSE", parsedResponse);
           if (parsedResponse.success) {
             console.log("array of search", parsedResponse.cafes);
-            this.setState({ cafes: parsedResponse.cafes });
+            this.props.dispatch({
+              type: "cafe-results",
+              cafes: parsedResponse.cafes
+            });
+            this.props.dispatch({
+              type: "search-input",
+              search: ""
+            });
           }
         });
-      this.props.dispatch({ type: "search-input", search: "" });
     }
   };
 
@@ -60,22 +65,21 @@ class UnconnectedAllCafes extends Component {
   handleSubmit = event => {
     event.preventDefault();
     let search = this.state.searchInput;
-    fetch(path + "search-cafe?search=" + search) // https://maps.googleapis.com/maps/api/geocode/json?search=search&key=AIzaSyCWyXDRjjUoo8QrnGjIZAwNj3t3QivVGhs
+    fetch(path + "search-cafe?search=" + search)
       .then(response => response.text())
       .then(response => {
         let parsedResponse = JSON.parse(response);
         console.log("Response", parsedResponse);
         if (parsedResponse.success) {
           console.log("array of search", parsedResponse.cafes);
-          this.setState({ cafes: parsedResponse.cafes });
-          console.log(this.state.cafes, "cafe list");
+          this.props.dispatch({
+            type: "cafe-results",
+            cafes: parsedResponse.cafes
+          });
+          console.log(this.props.cafes, "cafe list");
         }
       })
       .catch(err => console.log(err));
-    this.props.dispatch({
-      type: "search-input",
-      search: this.state.searchInput
-    });
     this.setState({ searchInput: "" });
   };
 
@@ -110,7 +114,7 @@ class UnconnectedAllCafes extends Component {
         </button>
         {this.renderMap()}
         <ul className="list-container">
-          {this.state.cafes.map(cafe => (
+          {this.props.cafes.map(cafe => (
             <CafeCard cafe={cafe} />
           ))}
         </ul>
@@ -120,7 +124,7 @@ class UnconnectedAllCafes extends Component {
 }
 
 let mapStateToProps = state => {
-  return { homeSearch: state.search };
+  return { homeSearch: state.search, cafes: state.cafes };
 };
 
 let AllCafes = connect(mapStateToProps)(UnconnectedAllCafes);

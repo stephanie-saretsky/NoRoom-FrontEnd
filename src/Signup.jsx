@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import "../css/login-signup.css";
 let path = "http://localhost:4000/";
 
 class UnconnectedSignup extends Component {
@@ -65,20 +66,23 @@ class UnconnectedSignup extends Component {
 
   render = () => {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <p>Username: </p>
+      <form className="login-form" onSubmit={this.handleSubmit}>
         <input
+          className="login-input"
           type="text"
           onChange={this.handleUsername}
           value={this.state.username}
+          placeholder="Choose a username"
         />
-        <p>Password: </p>
+
         <input
+          className="login-input"
           type="password"
           onChange={this.handlePassword}
           value={this.state.password}
+          placeholder="Choose a password"
         />
-        <input type="submit" value="Sign Up" />
+        <input className="login-button" type="submit" value="Sign Up" />
       </form>
     );
   };

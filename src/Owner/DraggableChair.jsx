@@ -4,33 +4,29 @@ class Chair extends Component {
   constructor(props) {
     super();
     this.state = {
-      copied: false
+      out: ""
     };
   }
+
   mouseDown = evt => {
-    this.props.click(
-      this.props.index,
-      evt,
-      "chair",
-      this.state.copied,
-      this.props.x,
-      this.props.y,
-      this.props.id
-    );
-    this.setState({ copied: true });
+    this.props.click(this.props.index, evt, "chair", this.props.id);
   };
 
   render = () => {
+    let src = "/chair.png";
+    if (this.props.out) {
+      src = "/chair-delete.png";
+    }
     return (
       <img
-        src="/chair.png"
+        src={src}
         height="50px"
         draggable={false}
         style={{
           position: "absolute",
           left: this.props.x + "px",
           top: this.props.y + "px",
-          zIndex: 10
+          zIndex: 20
         }}
         onMouseDown={this.mouseDown}
       />
