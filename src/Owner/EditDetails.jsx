@@ -72,11 +72,15 @@ class UnconnectedEditDetails extends Component {
         let response = JSON.parse(responseBody);
         let cafeId = response.cafeId;
         let address = response.address;
-        let urlAddress = address.split(" ").join("+");
+        let city = response.city;
+        let urlAddress = address.split(" ").join("+") + "+" + city;
         this.setState({
           name: "",
           description: "",
           address: "",
+          city: "",
+          code: "",
+          country: "",
           files: undefined
         });
         localStorage.setItem(this.props.username + "-layout", "true");
@@ -122,36 +126,42 @@ class UnconnectedEditDetails extends Component {
             onChange={this.handleName}
             value={this.state.name}
             placeholder="Name"
+            required
           />
           <input
             type="text"
             onChange={this.handleDesc}
             value={this.state.description}
             placeholder="Description"
+            required
           />
           <input
             type="text"
             onChange={this.handleAddress}
             value={this.state.address}
             placeholder="Address"
+            required
           />
           <input
             type="text"
             onChange={this.handleCity}
             value={this.state.city}
             placeholder="city"
+            required
           />
           <input
             type="text"
             onChange={this.handlePostCode}
             value={this.state.code}
             placeholder="postal code"
+            required
           />
           <input
             type="text"
             onChange={this.handleCountry}
             value={this.state.country}
             placeholder="country"
+            required
           />
 
           <input type="file" onChange={this.handleFiles} multiple />
