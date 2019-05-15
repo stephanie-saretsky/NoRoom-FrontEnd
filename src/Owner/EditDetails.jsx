@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../../css/autocomplete.css";
-let elements = ["vegan", "nice"];
 let path = "http://localhost:4000/";
 
 class UnconnectedEditDetails extends Component {
@@ -17,9 +16,21 @@ class UnconnectedEditDetails extends Component {
       files: undefined,
       tags: [],
       tag: "",
-      auto: ""
+      auto: "",
+      elements: []
     };
   }
+
+  componentDidMount = () => {
+    fetch(path + "autocomplete")
+      .then(x => {
+        return x.text();
+      })
+      .then(response => {
+        let parsed = JSON.parse(response);
+        this.setState({ elements: parsed.elements });
+      });
+  };
 
   autoValue = c => {
     event.preventDefault();
@@ -38,7 +49,29 @@ class UnconnectedEditDetails extends Component {
 
   handleOnclick = () => {
     event.preventDefault();
-    this.setState({ tags: this.state.tags.concat(this.state.tag), tag: "" });
+    this.setState(
+      { tags: this.state.tags.concat(this.state.tag), tag: "" },
+      () => {
+        let elements = this.state.elements;
+        this.state.tags.forEach(elem => {
+          if (elements.indexOf(elem) === -1) {
+            elements = elements.concat(elem);
+          }
+        });
+        let data = new FormData();
+        data.append("elements", JSON.stringify(elements));
+        fetch(path + "checkAuto", {
+          method: "POST",
+          body: data
+        })
+          .then(x => {
+            return x.text();
+          })
+          .then(response => {
+            response;
+          });
+      }
+    );
   };
 
   handleTags = event => {
@@ -149,7 +182,7 @@ class UnconnectedEditDetails extends Component {
 
   render = () => {
     let userTyped = this.state.tag;
-    let candidates = elements.filter(e => e.includes(userTyped));
+    let candidates = this.state.elements.filter(e => e.includes(userTyped));
     let autocompleteBox = undefined;
     if (userTyped.length > 0 && candidates.length !== 0) {
       autocompleteBox = (
