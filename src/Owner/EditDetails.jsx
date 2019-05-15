@@ -128,8 +128,10 @@ class UnconnectedEditDetails extends Component {
             placeholder="Name"
             required
           />
-          <input
-            type="text"
+          <textarea
+            rows="4"
+            cols="50"
+            name="textarea"
             onChange={this.handleDesc}
             value={this.state.description}
             placeholder="Description"
