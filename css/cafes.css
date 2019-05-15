@@ -59,9 +59,9 @@
 }
 
 .button-left {
-  background-color: rgba(236, 200, 175, 0.4);
+  background-color: rgba(236, 200, 175, 0.7);
   position: absolute;
-  top: 164px;
+  top: 137px;
   left: 20px;
   height: 30px;
   width: 22px;
@@ -79,10 +79,10 @@
 }
 
 .button-right {
-  background-color: rgba(236, 200, 175, 0.4);
+  background-color: rgba(236, 200, 175, 0.7);
   z-index: 1;
-  top: 164px;
-  left: 298px;
+  top: 137px;
+  left: 398px;
   height: 30px;
   width: 22px;
   z-index: 1;
