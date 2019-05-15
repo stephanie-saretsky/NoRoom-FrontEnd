@@ -18,20 +18,34 @@ class Popup extends Component {
   render = () => {
     let signUpLogin = "";
     let buttonText = "";
+    let welcomeText = "";
     if (this.state.login) {
       signUpLogin = <Login closePopup={this.props.closePopup} />;
-      buttonText = "Sign Up Here";
+      buttonText = "Sign up here";
+      welcomeText = <p>Don't have an account?</p>;
     } else {
       signUpLogin = <Signup closePopup={this.props.closePopup} />;
-      buttonText = "Log In Here";
+      buttonText = "Log in here";
+      welcomeText = <p>Already registered?</p>;
     }
     return (
       <div className="popup">
         <div className="popup_inner">
-          {signUpLogin}
-          <button onClick={this.signUp}>{buttonText}</button>
+          <div className="form-container">
+            {signUpLogin}
+            <div className="welcome">
+              {welcomeText}
+              <button className="welcome-button" onClick={this.signUp}>
+                {buttonText}
+              </button>
+            </div>
+          </div>
           <div className="close-button">
-            <button onClick={this.props.closePopup}>Close Me</button>
+            <img
+              src="/close.png"
+              height="10px"
+              onClick={this.props.closePopup}
+            />
           </div>
         </div>
       </div>
