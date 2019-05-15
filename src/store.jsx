@@ -13,6 +13,9 @@ let reducer = (state, action) => {
   if (action.type === "done-details") {
     return { ...state, layoutMode: true, cafeId: action.cafeId };
   }
+  if (action.type === "cafe-results") {
+    return { ...state, cafes: action.cafes };
+  }
   if (action.type === "search-input") {
     return { ...state, search: action.search };
   }
@@ -27,7 +30,8 @@ let store = createStore(
     layoutMode: false,
     search: "",
     username: "",
-    cafeId: ""
+    cafeId: "",
+    cafes: []
   },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

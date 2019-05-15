@@ -14,40 +14,7 @@ class UnconnectedMap extends Component {
       longitude: -73.587,
       zoom: 12.5
     },
-    cafes: [],
     popupInfo: null
-  };
-
-  componentDidMount = () => {
-    if (this.props.search === "") {
-      fetch(path + "cafes", { method: "GET" })
-        .then(x => {
-          return x.text();
-        })
-        .then(responseBody => {
-          console.log(responseBody, "RESPONSE BODY");
-          let body = JSON.parse(responseBody);
-          console.log(body, "JSON BODY");
-          if (body.success) {
-            this.setState({ cafes: body.cafeList });
-          }
-        });
-    } else {
-      console.log(this.props.search, "search value");
-      fetch(path + "search-cafe?search=" + this.props.search, {
-        method: "GET"
-      })
-        .then(response => response.text())
-        .then(response => {
-          let parsedResponse = JSON.parse(response);
-          console.log("JSON RESPONSE", parsedResponse);
-          if (parsedResponse.success) {
-            console.log("array of search", parsedResponse.cafes);
-            this.setState({ cafes: parsedResponse.cafes });
-          }
-        });
-      this.props.dispatch({ type: "search-input", search: "" });
-    }
   };
 
   renderMarker = c => {
@@ -88,8 +55,8 @@ class UnconnectedMap extends Component {
   }
 
   render() {
-    console.log("CAFE STATE", this.state.cafes);
-    let location = this.state.cafes.filter(c => {
+    console.log("CAFE FROM STORE", this.props.cafes);
+    let location = this.props.cafes.filter(c => {
       return c.location !== undefined;
     });
     console.log(location, "LOCATION");
@@ -107,7 +74,7 @@ class UnconnectedMap extends Component {
 }
 
 let mapStateToProps = state => {
-  return { search: state.search };
+  return { cafes: state.cafes };
 };
 
 let Map = connect(mapStateToProps)(UnconnectedMap);
