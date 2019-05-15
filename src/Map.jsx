@@ -55,18 +55,13 @@ class UnconnectedMap extends Component {
   }
 
   render() {
-    console.log("CAFE FROM STORE", this.props.cafes);
-    let location = this.props.cafes.filter(c => {
-      return c.location !== undefined;
-    });
-    console.log(location, "LOCATION");
     return (
       <ReactMapGL
         mapboxApiAccessToken="pk.eyJ1Ijoic25zYXJldHNreSIsImEiOiJjanZtdDhwYWYxNGxlNDRwaDY1dHYyY2I4In0.yDAuKpeinAJb8LCz2eYWHg"
         {...this.state.viewport}
         onViewportChange={viewport => this.setState({ viewport })}
       >
-        {location.map(this.renderMarker)}
+        {this.props.cafes.map(this.renderMarker)}
         {this.renderPopup()}
       </ReactMapGL>
     );
