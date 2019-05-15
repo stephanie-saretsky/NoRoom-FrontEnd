@@ -1,18 +1,40 @@
 import React, { Component } from "react";
+let path = "http://localhost:4000/";
 
 class ClickableChair extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      taken: false
+      taken: ""
     };
   }
 
+  componentDidMount = () => {
+    this.setState({ taken: this.props.taken });
+  };
+
   changeSeat = () => {
-    this.setState({ taken: !this.state.taken });
+    let chairId = this.props.id;
+    let data = new FormData();
+    data.append("chairId", chairId);
+    fetch(path + "change-seat", {
+      method: "POST",
+      body: data,
+      credentials: "include"
+    })
+      .then(header => {
+        return header.text();
+      })
+      .then(body => {
+        let parsed = JSON.parse(body);
+        if (parsed.success) {
+          this.setState({ taken: !this.state.taken });
+        }
+      });
   };
 
   render = () => {
+    console.log(this.state.taken);
     let image = "/chair.png";
     if (this.state.taken) {
       image = "/chair-taken.png";

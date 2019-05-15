@@ -40,13 +40,21 @@ class OwnerLayout extends Component {
   };
 
   render = () => {
+    console.log(this.state.chairs);
     return (
       <div className="owner-container">
         <div className="owner-details">
           <div className="layout-container">
             <div className="layout">
               {this.state.chairs.map(chair => {
-                return <ClickableChair x={chair.x} y={chair.y} />;
+                return (
+                  <ClickableChair
+                    x={chair.x}
+                    y={chair.y}
+                    id={chair.id}
+                    taken={chair.taken}
+                  />
+                );
               })}
               {this.state.tables.map(table => {
                 return <ClickableTable x={table.x} y={table.y} />;
