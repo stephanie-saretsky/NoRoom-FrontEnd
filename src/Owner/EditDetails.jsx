@@ -9,9 +9,24 @@ class UnconnectedEditDetails extends Component {
       name: "",
       description: "",
       address: "",
+      city: "",
+      code: "",
+      country: "",
       files: undefined
     };
   }
+
+  handleCity = event => {
+    this.setState({ city: event.target.value });
+  };
+
+  handleCountry = event => {
+    this.setState({ country: event.target.value });
+  };
+
+  handlePostCode = event => {
+    this.setState({ code: event.target.value });
+  };
 
   handleName = event => {
     this.setState({ name: event.target.value });
@@ -38,6 +53,9 @@ class UnconnectedEditDetails extends Component {
     data.append("name", this.state.name);
     data.append("desc", this.state.description);
     data.append("address", this.state.address);
+    data.append("city", this.state.city);
+    data.append("country", this.state.country);
+    data.append("code", this.state.code);
     Array.from(files).forEach(ele => {
       data.append("files", ele);
     });
@@ -117,6 +135,25 @@ class UnconnectedEditDetails extends Component {
             value={this.state.address}
             placeholder="Address"
           />
+          <input
+            type="text"
+            onChange={this.handleCity}
+            value={this.state.city}
+            placeholder="city"
+          />
+          <input
+            type="text"
+            onChange={this.handlePostCode}
+            value={this.state.code}
+            placeholder="postal code"
+          />
+          <input
+            type="text"
+            onChange={this.handleCountry}
+            value={this.state.country}
+            placeholder="country"
+          />
+
           <input type="file" onChange={this.handleFiles} multiple />
           <input type="submit" value="Add Your Cafe" />
         </form>
