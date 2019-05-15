@@ -8,6 +8,12 @@ class CafeCard extends Component {
       activeImage: this.props.cafe.images[0]
     };
   }
+  componentDidUpdate(prevProps) {
+    console.log(this.props.cafe.name, this.props);
+    if (prevProps.cafe.images[0] !== this.props.cafe.images[0]) {
+      this.setState({ activeImage: this.props.cafe.images[0] });
+    }
+  }
 
   moveLeft = e => {
     e.preventDefault();
@@ -44,6 +50,7 @@ class CafeCard extends Component {
           &gt;
         </button>
         {cafe.name}
+        {/* <p className="desc">{cafe.desc}</p> */}
         <Link to={"cafe/" + cafe._id}>
           <button className="button">Is There Room?</button>
         </Link>
