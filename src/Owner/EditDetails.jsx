@@ -54,6 +54,7 @@ class UnconnectedEditDetails extends Component {
         let response = JSON.parse(responseBody);
         let cafeId = response.cafeId;
         let address = response.address;
+        let urlAddress = address.split(" ").join("+");
         this.setState({
           name: "",
           description: "",
@@ -65,7 +66,7 @@ class UnconnectedEditDetails extends Component {
         let APIkey = "key=AIzaSyCWyXDRjjUoo8QrnGjIZAwNj3t3QivVGhs";
         return fetch(
           "https://maps.googleapis.com/maps/api/geocode/json?address=" +
-            address +
+            urlAddress +
             "&" +
             APIkey
         )

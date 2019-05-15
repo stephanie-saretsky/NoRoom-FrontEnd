@@ -13,6 +13,7 @@ class OwnerLayout extends Component {
       name: "",
       desc: "",
       address: "",
+      cafeId: "",
       images: []
     };
   }
@@ -34,7 +35,8 @@ class OwnerLayout extends Component {
           name: cafe.name,
           desc: cafe.desc,
           address: cafe.address,
-          images: cafe.images
+          images: cafe.images,
+          cafeId: cafe._id
         });
       });
   };
@@ -53,11 +55,18 @@ class OwnerLayout extends Component {
                     y={chair.y}
                     id={chair.id}
                     taken={chair.taken}
+                    cafeId={this.state.cafeId}
                   />
                 );
               })}
               {this.state.tables.map(table => {
-                return <ClickableTable x={table.x} y={table.y} />;
+                return (
+                  <ClickableTable
+                    x={table.x}
+                    y={table.y}
+                    cafeId={this.state.cafeId}
+                  />
+                );
               })}
             </div>
             <div className="instructions-taken">

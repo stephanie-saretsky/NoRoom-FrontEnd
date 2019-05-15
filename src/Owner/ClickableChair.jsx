@@ -17,6 +17,7 @@ class ClickableChair extends Component {
     let chairId = this.props.id;
     let data = new FormData();
     data.append("chairId", chairId);
+    data.append("cafeId", this.props.cafeId);
     fetch(path + "change-seat", {
       method: "POST",
       body: data,
