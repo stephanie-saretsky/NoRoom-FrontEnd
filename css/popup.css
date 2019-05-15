@@ -11,10 +11,18 @@
 }
 .popup_inner {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   left: 25%;
   right: 25%;
   top: 25%;
   bottom: 25%;
   margin: auto;
   background: white;
+  max-width: 500px;
+  min-width: 500px;
+  max-height: 300px;
+  min-height: 300px;
 }

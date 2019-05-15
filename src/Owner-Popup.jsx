@@ -30,7 +30,9 @@ class Popup extends Component {
         <div className="popup_inner">
           {signUpLogin}
           <button onClick={this.signUp}>{buttonText}</button>
-          <button onClick={this.props.closePopup}>Close Me</button>
+          <div className="close-button">
+            <button onClick={this.props.closePopup}>Close Me</button>
+          </div>
         </div>
       </div>
     );

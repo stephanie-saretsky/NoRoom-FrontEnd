@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Popup from "./Owner-Popup.jsx";
 import { connect } from "react-redux";
+import "../css/footer.css";
 let path = "http://localhost:4000/";
 
 class UnconnectedFooter extends Component {
@@ -35,16 +36,34 @@ class UnconnectedFooter extends Component {
     if (this.state.showPopup) {
       popup = <Popup closePopup={this.togglePopup} />;
     }
+    let ownerButton = (
+      <button className="owner-button" onClick={this.togglePopup}>
+        Café Owner
+      </button>
+    );
+
+    if (this.props.login) {
+      ownerButton = (
+        <button className="owner-button" onClick={this.logout}>
+          Log Out
+        </button>
+      );
+    }
     return (
-      <div>
-        <button onClick={this.togglePopup}>Cafe Owner</button>
+      <div className="footer">
+        {ownerButton}
         {popup}
-        <button onClick={this.logout}>Log Out</button>
       </div>
     );
   };
 }
 
-let Footer = connect()(UnconnectedFooter);
+let mapStatToProps = st => {
+  return {
+    login: st.loggedIn
+  };
+};
+
+let Footer = connect(mapStatToProps)(UnconnectedFooter);
 
 export default Footer;

@@ -8,52 +8,49 @@ let path = "http://localhost:4000/";
 class UnconnectedEditLayout extends Component {
   constructor(props) {
     super(props);
+    this.myRef = React.createRef();
     this.state = {
       clicked: undefined,
       type: "",
-      copied: "",
+      id: "",
+      out: false,
       clickedX: 0,
       clickedY: 0,
       deltaX: 0,
       deltaY: 0,
-      x: 0,
-      y: 0,
-      id: "",
       chairs: [],
       tables: []
     };
   }
 
-  componentDidMount = () => {
-    this.addChair();
-    this.addTable();
-  };
-
   generateId = () => {
     return "" + Math.floor(Math.random() * 1000000);
   };
 
-  click = (index, evt, type, copied, x, y, id) => {
+  click = (index, evt, type, id) => {
     this.setState({
       clicked: index,
       type: type,
-      copied: copied,
+      id: id,
       clickedX: evt.clientX,
-      clickedY: evt.clientY,
-      x: x,
-      y: y,
-      id: id
+      clickedY: evt.clientY
     });
-    if (!copied && type === "chair") {
-      this.addChair();
-    }
-    if (!copied && type === "table") {
-      this.addTable();
-    }
   };
 
   move = evt => {
+    let element = this.myRef.current;
+    let cor = element.getBoundingClientRect();
     if (this.state.clicked !== undefined) {
+      if (
+        evt.clientX < cor.left + 20 ||
+        evt.clientX > cor.left + 20 + 1000 ||
+        evt.clientY < cor.top ||
+        evt.clientY > cor.top + 730
+      ) {
+        this.setState({ out: true });
+      } else {
+        this.setState({ out: false });
+      }
       this.setState({
         deltaX: evt.clientX - this.state.clickedX,
         deltaY: evt.clientY - this.state.clickedY
@@ -61,16 +58,36 @@ class UnconnectedEditLayout extends Component {
     }
   };
 
-  mouseUp = () => {
+  mouseUp = evt => {
     let chairs = this.state.chairs.map((c, i) => {
       if (i !== this.state.clicked || this.state.type === "table") return c;
       return { ...c, x: c.x + this.state.deltaX, y: c.y + this.state.deltaY };
     });
-
     let tables = this.state.tables.map((c, i) => {
       if (i !== this.state.clicked || this.state.type === "chair") return c;
       return { ...c, x: c.x + this.state.deltaX, y: c.y + this.state.deltaY };
     });
+
+    let element = this.myRef.current;
+    let cor = element.getBoundingClientRect();
+
+    if (
+      evt.clientX < cor.left + 20 ||
+      evt.clientX > cor.left + 20 + 1000 ||
+      evt.clientY < cor.top ||
+      evt.clientY > cor.top + 730
+    ) {
+      if (this.state.type === "chair") {
+        chairs = chairs.filter(chair => {
+          return chair.id !== this.state.id;
+        });
+      }
+      if (this.state.type === "table") {
+        tables = tables.filter(table => {
+          return table.id !== this.state.id;
+        });
+      }
+    }
 
     this.setState({
       clicked: undefined,
@@ -78,24 +95,26 @@ class UnconnectedEditLayout extends Component {
       clickedY: 0,
       deltaX: 0,
       deltaY: 0,
-      x: 0,
-      y: 0,
-      id: "",
       type: "",
-      copied: "",
+      id: "",
+      out: false,
       chairs: chairs,
       tables: tables
     });
   };
 
-  addChair = () => {
-    let newChair = { id: this.generateId(), x: 1010, y: 0, taken: false };
+  addChair = evt => {
+    let id = this.generateId();
+    let newChair = { id: id, x: 1010, y: 0, out: false, taken: false };
     this.setState({ chairs: this.state.chairs.concat(newChair) });
+    this.click(this.state.chairs.length, evt, "chair", id);
   };
 
-  addTable = () => {
-    let newTable = { id: this.generateId(), x: 1005, y: 60 };
+  addTable = evt => {
+    let id = this.generateId();
+    let newTable = { id: id, x: 1005, y: 60, out: false };
     this.setState({ tables: this.state.tables.concat(newTable) });
+    this.click(this.state.tables.length, evt, "table", id);
   };
 
   submitLayout = () => {
@@ -125,23 +144,25 @@ class UnconnectedEditLayout extends Component {
   };
 
   render = () => {
-    console.log(this.state.x, this.state.y);
     return (
-      <div className="drag-drop">
-        <div
-          onMouseUp={this.mouseUp}
-          onMouseMove={this.move}
-          onMouseLeave={this.mouseUp}
-          className="edit-layout"
-        >
+      <div
+        onMouseUp={this.mouseUp}
+        onMouseMove={this.move}
+        onMouseLeave={this.mouseUp}
+        className="drag-drop"
+      >
+        <div ref={this.myRef} className="edit-layout">
           {this.state.chairs.map((c, i) => {
             let deltaX = 0;
             let deltaY = 0;
-
+            let out = false;
             if (i === this.state.clicked && this.state.type === "chair") {
               deltaX = this.state.deltaX;
               deltaY = this.state.deltaY;
+              out = this.state.out;
             }
+            console.log("c.x", c.x);
+            console.log("deltaX", deltaX);
             return (
               <Chair
                 x={c.x + deltaX}
@@ -149,15 +170,18 @@ class UnconnectedEditLayout extends Component {
                 click={this.click}
                 index={i}
                 id={c.id}
+                out={out}
               />
             );
           })}
           {this.state.tables.map((c, i) => {
             let deltaX = 0;
             let deltaY = 0;
+            let out = false;
             if (i === this.state.clicked && this.state.type === "table") {
               deltaX = this.state.deltaX;
               deltaY = this.state.deltaY;
+              out = this.state.out;
             }
             return (
               <Table
@@ -166,18 +190,39 @@ class UnconnectedEditLayout extends Component {
                 click={this.click}
                 index={i}
                 id={c.id}
+                out={out}
               />
             );
           })}
         </div>
+        <div className="edit-images">
+          <img
+            className="edit-chair"
+            onMouseDown={this.addChair}
+            draggable={false}
+            src="/chair.png"
+            height="50px"
+          />
+          <img
+            className="edit-table"
+            onMouseDown={this.addTable}
+            draggable={false}
+            src="/table.png"
+            height="60px"
+          />
+        </div>
         <div className="instructions">
           <h2 className="instructions-title">Instructions: </h2>
           <p>
-            Drag and drop chairs and tables to roughly match the layout of your
-            cafe.
+            Drag and drop chairs <img src="/chair.png" height="10px" /> and
+            tables <img src="/table.png" height="10px" /> to match the layout of
+            your café.
           </p>
           <p className="second-p">
             Make sure to add the exact amount of chairs you have available.
+          </p>
+          <p className="second-p">
+            Drop an element outside of the border to delete it.
           </p>
           <div className="edit-button-container">
             <button className="submit-button" onClick={this.submitLayout}>
