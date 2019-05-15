@@ -12,9 +12,28 @@ class UnconnectedEditDetails extends Component {
       city: "",
       code: "",
       country: "",
-      files: undefined
+      files: undefined,
+      tags: [],
+      tag: ""
     };
   }
+
+  handleDelete = i => {
+    event.preventDefault();
+    let one = this.state.tags.slice(0, i);
+    let two = this.state.tags.slice(i + 1);
+    let tags = one.concat(two);
+    this.setState({ tags: tags });
+  };
+
+  handleOnclick = () => {
+    event.preventDefault();
+    this.setState({ tags: this.state.tags.concat(this.state.tag), tag: "" });
+  };
+
+  handleTags = event => {
+    this.setState({ tag: event.target.value });
+  };
 
   handleCity = event => {
     this.setState({ city: event.target.value });
@@ -50,12 +69,14 @@ class UnconnectedEditDetails extends Component {
     event.preventDefault();
     let data = new FormData();
     let files = this.state.files;
+    let tags = this.state.tags;
     data.append("name", this.state.name);
     data.append("desc", this.state.description);
     data.append("address", this.state.address);
     data.append("city", this.state.city);
     data.append("country", this.state.country);
     data.append("code", this.state.code);
+    data.append("tags", JSON.stringify(tags));
     Array.from(files).forEach(ele => {
       data.append("files", ele);
     });
@@ -98,7 +119,6 @@ class UnconnectedEditDetails extends Component {
           .then(responseBody => {
             let parsed = JSON.parse(responseBody);
             let location = JSON.stringify(parsed.results[0].geometry.location);
-            console.log("Location=>", location);
             let data = new FormData();
             data.append("location", location);
             data.append("cafeId", cafeId);
@@ -111,13 +131,14 @@ class UnconnectedEditDetails extends Component {
                 return responseHeader.text();
               })
               .then(responseBody => {
-                return console.log(responseBody);
+                return responseBody;
               });
           });
       });
   };
 
   render = () => {
+    console.log("STATE=>", this.state);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -165,8 +186,30 @@ class UnconnectedEditDetails extends Component {
             placeholder="country"
             required
           />
-
           <input type="file" onChange={this.handleFiles} multiple />
+          <input
+            type="text"
+            placeholder="Add a new tag"
+            onChange={this.handleTags}
+            value={this.state.tag}
+          />
+          <button onClick={this.handleOnclick}>Add</button>
+          <div>
+            {this.state.tags.map((tag, i) => {
+              return (
+                <div key={tag + ""}>
+                  {tag}
+                  <button
+                    onClick={() => {
+                      this.handleDelete(i);
+                    }}
+                  >
+                    x
+                  </button>
+                </div>
+              );
+            })}
+          </div>
           <input type="submit" value="Add Your Cafe" />
         </form>
       </div>
