@@ -106,3 +106,7 @@ button-right:hover {
 button-left:hover {
   background-color: rgba(186, 90, 49, 0.9);
 }
+
+.desc {
+  align-content: center;
+}

@@ -105,7 +105,7 @@ class UnconnectedEditLayout extends Component {
 
   addChair = evt => {
     let id = this.generateId();
-    let newChair = { id: id, x: 1010, y: 0, out: false, taken: false };
+    let newChair = { id: id, x: 1010, y: 0, taken: false };
     this.setState({ chairs: this.state.chairs.concat(newChair) });
     this.click(this.state.chairs.length, evt, "chair", id);
   };
@@ -119,10 +119,8 @@ class UnconnectedEditLayout extends Component {
 
   submitLayout = () => {
     let data = new FormData();
-    let chairs = this.state.chairs.slice();
-    chairs.splice(-1, 1);
-    let tables = this.state.tables.slice();
-    tables.splice(-1, 1);
+    let chairs = this.state.chairs;
+    let tables = this.state.tables;
     data.append("chairs", JSON.stringify(chairs));
     data.append("tables", JSON.stringify(tables));
     data.append("cafeId", this.props.cafeId);
@@ -161,8 +159,6 @@ class UnconnectedEditLayout extends Component {
               deltaY = this.state.deltaY;
               out = this.state.out;
             }
-            console.log("c.x", c.x);
-            console.log("deltaX", deltaX);
             return (
               <Chair
                 x={c.x + deltaX}
