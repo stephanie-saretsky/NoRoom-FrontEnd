@@ -47,6 +47,7 @@ class UnconnectedAllCafes extends Component {
             this.setState({ cafes: parsedResponse.cafes });
           }
         });
+      this.props.dispatch({ type: "search-input", search: "" });
     }
   };
 
@@ -71,6 +72,10 @@ class UnconnectedAllCafes extends Component {
         }
       })
       .catch(err => console.log(err));
+    this.props.dispatch({
+      type: "search-input",
+      search: this.state.searchInput
+    });
     this.setState({ searchInput: "" });
   };
 
