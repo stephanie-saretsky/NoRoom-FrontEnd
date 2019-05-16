@@ -20,6 +20,23 @@ class UnconnectedCafeDetails extends Component {
     let cafeId = this.props.cafeId;
     let data = new FormData();
     data.append("cafeId", cafeId);
+    fetch(path + "cafe-details", {
+      method: "POST",
+      body: data,
+      credentials: "include"
+    })
+      .then(header => {
+        return header.text();
+      })
+      .then(body => {
+        let parsed = JSON.parse(body);
+        if (parsed.success) {
+          this.props.dispatch({
+            type: "cafe-results",
+            cafes: [parsed.cafe]
+          });
+        }
+      });
     let updater = () => {
       fetch(path + "cafe-details", {
         method: "POST",
@@ -37,10 +54,6 @@ class UnconnectedCafeDetails extends Component {
               reviews: parsed.reviews,
               chairs: parsed.cafe.chairs,
               tables: parsed.cafe.tables
-            });
-            this.props.dispatch({
-              type: "cafe-results",
-              cafes: [parsed.cafe]
             });
           }
         });
@@ -129,6 +142,15 @@ class UnconnectedCafeDetails extends Component {
         <div className="room-text">
           <h1>{"Is there room at " + cafe.name + "?"}</h1>
           {seatDiv}
+        </div>
+        <div className="cafe-contact">
+          <h2>{"Contact " + cafe.name}</h2>
+          <p>{cafe.address}</p>
+          <p>{cafe.city + " " + cafe.code}</p>
+          <p>{cafe.number}</p>
+          <p>
+            <a href={cafe.url}>Website</a>
+          </p>
         </div>
         <Map />
       </div>

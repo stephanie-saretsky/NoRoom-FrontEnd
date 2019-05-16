@@ -50,7 +50,7 @@ class ClickableChair extends Component {
               });
               if (amountTaken === amountOfChairs) {
                 let waitTime = window.prompt(
-                  "Your cafe is full! What is the approximate wait time?"
+                  "Your café is full! What is the approximate wait time?"
                 );
                 let data = new FormData();
                 data.append("waitTime", waitTime);
