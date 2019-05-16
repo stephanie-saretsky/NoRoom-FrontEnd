@@ -90,6 +90,7 @@ class UnconnectedAllCafes extends Component {
   };
 
   handleState = () => {
+    console.log("handle state");
     if (!this.state.mapView) {
       this.setState({ mapView: true });
     } else {
@@ -108,10 +109,15 @@ class UnconnectedAllCafes extends Component {
             onChange={this.handleChange}
             placeholder="Search cafes"
           />
+          <button
+            type="button"
+            className="mapButton"
+            onClick={this.handleState}
+          >
+            <img src="/map.png" height="30" />
+          </button>
         </form>
-        <button className="mapButton" onClick={this.handleState}>
-          <img src="/map.png" height="30" />
-        </button>
+
         {this.renderMap()}
         <ul className="list-container">
           {this.props.cafes.map(cafe => (
