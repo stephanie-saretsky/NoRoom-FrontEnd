@@ -16,8 +16,9 @@ class UnconnectedEditDetails extends Component {
       files: undefined,
       tags: [],
       tag: "",
-      auto: "",
-      elements: []
+      web: "",
+      elements: [],
+      tel: undefined
     };
   }
 
@@ -74,6 +75,14 @@ class UnconnectedEditDetails extends Component {
     );
   };
 
+  handleWeb = event => {
+    this.setState({ web: event.target.value });
+  };
+
+  handleNum = event => {
+    this.setState({ tel: event.target.value });
+  };
+
   handleTags = event => {
     this.setState({ tag: event.target.value });
   };
@@ -113,6 +122,13 @@ class UnconnectedEditDetails extends Component {
     let data = new FormData();
     let files = this.state.files;
     let tags = this.state.tags;
+
+    if (files !== undefined) {
+      Array.from(files).forEach(ele => {
+        data.append("files", ele);
+      });
+    }
+
     data.append("name", this.state.name);
     data.append("desc", this.state.description);
     data.append("address", this.state.address);
@@ -120,10 +136,8 @@ class UnconnectedEditDetails extends Component {
     data.append("country", this.state.country);
     data.append("code", this.state.code);
     data.append("tags", JSON.stringify(tags));
-    Array.from(files).forEach(ele => {
-      data.append("files", ele);
-    });
-
+    data.append("number", this.state.tel);
+    data.append("url", this.state.web);
     fetch(path + "add-cafe", {
       method: "POST",
       body: data,
@@ -145,6 +159,8 @@ class UnconnectedEditDetails extends Component {
           city: "",
           code: "",
           country: "",
+          tag: "",
+          tel: undefined,
           files: undefined
         });
         localStorage.setItem(this.props.username + "-layout", "true");
@@ -184,7 +200,7 @@ class UnconnectedEditDetails extends Component {
     let userTyped = this.state.tag;
     let candidates = this.state.elements.filter(e => e.includes(userTyped));
     let autocompleteBox = undefined;
-    if (userTyped.length > 0 && candidates.length !== 0) {
+    if (userTyped.length >= 3 && candidates.length !== 0) {
       autocompleteBox = (
         <div className="autocomplete-container">
           <div className="autocomplete-box">
@@ -248,6 +264,19 @@ class UnconnectedEditDetails extends Component {
             value={this.state.country}
             placeholder="country"
             required
+          />
+          <input
+            type="tel"
+            placeholder="phone number"
+            onChange={this.handleNum}
+            value={this.state.tel}
+            required
+          />
+          <input
+            type="url"
+            placeholder="your website"
+            onChange={this.handleWeb}
+            value={this.state.web}
           />
           <input type="file" onChange={this.handleFiles} multiple />
           <div className="vertical-flex">
