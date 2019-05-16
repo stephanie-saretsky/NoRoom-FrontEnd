@@ -131,10 +131,26 @@ p {
 
 .home-head {
   background-color: rgba(208, 205, 205, 0.93);
-  width: 65%;
+  width: 70%;
   position: absolute;
   top: 20%;
-  left: 18%;
-  font-size: 50px;
+  left: 17%;
+  font-size: 55px;
   text-align: center;
+}
+
+.featCafe {
+  width: 70%;
+  position: absolute;
+  left: 17%;
+  font-size: 45px;
+  text-align: center;
+  line-height: 2.5;
+}
+
+.seeMore {
+  width: 70%;
+  position: absolute;
+  left: 48%;
+  font-size: 25px;
 }
