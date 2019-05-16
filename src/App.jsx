@@ -50,9 +50,13 @@ class UnconnectedApp extends Component {
   };
 
   render = () => {
+    let optionalNav = <NavBar />;
+    if (this.props.loggedIn) {
+      optionalNav = "";
+    }
     return (
       <BrowserRouter>
-        <NavBar />
+        {optionalNav}
         <div className="global">
           <Route exact={true} path="/" render={this.renderHomepage} />
           <Route exact={true} path="/cafes" render={this.renderCafes} />

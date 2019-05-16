@@ -20,42 +20,69 @@ class UnconnectedCafeDetails extends Component {
     let cafeId = this.props.cafeId;
     let data = new FormData();
     data.append("cafeId", cafeId);
-    fetch(path + "cafe-details", {
-      method: "POST",
-      body: data,
-      credentials: "include"
-    })
-      .then(header => {
-        return header.text();
+    let updater = () => {
+      fetch(path + "cafe-details", {
+        method: "POST",
+        body: data,
+        credentials: "include"
       })
-      .then(body => {
-        let parsed = JSON.parse(body);
-        if (parsed.success) {
-          this.setState({
-            cafe: parsed.cafe,
-            reviews: parsed.reviews,
-            chairs: parsed.cafe.chairs,
-            tables: parsed.cafe.tables
-          });
-          this.props.dispatch({
-            type: "cafe-results",
-            cafes: [parsed.cafe]
-          });
-        }
-      });
+        .then(header => {
+          return header.text();
+        })
+        .then(body => {
+          let parsed = JSON.parse(body);
+          if (parsed.success) {
+            this.setState({
+              cafe: parsed.cafe,
+              reviews: parsed.reviews,
+              chairs: parsed.cafe.chairs,
+              tables: parsed.cafe.tables
+            });
+            this.props.dispatch({
+              type: "cafe-results",
+              cafes: [parsed.cafe]
+            });
+          }
+        });
+    };
+    this.interval = setInterval(updater, 500);
   };
 
   render = () => {
     let cafe = this.state.cafe;
     let chairs = this.state.chairs;
     let tables = this.state.tables;
-    console.log("chairs", chairs);
+    let seatsAvailable = chairs.length;
+    let seatDiv = "";
     return (
       <div>
-        <h1>{"Is there room at " + cafe.name + "?"}</h1>
         <div className="details-layout">
           {chairs.map(chair => {
             if (chair.taken) {
+              seatsAvailable--;
+              seatDiv = (
+                <p>
+                  {"There are " + seatsAvailable + " seats available, come by!"}
+                </p>
+              );
+              if (seatsAvailable === 1) {
+                seatDiv = (
+                  <p>
+                    {"There is " + seatsAvailable + " seat available, come by!"}
+                  </p>
+                );
+              }
+              if (seatsAvailable === 0) {
+                seatDiv = (
+                  <p>
+                    {"There is currently no room at " +
+                      cafe.name +
+                      ". Try coming by in " +
+                      cafe.waitTime +
+                      "!"}
+                  </p>
+                );
+              }
               return (
                 <img
                   height="50px"
@@ -99,9 +126,10 @@ class UnconnectedCafeDetails extends Component {
             );
           })}
         </div>
-        if (seatcount = 0)
-        <p>There is no room. Try coming by in 15 minutes</p>
-        <p>There is x seats left. Come on by!</p>
+        <div className="room-text">
+          <h1>{"Is there room at " + cafe.name + "?"}</h1>
+          {seatDiv}
+        </div>
         <Map />
       </div>
     );

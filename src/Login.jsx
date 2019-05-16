@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../css/login-signup.css";
+import { withRouter } from "react-router-dom";
 let path = "http://localhost:4000/";
 
 class UnconnectedLogin extends Component {
@@ -45,6 +46,7 @@ class UnconnectedLogin extends Component {
           username: username
         });
         this.props.closePopup();
+        this.props.history.push("/");
       });
     this.setState({ username: "", password: "" });
   };
@@ -72,6 +74,6 @@ class UnconnectedLogin extends Component {
   };
 }
 
-let Login = connect()(UnconnectedLogin);
+let Login = connect()(withRouter(UnconnectedLogin));
 
 export default Login;

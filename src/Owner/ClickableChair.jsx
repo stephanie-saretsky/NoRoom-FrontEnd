@@ -52,6 +52,13 @@ class ClickableChair extends Component {
                 let waitTime = window.prompt(
                   "Your cafe is full! What is the approximate wait time?"
                 );
+                let data = new FormData();
+                data.append("waitTime", waitTime);
+                fetch(path + "wait-time", {
+                  method: "POST",
+                  body: data,
+                  credentials: "include"
+                });
               }
             });
         }
