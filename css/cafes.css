@@ -1,32 +1,20 @@
 .list-container {
   display: flex;
   flex-wrap: wrap;
-  /* grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 1px;
-  grid-row-gap: 1px; */
-}
-
-.col {
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-  flex-basis: 100%;
-  flex: 1;
+  align-items: flex-start;
 }
 
 .cafe-card {
-  align-items: center;
-  min-width: 320px;
-  padding: 20px;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   justify-content: center;
-  padding: 20px;
-  line-height: 2.5;
-  background: none;
-  font-size: 18px;
+  align-items: center;
+  margin: 10px;
   position: relative;
+  width: 400px;
+  line-height: 2.5;
+  font-size: 18px;
 }
 
 .cafe-photo {
@@ -75,8 +63,8 @@
 .button-left {
   background-color: rgba(236, 200, 175, 0.7);
   position: absolute;
-  top: 137px;
-  left: 38px;
+  top: 117px;
+  left: 0px;
   height: 30px;
   width: 22px;
   z-index: 1;
@@ -95,8 +83,8 @@
 .button-right {
   background-color: rgba(236, 200, 175, 0.7);
   z-index: 1;
-  top: 137px;
-  left: 416px;
+  top: 117px;
+  right: 0px;
   height: 30px;
   width: 22px;
   z-index: 1;
