@@ -14,7 +14,7 @@ class UnconnectedApp extends Component {
   constructor() {
     super();
     this.state = {
-      cafe: [],
+      cafe: [{ _id: 0 }],
       reviews: []
     };
   }
@@ -65,16 +65,22 @@ class UnconnectedApp extends Component {
         if (body.success) {
           console.log("result=>", body.cafe);
           console.log("Reviews=>", body.reviews);
-          if (this.state.cafe._id !== body.cafe._id) {
-            this.setState({ cafe: body.cafe, reviews: body.reviews });
+
+          if (this.state.cafe[0]._id !== body.cafe._id) {
+            this.setState({
+              cafe: [body.cafe],
+              reviews: body.reviews
+            });
           }
         }
+        console.log("hello?", this.state.cafe);
+        this.props.dispatch({
+          type: "cafe-results",
+          cafes: this.state.cafe
+        });
       });
-    // console.log(this.state.cafe, "CAFE STATE");
-    // this.props.dispatch({
-    //   type: "cafe-results",
-    //   cafes: this.state.cafe
-    // });
+    console.log(this.state.cafe, "CAFE STATE", this.state);
+
     return <CafeDetails cafe={this.state.cafe} reviews={this.state.reviews} />;
   };
 
