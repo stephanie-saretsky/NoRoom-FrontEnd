@@ -49,7 +49,8 @@ class CafeCard extends Component {
         <button className="button-right" onClick={this.moveRight}>
           &gt;
         </button>
-        {cafe.name}
+        <h2>{cafe.name}</h2>
+        <p className="desc">{cafe.desc}</p>
         <Link to={"cafe/" + cafe._id}>
           <button className="button">Is There Room?</button>
         </Link>

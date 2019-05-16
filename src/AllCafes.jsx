@@ -110,7 +110,7 @@ class UnconnectedAllCafes extends Component {
           />
         </form>
         <button className="mapButton" onClick={this.handleState}>
-          <img src="/map.png" height="41" />
+          <img src="/map.png" height="30" />
         </button>
         {this.renderMap()}
         <ul className="list-container">

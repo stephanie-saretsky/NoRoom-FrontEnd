@@ -23,11 +23,11 @@ class UnconnectedMap extends Component {
         latitude={c.location.lat}
         longitude={c.location.lng}
         offsetLeft={-20}
-        offsetTop={-10}
+        offsetTop={-45}
       >
         <img
           src="/cafemap.png"
-          height="50"
+          height="45"
           onClick={() => this.setState({ popupInfo: c })}
         />
       </Marker>
