@@ -13,10 +13,6 @@ let path = "http://localhost:4000/";
 class UnconnectedApp extends Component {
   constructor() {
     super();
-    this.state = {
-      cafe: [{ _id: 0 }],
-      reviews: []
-    };
   }
   componentDidMount = () => {
     fetch(path + "login-check", {
@@ -48,40 +44,9 @@ class UnconnectedApp extends Component {
   };
 
   renderCafeDetails = routerData => {
-    console.log(routerData, "ROUTERDATA");
     let cafeId = routerData.match.params.cid;
-    let data = new FormData();
-    data.append("cafeId", cafeId);
-    console.log("CAFE=>", cafeId);
-    fetch(path + "cafe-details", {
-      method: "POST",
-      body: data
-    })
-      .then(x => {
-        return x.text();
-      })
-      .then(responseBody => {
-        let body = JSON.parse(responseBody);
-        if (body.success) {
-          console.log("result=>", body.cafe);
-          console.log("Reviews=>", body.reviews);
 
-          if (this.state.cafe[0]._id !== body.cafe._id) {
-            this.setState({
-              cafe: [body.cafe],
-              reviews: body.reviews
-            });
-          }
-        }
-        console.log("hello?", this.state.cafe);
-        this.props.dispatch({
-          type: "cafe-results",
-          cafes: this.state.cafe
-        });
-      });
-    console.log(this.state.cafe, "CAFE STATE", this.state);
-
-    return <CafeDetails cafe={this.state.cafe} reviews={this.state.reviews} />;
+    return <CafeDetails cafeId={cafeId} />;
   };
 
   render = () => {

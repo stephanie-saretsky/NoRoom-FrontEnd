@@ -16,6 +16,7 @@ class ClickableChair extends Component {
   changeSeat = () => {
     let chairId = this.props.id;
     let data = new FormData();
+    let amountTaken = 0;
     data.append("chairId", chairId);
     data.append("cafeId", this.props.cafeId);
     fetch(path + "change-seat", {
@@ -30,12 +31,34 @@ class ClickableChair extends Component {
         let parsed = JSON.parse(body);
         if (parsed.success) {
           this.setState({ taken: !this.state.taken });
+          return fetch(path + "cafe-owner-details", {
+            method: "POST",
+            credentials: "include"
+          })
+            .then(header => {
+              return header.text();
+            })
+            .then(body => {
+              let parsed = JSON.parse(body);
+              let cafe = parsed[0];
+              let chairs = cafe.chairs;
+              let amountOfChairs = chairs.length;
+              chairs.forEach(chair => {
+                if (chair.taken === true) {
+                  amountTaken++;
+                }
+              });
+              if (amountTaken === amountOfChairs) {
+                let waitTime = window.prompt(
+                  "Your cafe is full! What is the approximate wait time?"
+                );
+              }
+            });
         }
       });
   };
 
   render = () => {
-    console.log(this.state.taken);
     let image = "/chair.png";
     if (this.state.taken) {
       image = "/chair-taken.png";

@@ -135,7 +135,6 @@ class UnconnectedEditLayout extends Component {
       .then(body => {
         let parsed = JSON.parse(body);
         if (parsed.success) {
-          localStorage.setItem(this.props.username + "-edit", "false");
           this.props.dispatch({ type: "done-edit" });
         }
       });

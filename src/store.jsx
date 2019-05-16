@@ -5,13 +5,19 @@ let reducer = (state, action) => {
     return { ...state, loggedIn: true, username: action.username };
   }
   if (action.type === "logout-success") {
-    return { ...state, loggedIn: false, username: "" };
+    return {
+      ...state,
+      loggedIn: false,
+      username: "",
+      editMode: true,
+      layoutMode: false
+    };
   }
   if (action.type === "done-edit") {
     return { ...state, editMode: false };
   }
   if (action.type === "done-details") {
-    return { ...state, layoutMode: true, cafeId: action.cafeId };
+    return { ...state, layoutMode: true };
   }
   if (action.type === "cafe-results") {
     return { ...state, cafes: action.cafes };

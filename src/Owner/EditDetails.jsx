@@ -163,8 +163,7 @@ class UnconnectedEditDetails extends Component {
           tel: undefined,
           files: undefined
         });
-        localStorage.setItem(this.props.username + "-layout", "true");
-        this.props.dispatch({ type: "done-details", cafeId });
+        this.props.dispatch({ type: "done-details" });
         let APIkey = "key=AIzaSyCWyXDRjjUoo8QrnGjIZAwNj3t3QivVGhs";
         return fetch(
           "https://maps.googleapis.com/maps/api/geocode/json?address=" +

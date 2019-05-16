@@ -42,7 +42,6 @@ class OwnerLayout extends Component {
   };
 
   render = () => {
-    console.log(this.state.chairs);
     return (
       <div className="owner-container">
         <div className="owner-details">

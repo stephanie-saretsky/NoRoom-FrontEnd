@@ -2,12 +2,35 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import OwnerEdit from "./OwnerEdit.jsx";
 import OwnerLayout from "./OwnerLayout.jsx";
-import EditLayout from "./EditLayout.jsx";
+let path = "http://localhost:4000/";
 
 class UnconnectedOwner extends Component {
+  constructor() {
+    super();
+    this.state = {
+      layout: false
+    };
+  }
+
+  componentDidMount = () => {
+    fetch(path + "edit-check", {
+      credentials: "include"
+    })
+      .then(header => {
+        return header.text();
+      })
+      .then(body => {
+        let parsed = JSON.parse(body);
+        if (parsed.success) {
+          if (parsed.layout) {
+            this.props.dispatch({ type: "done-edit" });
+          }
+        }
+      });
+  };
+
   render = () => {
-    let editMode = localStorage.getItem(this.props.username + "-edit");
-    if (editMode === null) {
+    if (this.props.edit) {
       return <OwnerEdit />;
     } else {
       return <OwnerLayout />;
