@@ -28,33 +28,6 @@
   margin-bottom: 3%;
 }
 
-.search-list {
-  display: flex;
-  padding: 20px 38px 20px 20px;
-}
-
-.searchTermList {
-  width: 100%;
-  background-image: url("/search.png");
-  background-repeat: no-repeat;
-  background-position: 97% 50%;
-  background-size: 20px;
-  background-color: #ecc8af;
-  border: 1px solid #584d3d;
-  padding: 8px;
-  height: 20px;
-  outline: none;
-  color: #584d3d;
-  font-size: 14px;
-  font-family: "Cardo", serif;
-  font-style: italic;
-}
-
-.mapButton {
-  background-color: #ecc8af;
-  border: 1px solid #584d3d;
-}
-
 .button-left {
   background-color: rgba(236, 200, 175, 0.7);
   position: absolute;

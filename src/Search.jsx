@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "../css/search.css";
+import "../css/navbar.css";
+let path = "http://localhost:4000/";
 
 class UnconnectedSearch extends Component {
   constructor() {
