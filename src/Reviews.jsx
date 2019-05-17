@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import "./css/main.css";
 
-class Review extends Component {
+class Reviews extends Component {
   constructor() {
     super();
     this.state = {};
@@ -32,4 +31,4 @@ class Review extends Component {
   }
 }
 
-export default Review;
+export default Reviews;

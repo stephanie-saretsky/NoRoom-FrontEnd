@@ -8,6 +8,7 @@ import Footer from "./Footer.jsx";
 import Owner from "./Owner/Owner.jsx";
 import NavBar from "./NavBar.jsx";
 import CafeDetails from "./CafeDetails.jsx";
+import Reviews from "./Reviews.jsx";
 let path = "http://localhost:4000/";
 
 class UnconnectedApp extends Component {
@@ -63,7 +64,7 @@ class UnconnectedApp extends Component {
     let cafeId = routerData.match.params.rid;
     return (
       <div>
-        <Review
+        <Reviews
           cafeId={cafeId}
           name={params.location.state.name}
           reviews={params.location.state.reviews}
