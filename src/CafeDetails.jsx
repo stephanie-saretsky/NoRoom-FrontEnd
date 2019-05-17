@@ -61,7 +61,11 @@ class UnconnectedCafeDetails extends Component {
           }
         });
     };
-    this.interval = setInterval(updater, 500);
+    this.intervalId = setInterval(updater, 500);
+  };
+
+  componentDidUpdate = () => {
+    clearInterval(this.intervalId);
   };
 
   render = () => {

@@ -64,11 +64,7 @@ class UnconnectedApp extends Component {
     let cafeId = routerData.match.params.rid;
     return (
       <div>
-        <Reviews
-          cafeId={cafeId}
-          name={params.location.state.name}
-          reviews={params.location.state.reviews}
-        />
+        <Reviews cafeId={cafeId} name={routerData.location.state.name} />
       </div>
     );
   };
@@ -77,7 +73,11 @@ class UnconnectedApp extends Component {
     return (
       <div>
         <div className="global">
-          <Route exact={true} path="/review/:rid" render={this.renderReviews} />
+          <Route
+            exact={true}
+            path="/reviews/:rid"
+            render={this.renderReviews}
+          />
           <Route exact={true} path="/" render={this.renderHomepage} />
           <Route exact={true} path="/cafes" render={this.renderCafes} />
           <Route
