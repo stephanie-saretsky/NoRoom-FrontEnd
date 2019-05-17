@@ -8,6 +8,7 @@ import Footer from "./Footer.jsx";
 import Owner from "./Owner/Owner.jsx";
 import NavBar from "./NavBar.jsx";
 import CafeDetails from "./CafeDetails.jsx";
+import Reviews from "./Reviews.jsx";
 let path = "http://localhost:4000/";
 
 class UnconnectedApp extends Component {
@@ -59,10 +60,24 @@ class UnconnectedApp extends Component {
     );
   };
 
+  renderReviews = routerData => {
+    let cafeId = routerData.match.params.rid;
+    return (
+      <div>
+        <Reviews cafeId={cafeId} name={routerData.location.state.name} />
+      </div>
+    );
+  };
+
   render = () => {
     return (
       <div>
         <div className="global">
+          <Route
+            exact={true}
+            path="/reviews/:rid"
+            render={this.renderReviews}
+          />
           <Route exact={true} path="/" render={this.renderHomepage} />
           <Route exact={true} path="/cafes" render={this.renderCafes} />
           <Route

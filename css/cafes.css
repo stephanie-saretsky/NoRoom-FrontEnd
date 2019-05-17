@@ -3,6 +3,8 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
+  padding: 30px;
+  background-color: rgba(244, 227, 216, 0.6);
 }
 
 .cafe-card {
@@ -10,22 +12,41 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   margin: 25px;
+  padding-bottom: 15px;
   position: relative;
   width: 400px;
   line-height: 2.5;
-  font-size: 18px;
+  font-size: 16px;
+  border: solid rgba(244, 227, 216, 0.6);
+  background-color: white;
 }
 
 .cafe-photo {
   width: 400px;
   height: 248px;
+  padding-bottom: 20px;
+  background-color: white;
+}
+
+.photo-title {
+  z-index: 1;
+  top: 20%;
+  position: absolute;
+  font-size: 26px;
+  border: 1px solid rgba(87, 77, 61, 0.2);
+  border-radius: 5px;
+  padding: 0px 20px;
+  font-weight: bold;
+  background-color: rgba(225, 225, 225, 0.9);
 }
 
 .desc {
   align-content: center;
   line-height: 1.5;
-  margin-bottom: 3%;
+  margin: 10px 0px;
+  padding-bottom: 10px;
 }
 
 .button-left {
