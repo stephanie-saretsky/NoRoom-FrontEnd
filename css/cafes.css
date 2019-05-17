@@ -104,3 +104,7 @@ button-right:hover {
 button-left:hover {
   background-color: rgba(186, 90, 49, 0.9);
 }
+
+.global {
+  min-height: calc(100vh - 90px);
+}
