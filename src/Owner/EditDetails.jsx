@@ -205,6 +205,7 @@ class UnconnectedEditDetails extends Component {
           <div className="autocomplete-box">
             {candidates.map(c => (
               <div
+                className="childAuto"
                 onClick={() => {
                   this.autoValue(c);
                 }}
@@ -219,92 +220,131 @@ class UnconnectedEditDetails extends Component {
     }
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            onChange={this.handleName}
-            value={this.state.name}
-            placeholder="Name"
-            required
-          />
-          <textarea
-            rows="4"
-            cols="50"
-            name="textarea"
-            onChange={this.handleDesc}
-            value={this.state.description}
-            placeholder="Description"
-            required
-          />
-          <input
-            type="text"
-            onChange={this.handleAddress}
-            value={this.state.address}
-            placeholder="Address"
-            required
-          />
-          <input
-            type="text"
-            onChange={this.handleCity}
-            value={this.state.city}
-            placeholder="city"
-            required
-          />
-          <input
-            type="text"
-            onChange={this.handlePostCode}
-            value={this.state.code}
-            placeholder="postal code"
-            required
-          />
-          <input
-            type="text"
-            onChange={this.handleCountry}
-            value={this.state.country}
-            placeholder="country"
-            required
-          />
-          <input
-            type="tel"
-            placeholder="phone number"
-            onChange={this.handleNum}
-            value={this.state.tel}
-            required
-          />
-          <input
-            type="url"
-            placeholder="your website"
-            onChange={this.handleWeb}
-            value={this.state.web}
-          />
-          <input type="file" onChange={this.handleFiles} multiple />
-          <div className="vertical-flex">
-            <input
-              type="text"
-              placeholder="Add a new tag"
-              onChange={this.handleTags}
-              value={this.state.tag}
-            />
-            {autocompleteBox}
-          </div>
-          <button onClick={this.handleOnclick}>Add</button>
-          <div>
-            {this.state.tags.map((tag, i) => {
-              return (
-                <div key={tag + ""}>
-                  {tag}
-                  <button
-                    onClick={() => {
-                      this.handleDelete(i);
-                    }}
-                  >
-                    x
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-          <input type="submit" value="Add Your Cafe" />
+        <h1 className="title">Informations</h1>
+        <form className="form-style" onSubmit={this.handleSubmit}>
+          <ul>
+            <li>
+              <label for="name">Name</label>
+              <input
+                type="text"
+                onChange={this.handleName}
+                value={this.state.name}
+                required
+              />
+              <span>Enter the name of your cafe here</span>
+            </li>
+            <li>
+              <label for="description">Description</label>
+              <textarea
+                rows="4"
+                cols="50"
+                name="textarea"
+                onChange={this.handleDesc}
+                value={this.state.description}
+                required
+              />
+              <span>Enter a description of your cafe</span>
+            </li>
+            <li>
+              <label for="Address">Address</label>
+              <input
+                type="text"
+                onChange={this.handleAddress}
+                value={this.state.address}
+                required
+              />
+              <span>Example: 433 Mayor St</span>
+            </li>
+            <li>
+              <label for="city">City</label>
+              <input
+                type="text"
+                onChange={this.handleCity}
+                value={this.state.city}
+                required
+              />
+              <span>Enter the city of your cafe</span>
+            </li>
+            <li>
+              <label for="postal code">Postcode</label>
+              <input
+                type="text"
+                onChange={this.handlePostCode}
+                value={this.state.code}
+                required
+              />
+              <span>Enter the postcode of your cafe</span>
+            </li>
+            <li>
+              <label for="country">Country</label>
+              <input
+                type="text"
+                onChange={this.handleCountry}
+                value={this.state.country}
+                required
+              />
+              <span>Enter the country of your cafe</span>
+            </li>
+            <li>
+              <label for="phone number">Phone number</label>
+              <input
+                type="tel"
+                onChange={this.handleNum}
+                value={this.state.tel}
+                required
+              />
+              <span>example: (514) 764-3589 </span>
+            </li>
+            <li>
+              <label for="website">Cafe website</label>
+              <input
+                type="text"
+                onChange={this.handleWeb}
+                value={this.state.web}
+              />
+              <span>example: www.moncafe.com</span>
+            </li>
+            <li className="vertical-flex">
+              <label for="tags">Tags</label>
+              <input
+                type="text"
+                onChange={this.handleTags}
+                value={this.state.tag}
+              />
+              {autocompleteBox}
+              <span>example: "vegan, fancy, eco-friendly, ..."</span>
+            </li>
+            <button className="add" onClick={this.handleOnclick}>
+              Add
+            </button>
+            <div className="tag-container">
+              {this.state.tags.map((tag, i) => {
+                return (
+                  <div className="tag" key={tag + ""}>
+                    <p>
+                      {tag}
+                      <span
+                        className="delete-tag"
+                        onClick={() => {
+                          this.handleDelete(i);
+                        }}
+                      >
+                        x
+                      </span>
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+            <li>
+              <label>Add images</label>
+              <input type="file" onChange={this.handleFiles} multiple />
+              <span> max number : 3</span>
+            </li>
+            <div>
+              <input className="submit" type="submit" value="Add Your Cafe" />
+            </div>
+          </ul>
         </form>
       </div>
     );
