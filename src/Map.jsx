@@ -57,6 +57,8 @@ class UnconnectedMap extends Component {
   render() {
     return (
       <ReactMapGL
+        // width="100%"
+        // height="100%"
         mapboxApiAccessToken="pk.eyJ1Ijoic25zYXJldHNreSIsImEiOiJjanZtdDhwYWYxNGxlNDRwaDY1dHYyY2I4In0.yDAuKpeinAJb8LCz2eYWHg"
         {...this.state.viewport}
         onViewportChange={viewport => this.setState({ viewport })}

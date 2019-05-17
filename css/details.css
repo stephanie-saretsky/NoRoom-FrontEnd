@@ -1,8 +1,133 @@
-.details-layout {
-  border: 1px solid black;
+.section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+}
+.section-wrapper {
   position: relative;
-  min-height: 511px;
-  min-width: 700px;
-  max-height: 511px;
-  max-width: 700px;
+  margin: 10px;
+  min-width: 320px;
+  padding-bottom: 73%;
+  display: block;
+}
+
+.section-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.main-details {
+  width: 100%;
+}
+
+.details {
+  background-color: rgba(150, 150, 150, 0.1);
+}
+
+.details-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.details-contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #584d3d;
+  padding: 10px;
+}
+
+.contact-title {
+  color: white;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.contact-p {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.room-title {
+  font-size: 30px;
+  margin: 10px;
+}
+
+.room-p {
+  font-size: 20px;
+}
+
+.p-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  line-height: 250%;
+}
+
+.red {
+  color: #ba5a31;
+}
+
+@media screen and (min-width: 768px) {
+  .main-details {
+    width: inherit;
+  }
+
+  .section-wrapper {
+    min-width: 364px;
+  }
+  .contact-title {
+    font-size: 30px;
+  }
+
+  .contact-p {
+    font-size: 20px;
+  }
+
+  .room-title {
+    font-size: 40px;
+  }
+
+  .room-p {
+    font-size: 25px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .section-wrapper {
+    width: 650px;
+  }
+  .contact-title {
+    font-size: 50px;
+    margin-bottom: 35px;
+  }
+
+  .contact-p {
+    font-size: 30px;
+    margin-bottom: 35px;
+  }
+
+  .room-title {
+    font-size: 50px;
+  }
+
+  .room-p {
+    font-size: 30px;
+  }
+  .p-container {
+    padding: 30px;
+    line-height: 400%;
+  }
 }

@@ -12,7 +12,9 @@ class UnconnectedCafeDetails extends Component {
       cafe: { _id: 0 },
       reviews: [],
       chairs: [],
-      tables: []
+      tables: [],
+      height: 0,
+      width: 0
     };
   }
 
@@ -66,93 +68,135 @@ class UnconnectedCafeDetails extends Component {
     let chairs = this.state.chairs;
     let tables = this.state.tables;
     let seatsAvailable = chairs.length;
-    let seatDiv = "";
+    let seatDiv = (
+      <div className="p-container">
+        <p className="room-p">
+          There are <span className="red">{seatsAvailable + " seats "}</span>
+          available.
+        </p>
+        <p className="room-p">Come visit!</p>
+      </div>
+    );
+    chairs.map(chair => {
+      if (chair.taken) {
+        seatsAvailable--;
+        seatDiv = (
+          <div className="p-container">
+            <p className="room-p">
+              There are{" "}
+              <span className="red">{seatsAvailable + " seats "}</span>
+              available.
+            </p>
+            <p className="room-p">Come visit!</p>
+          </div>
+        );
+        if (seatsAvailable === 1) {
+          seatDiv = (
+            <div className="p-container">
+              <p className="room-p">
+                There is <span className="red">1 seat</span> available.
+              </p>
+              <p className="room-p">Come visit!</p>
+            </div>
+          );
+        }
+        if (seatsAvailable === 0) {
+          seatDiv = (
+            <div className="p-container">
+              <p className="room-p">
+                There is currently <span className="red">no room</span> at{" "}
+                {" " + cafe.name + "."}
+              </p>
+              <p className="room-p">
+                {"Come by in " + cafe.waitTime + " to get a seat!"}
+              </p>
+            </div>
+          );
+        }
+      }
+    });
     return (
-      <div>
-        <div className="details-layout">
-          {chairs.map(chair => {
-            if (chair.taken) {
-              seatsAvailable--;
-              seatDiv = (
-                <p>
-                  {"There are " + seatsAvailable + " seats available, come by!"}
-                </p>
-              );
-              if (seatsAvailable === 1) {
-                seatDiv = (
-                  <p>
-                    {"There is " + seatsAvailable + " seat available, come by!"}
-                  </p>
+      <div className="section">
+        <div className="main-details">
+          <div className="section-wrapper">
+            <div className="section-content details-text">
+              <h1 className="room-title">
+                {"Is there room at " + cafe.name + "?"}
+              </h1>
+              {seatDiv}
+            </div>
+          </div>
+        </div>
+        <div className="main-details">
+          <div className="section-wrapper">
+            <div className="section-content details">
+              {chairs.map(chair => {
+                if (chair.taken) {
+                  return (
+                    <img
+                      height={(50 / 730) * 100 + "%"}
+                      src="/chair-taken.png"
+                      style={{
+                        position: "absolute",
+                        left: (chair.x / 1000) * 100 + "%",
+                        top: (chair.y / 730) * 100 + "%",
+                        zIndex: 10
+                      }}
+                    />
+                  );
+                }
+                if (!chair.taken) {
+                  return (
+                    <img
+                      height={(50 / 730) * 100 + "%"}
+                      src="/chair.png"
+                      style={{
+                        position: "absolute",
+                        left: (chair.x / 1000) * 100 + "%",
+                        top: (chair.y / 730) * 100 + "%",
+                        zIndex: 10
+                      }}
+                    />
+                  );
+                }
+              })}
+              {tables.map(table => {
+                return (
+                  <img
+                    height={(60 / 730) * 100 + "%"}
+                    src="/table.png"
+                    style={{
+                      position: "absolute",
+                      left: (table.x / 1000) * 100 + "%",
+                      top: (table.y / 730) * 100 + "%",
+                      zIndex: 10
+                    }}
+                  />
                 );
-              }
-              if (seatsAvailable === 0) {
-                seatDiv = (
-                  <p>
-                    {"There is currently no room at " +
-                      cafe.name +
-                      ". Try coming by in " +
-                      cafe.waitTime +
-                      "!"}
-                  </p>
-                );
-              }
-              return (
-                <img
-                  height="50px"
-                  src="/chair-taken.png"
-                  style={{
-                    position: "absolute",
-                    left: chair.x + "px",
-                    top: chair.y + "px",
-                    zIndex: 10
-                  }}
-                />
-              );
-            }
-            if (!chair.taken) {
-              return (
-                <img
-                  height="50px"
-                  src="/chair.png"
-                  style={{
-                    position: "absolute",
-                    left: chair.x + "px",
-                    top: chair.y + "px",
-                    zIndex: 10
-                  }}
-                />
-              );
-            }
-          })}
-          {tables.map(table => {
-            return (
-              <img
-                height="60px"
-                src="/table.png"
-                style={{
-                  position: "absolute",
-                  left: table.x + "px",
-                  top: table.y + "px",
-                  zIndex: 10
-                }}
-              />
-            );
-          })}
+              })}
+            </div>
+          </div>
         </div>
-        <div className="room-text">
-          <h1>{"Is there room at " + cafe.name + "?"}</h1>
-          {seatDiv}
+        <div className="main-details">
+          <div className="section-wrapper">
+            <div className="section-content details-map">
+              <Map />
+            </div>
+          </div>
         </div>
-        <div className="cafe-contact">
-          <h2>{"Contact " + cafe.name}</h2>
-          <p>{cafe.address}</p>
-          <p>{cafe.city + " " + cafe.code}</p>
-          <p>{cafe.number}</p>
-          <p>
-            <a href={cafe.url}>Website</a>
-          </p>
+        <div className="main-details">
+          <div className="section-wrapper">
+            <div className="section-content details-contact">
+              <h2 className="contact-title">{"Contact " + cafe.name}</h2>
+              <p className="contact-p">{cafe.address}</p>
+              <p className="contact-p">{cafe.city + " " + cafe.code}</p>
+              <p className="contact-p">{cafe.number}</p>
+              <p>
+                <a href={cafe.url}>Website</a>
+              </p>
+            </div>
+          </div>
         </div>
-        <Map />
       </div>
     );
   };
