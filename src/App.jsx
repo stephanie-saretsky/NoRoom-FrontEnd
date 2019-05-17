@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Link, BrowserRouter } from "react-router-dom";
+import { Route } from "react-router-dom";
 import "../css/main.css";
 import { connect } from "react-redux";
 import AllCafes from "./AllCafes.jsx";
@@ -61,7 +61,7 @@ class UnconnectedApp extends Component {
 
   render = () => {
     return (
-      <BrowserRouter>
+      <div>
         <div className="global">
           <Route exact={true} path="/" render={this.renderHomepage} />
           <Route exact={true} path="/cafes" render={this.renderCafes} />
@@ -72,7 +72,7 @@ class UnconnectedApp extends Component {
           />
         </div>
         <Footer />
-      </BrowserRouter>
+      </div>
     );
   };
 }

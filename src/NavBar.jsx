@@ -1,10 +1,29 @@
 import "../css/navbar.css";
 import "../css/main.css";
 import Search from "./Search.jsx";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import React, { Component } from "react";
+import { connect } from "react-redux";
+let path = "http://localhost:4000/";
 
-class NavBar extends Component {
+class UnconnectedNavBar extends Component {
+  allCafes = () => {
+    fetch(path + "cafes", {
+      method: "GET"
+    })
+      .then(x => {
+        return x.text();
+      })
+      .then(responseBody => {
+        let body = JSON.parse(responseBody);
+        console.log(body, "JSON BODY");
+        if (body.success) {
+          this.props.dispatch({ type: "cafe-results", cafes: body.cafeList });
+        }
+      });
+    this.props.history.push("/cafes");
+  };
+
   render = () => {
     let searchEnabled = undefined;
     if (this.props.searchEnabled) {
@@ -17,13 +36,18 @@ class NavBar extends Component {
         </Link>
         {searchEnabled}
         <div className="cafes">
-          <Link className="button allCafes" to={"/cafes"}>
+          {/* {if(window.location.href === path + "cafes" ) {
+          this.props.history.push("/cafes")
+        }}  */}
+          <button onClick={this.allCafes} className="button allCafes">
             All Cafes
-          </Link>
+          </button>
         </div>
       </div>
     );
   };
 }
+
+let NavBar = connect()(withRouter(UnconnectedNavBar));
 
 export default NavBar;
