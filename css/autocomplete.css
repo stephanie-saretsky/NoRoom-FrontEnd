@@ -232,6 +232,10 @@
   margin: 20px 10px 0px 80px;
 }
 
+.custom-file-input:focus {
+  outline: 0;
+}
+
 .custom-file-input::-webkit-file-upload-button {
   visibility: hidden;
 }
