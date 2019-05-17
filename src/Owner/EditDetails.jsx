@@ -50,6 +50,11 @@ class UnconnectedEditDetails extends Component {
 
   handleOnclick = () => {
     event.preventDefault();
+    if (this.state.tag.trim().length == 0) {
+      alert("Please enter a correct tag");
+      event.preventDefault();
+      return;
+    }
     this.setState(
       { tags: this.state.tags.concat(this.state.tag), tag: "" },
       () => {
@@ -237,7 +242,7 @@ class UnconnectedEditDetails extends Component {
               <label htmlFor="description">Description</label>
               <textarea
                 rows="4"
-                cols="50"
+                cols="30"
                 name="textarea"
                 onChange={this.handleDesc}
                 value={this.state.description}
