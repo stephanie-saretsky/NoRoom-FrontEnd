@@ -10,8 +10,8 @@ class UnconnectedMap extends Component {
     viewport: {
       width: "100%",
       height: "100%",
-      latitude: 45.5232,
-      longitude: -73.587,
+      latitude: 45.5175,
+      longitude: -73.58,
       zoom: 12.5
     },
     popupInfo: null
