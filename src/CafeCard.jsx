@@ -41,22 +41,20 @@ class CafeCard extends Component {
     const { cafe } = this.props;
 
     return (
-      // <div className="col">
       <div className="cafe-card">
         <button className="button-left" onClick={this.moveLeft}>
           &lt;
         </button>
         <img className="cafe-photo" src={this.state.activeImage} />
+        <h2 className="photo-title">{cafe.name}</h2>
         <button className="button-right" onClick={this.moveRight}>
           &gt;
         </button>
-        <h2>{cafe.name}</h2>
         <p className="desc">{cafe.desc}</p>
         <Link to={"cafe/" + cafe._id}>
           <button className="button">Is There Room?</button>
         </Link>
       </div>
-      // </div>
     );
   }
 }
