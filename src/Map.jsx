@@ -8,6 +8,8 @@ let path = "http://localhost:4000/";
 class UnconnectedMap extends Component {
   state = {
     viewport: {
+      width: "100%",
+      height: "100%",
       latitude: 45.5232,
       longitude: -73.587,
       zoom: 12.5
@@ -55,8 +57,8 @@ class UnconnectedMap extends Component {
   render() {
     return (
       <ReactMapGL
-        width="100%"
-        height="100%"
+        // width="100%"
+        // height="100%"
         mapboxApiAccessToken="pk.eyJ1Ijoic25zYXJldHNreSIsImEiOiJjanZtdDhwYWYxNGxlNDRwaDY1dHYyY2I4In0.yDAuKpeinAJb8LCz2eYWHg"
         {...this.state.viewport}
         onViewportChange={viewport => this.setState({ viewport })}

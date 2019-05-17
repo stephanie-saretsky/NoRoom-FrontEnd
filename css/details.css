@@ -31,8 +31,9 @@
 .details-text {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
+  text-align: center;
   padding: 10px;
 }
 
@@ -47,24 +48,23 @@
 
 .contact-title {
   color: white;
-  font-size: 25px;
+  font-size: 30px;
   margin-bottom: 20px;
 }
 
 .contact-p {
   color: white;
-  font-size: 15px;
+  font-size: 20px;
   margin-bottom: 20px;
 }
 
 .room-title {
-  font-size: 37px;
+  font-size: 30px;
   margin: 10px;
 }
 
 .room-p {
-  font-size: 25px;
-  margin-top: 20px;
+  font-size: 20px;
 }
 
 .p-container {
@@ -72,7 +72,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 10%;
+  padding: 10px;
+  line-height: 250%;
+}
+
+.red {
+  color: #ba5a31;
 }
 
 @media screen and (min-width: 768px) {
@@ -115,10 +120,14 @@
   }
 
   .room-title {
-    font-size: 40px;
+    font-size: 50px;
   }
 
   .room-p {
-    font-size: 25px;
+    font-size: 30px;
+  }
+  .p-container {
+    padding: 30px;
+    line-height: 400%;
   }
 }

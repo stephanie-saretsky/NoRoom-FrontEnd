@@ -10,7 +10,6 @@ class NavBar extends Component {
         <Link to={"/"}>
           <img src="/logo.png" height="80px" />
         </Link>
-        <h2 className="home-head">Is There Room At Your Fave Café?</h2>
         <div className="cafes">
           <Link className="button allCafes" to={"/cafes"}>
             All Cafes

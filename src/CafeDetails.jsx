@@ -71,7 +71,8 @@ class UnconnectedCafeDetails extends Component {
     let seatDiv = (
       <div className="p-container">
         <p className="room-p">
-          {"There are " + seatsAvailable + " seats available."}
+          There are <span className="red">{seatsAvailable + " seats "}</span>
+          available.
         </p>
         <p className="room-p">Come visit!</p>
       </div>
@@ -82,7 +83,9 @@ class UnconnectedCafeDetails extends Component {
         seatDiv = (
           <div className="p-container">
             <p className="room-p">
-              {"There are " + seatsAvailable + " seats available."}
+              There are{" "}
+              <span className="red">{seatsAvailable + " seats "}</span>
+              available.
             </p>
             <p className="room-p">Come visit!</p>
           </div>
@@ -91,7 +94,7 @@ class UnconnectedCafeDetails extends Component {
           seatDiv = (
             <div className="p-container">
               <p className="room-p">
-                {"There is " + seatsAvailable + " seat available."}
+                There is <span className="red">1 seat</span> available.
               </p>
               <p className="room-p">Come visit!</p>
             </div>
@@ -101,12 +104,11 @@ class UnconnectedCafeDetails extends Component {
           seatDiv = (
             <div className="p-container">
               <p className="room-p">
-                {"There is currently no room at " + cafe.name + "."}
+                There is currently <span className="red">no room</span> at{" "}
+                {" " + cafe.name + "."}
               </p>
               <p className="room-p">
-                {"If you come by in " +
-                  cafe.waitTime +
-                  " you should be able to get a seat!"}
+                {"Come by in " + cafe.waitTime + " to get a seat!"}
               </p>
             </div>
           );

@@ -54,7 +54,7 @@ class UnconnectedHomepage extends Component {
   render = () => {
     return (
       <div>
-        <div style={{ height: "50vh" }}>
+        <div style={{ height: "55vh" }}>
           <div className="hero-image">
             <form className="search" onSubmit={this.handleSubmit}>
               <input
@@ -62,7 +62,7 @@ class UnconnectedHomepage extends Component {
                 className="searchTerm"
                 value={this.state.searchInput}
                 onChange={this.handleChange}
-                placeholder="Search cafés..."
+                placeholder="Is there room in your fave cafe?"
               />
             </form>
           </div>
