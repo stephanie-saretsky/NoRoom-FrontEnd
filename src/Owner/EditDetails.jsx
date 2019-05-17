@@ -248,7 +248,7 @@ class UnconnectedEditDetails extends Component {
         <form className="form-style" onSubmit={this.handleSubmit}>
           <ul>
             <li>
-              <label for="name">Name</label>
+              <label htmlFor="name">Name</label>
               <input
                 type="text"
                 onChange={this.handleName}
@@ -258,7 +258,7 @@ class UnconnectedEditDetails extends Component {
               <span>Enter the name of your cafe here</span>
             </li>
             <li>
-              <label for="description">Description</label>
+              <label htmlFor="description">Description</label>
               <textarea
                 rows="4"
                 cols="50"
@@ -270,7 +270,7 @@ class UnconnectedEditDetails extends Component {
               <span>Enter a description of your cafe</span>
             </li>
             <li>
-              <label for="Address">Address</label>
+              <label htmlFor="Address">Address</label>
               <input
                 type="text"
                 onChange={this.handleAddress}
@@ -280,7 +280,7 @@ class UnconnectedEditDetails extends Component {
               <span>Example: 433 Mayor St</span>
             </li>
             <li>
-              <label for="city">City</label>
+              <label htmlFor="city">City</label>
               <input
                 type="text"
                 onChange={this.handleCity}
@@ -290,7 +290,7 @@ class UnconnectedEditDetails extends Component {
               <span>Enter the city of your cafe</span>
             </li>
             <li>
-              <label for="postal code">Postcode</label>
+              <label htmlFor="postal code">Postcode</label>
               <input
                 type="text"
                 onChange={this.handlePostCode}
@@ -300,7 +300,7 @@ class UnconnectedEditDetails extends Component {
               <span>Enter the postcode of your cafe</span>
             </li>
             <li>
-              <label for="country">Country</label>
+              <label htmlFor="country">Country</label>
               <input
                 type="text"
                 onChange={this.handleCountry}
@@ -310,7 +310,7 @@ class UnconnectedEditDetails extends Component {
               <span>Enter the country of your cafe</span>
             </li>
             <li>
-              <label for="phone number">Phone number</label>
+              <label htmlFor="phone number">Phone number</label>
               <input
                 type="tel"
                 onChange={this.handleNum}
@@ -320,7 +320,7 @@ class UnconnectedEditDetails extends Component {
               <span>example: (514) 764-3589 </span>
             </li>
             <li>
-              <label for="website">Cafe website</label>
+              <label htmlFor="website">Cafe website</label>
               <input
                 type="text"
                 onChange={this.handleWeb}
@@ -329,18 +329,18 @@ class UnconnectedEditDetails extends Component {
               <span>example: www.moncafe.com</span>
             </li>
             <li className="vertical-flex">
-              <label for="tags">Tags</label>
+              <label htmlFor="tags">Tags</label>
               <input
                 type="text"
                 onChange={this.handleTags}
                 value={this.state.tag}
               />
               {autocompleteBox}
+              <button className="add" onClick={this.handleOnclick}>
+                Add
+              </button>
               <span>example: "vegan, fancy, eco-friendly, ..."</span>
             </li>
-            <button className="add" onClick={this.handleOnclick}>
-              Add
-            </button>
             <div className="tag-container">
               {this.state.tags.map((tag, i) => {
                 return (
@@ -360,11 +360,15 @@ class UnconnectedEditDetails extends Component {
                 );
               })}
             </div>
-            <li>
-              <label>Add images</label>
-              <input type="file" onChange={this.handleFiles} multiple />
-              <span> max number : 3</span>
-            </li>
+            <div className="last-file">
+              <input
+                className="custom-file-input"
+                type="file"
+                onChange={this.handleFiles}
+                multiple
+              />
+              <span>maximum of 3 files</span>
+            </div>
             <div>
               <input className="submit" type="submit" value="Add Your Cafe" />
             </div>

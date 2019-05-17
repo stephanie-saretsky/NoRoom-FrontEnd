@@ -54,7 +54,7 @@ class UnconnectedHomepage extends Component {
   render = () => {
     return (
       <div>
-        <div style={{ height: "55vh" }}>
+        <div style={{ height: "60vh" }}>
           <div className="hero-image">
             <form className="search" onSubmit={this.handleSubmit}>
               <input
