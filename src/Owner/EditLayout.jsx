@@ -28,7 +28,7 @@ class UnconnectedEditLayout extends Component {
   };
 
   componentDidMount = () => {
-    fetch(path + "edit-layout", {
+    fetch(path + "cafe-info", {
       credentials: "include"
     })
       .then(header => {

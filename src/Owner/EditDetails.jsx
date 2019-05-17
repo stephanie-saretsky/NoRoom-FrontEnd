@@ -219,18 +219,18 @@ class UnconnectedEditDetails extends Component {
     }
     return (
       <div>
-        <h1 className="title">Informations</h1>
+        <h1 className="title">Add a Café</h1>
         <form className="form-style" onSubmit={this.handleSubmit}>
           <ul>
             <li>
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">Café Name</label>
               <input
                 type="text"
                 onChange={this.handleName}
                 value={this.state.name}
                 required
               />
-              <span>Enter the name of your cafe here</span>
+              <span />
             </li>
             <li>
               <label htmlFor="description">Description</label>
@@ -242,17 +242,17 @@ class UnconnectedEditDetails extends Component {
                 value={this.state.description}
                 required
               />
-              <span>Enter a description of your cafe</span>
+              <span />
             </li>
             <li>
-              <label htmlFor="Address">Address</label>
+              <label htmlFor="Address">Street Address</label>
               <input
                 type="text"
                 onChange={this.handleAddress}
                 value={this.state.address}
                 required
               />
-              <span>Example: 433 Mayor St</span>
+              <span />
             </li>
             <li>
               <label htmlFor="city">City</label>
@@ -262,7 +262,7 @@ class UnconnectedEditDetails extends Component {
                 value={this.state.city}
                 required
               />
-              <span>Enter the city of your cafe</span>
+              <span />
             </li>
             <li>
               <label htmlFor="postal code">Postcode</label>
@@ -272,7 +272,7 @@ class UnconnectedEditDetails extends Component {
                 value={this.state.code}
                 required
               />
-              <span>Enter the postcode of your cafe</span>
+              <span />
             </li>
             <li>
               <label htmlFor="country">Country</label>
@@ -282,7 +282,7 @@ class UnconnectedEditDetails extends Component {
                 value={this.state.country}
                 required
               />
-              <span>Enter the country of your cafe</span>
+              <span />
             </li>
             <li>
               <label htmlFor="phone number">Phone number</label>
@@ -292,16 +292,16 @@ class UnconnectedEditDetails extends Component {
                 value={this.state.tel}
                 required
               />
-              <span>example: (514) 764-3589 </span>
+              <span>Format: (514) 764-3589 </span>
             </li>
             <li>
-              <label htmlFor="website">Cafe website</label>
+              <label htmlFor="website">Café website</label>
               <input
                 type="text"
                 onChange={this.handleWeb}
                 value={this.state.web}
               />
-              <span>example: www.moncafe.com</span>
+              <span>Format: www.moncafe.com</span>
             </li>
             <li className="vertical-flex">
               <label htmlFor="tags">Tags</label>
@@ -314,7 +314,7 @@ class UnconnectedEditDetails extends Component {
               <button className="add" onClick={this.handleOnclick}>
                 Add
               </button>
-              <span>example: "vegan, fancy, eco-friendly, ..."</span>
+              <span>Example: "vegan, fancy, eco-friendly, ..."</span>
             </li>
             <div className="tag-container">
               {this.state.tags.map((tag, i) => {
@@ -342,9 +342,9 @@ class UnconnectedEditDetails extends Component {
                 onChange={this.handleFiles}
                 multiple
               />
-              <span>maximum of 3 files</span>
+              <span>Three pictures in total</span>
             </div>
-            <div>
+            <div className="submit-container">
               <input className="submit" type="submit" value="Add Your Cafe" />
             </div>
           </ul>

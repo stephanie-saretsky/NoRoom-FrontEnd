@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../../css/autocomplete.css";
+import "../../css/ownereditdetails.css";
 let path = "http://localhost:4000/";
 
 class UnconnectedOwnerEditDetails extends Component {
@@ -14,6 +15,8 @@ class UnconnectedOwnerEditDetails extends Component {
       code: "",
       country: "",
       files: undefined,
+      images: [],
+      imagesPreview: [],
       tags: [],
       tag: "",
       web: "",
@@ -31,7 +34,7 @@ class UnconnectedOwnerEditDetails extends Component {
         let parsed = JSON.parse(response);
         this.setState({ elements: parsed.elements });
       });
-    fetch(path + "edit-details", {
+    fetch(path + "cafe-info", {
       credentials: "include"
     })
       .then(header => {
@@ -41,7 +44,6 @@ class UnconnectedOwnerEditDetails extends Component {
         let parsed = JSON.parse(body);
         if (parsed.success) {
           let cafe = parsed.cafe;
-          console.log("tags", cafe.tags);
           this.setState({
             name: cafe.name,
             description: cafe.desc,
@@ -51,7 +53,8 @@ class UnconnectedOwnerEditDetails extends Component {
             country: cafe.country,
             tel: cafe.number,
             web: cafe.url,
-            tags: cafe.tags
+            tags: cafe.tags,
+            images: cafe.images
           });
         }
       });
@@ -137,14 +140,29 @@ class UnconnectedOwnerEditDetails extends Component {
 
   handleFiles = event => {
     let files = event.target.files;
+    let paths = [];
+    for (let i = 0; i < files.length; i++) {
+      paths.push(URL.createObjectURL(files[i]));
+    }
 
-    this.setState({ files: files });
+    this.setState({ files: files, imagesPreview: paths });
+  };
+
+  deleteImage = imagePath => {
+    let images = this.state.images;
+    images = images.filter(path => {
+      console.log("path", path);
+      console.log("imagePath", imagePath);
+      return path !== imagePath;
+    });
+    this.setState({ images: images });
   };
 
   handleSubmit = event => {
     event.preventDefault();
     let data = new FormData();
     let files = this.state.files;
+    let images = this.state.images;
     let tags = this.state.tags;
 
     if (files !== undefined) {
@@ -152,7 +170,7 @@ class UnconnectedOwnerEditDetails extends Component {
         data.append("files", ele);
       });
     }
-
+    data.append("images", JSON.stringify(images));
     data.append("name", this.state.name);
     data.append("desc", this.state.description);
     data.append("address", this.state.address);
@@ -185,7 +203,9 @@ class UnconnectedOwnerEditDetails extends Component {
           country: "",
           tag: "",
           tel: undefined,
-          files: undefined
+          files: undefined,
+          images: [],
+          imagesPreview: []
         });
         this.props.dispatch({ type: "done-edit" });
         let APIkey = "key=AIzaSyCWyXDRjjUoo8QrnGjIZAwNj3t3QivVGhs";
@@ -238,18 +258,18 @@ class UnconnectedOwnerEditDetails extends Component {
     }
     return (
       <div>
-        <h1 className="title">Informations</h1>
+        <h1 className="title">Edit Your Café</h1>
         <form className="form-style" onSubmit={this.handleSubmit}>
           <ul>
             <li>
-              <label for="name">Name</label>
+              <label for="name"> Café Name</label>
               <input
                 type="text"
                 onChange={this.handleName}
                 value={this.state.name}
                 required
               />
-              <span>Enter the name of your cafe here</span>
+              <span />
             </li>
             <li>
               <label for="description">Description</label>
@@ -261,17 +281,17 @@ class UnconnectedOwnerEditDetails extends Component {
                 value={this.state.description}
                 required
               />
-              <span>Enter a description of your cafe</span>
+              <span />
             </li>
             <li>
-              <label for="Address">Address</label>
+              <label for="Address">Street Address</label>
               <input
                 type="text"
                 onChange={this.handleAddress}
                 value={this.state.address}
                 required
               />
-              <span>Example: 433 Mayor St</span>
+              <span />
             </li>
             <li>
               <label for="city">City</label>
@@ -281,17 +301,17 @@ class UnconnectedOwnerEditDetails extends Component {
                 value={this.state.city}
                 required
               />
-              <span>Enter the city of your cafe</span>
+              <span />
             </li>
             <li>
-              <label for="postal code">Postcode</label>
+              <label for="postal code">Postal Code</label>
               <input
                 type="text"
                 onChange={this.handlePostCode}
                 value={this.state.code}
                 required
               />
-              <span>Enter the postcode of your cafe</span>
+              <span />
             </li>
             <li>
               <label for="country">Country</label>
@@ -301,26 +321,26 @@ class UnconnectedOwnerEditDetails extends Component {
                 value={this.state.country}
                 required
               />
-              <span>Enter the country of your cafe</span>
+              <span />
             </li>
             <li>
-              <label for="phone number">Phone number</label>
+              <label for="phone number">Phone Number</label>
               <input
                 type="tel"
                 onChange={this.handleNum}
                 value={this.state.tel}
                 required
               />
-              <span>example: (514) 764-3589 </span>
+              <span>Format: (514) 764-3589 </span>
             </li>
             <li>
-              <label for="website">Cafe website</label>
+              <label for="website">Café Website</label>
               <input
                 type="text"
                 onChange={this.handleWeb}
                 value={this.state.web}
               />
-              <span>example: www.moncafe.com</span>
+              <span>Format: www.moncafe.com</span>
             </li>
             <li className="vertical-flex">
               <label for="tags">Tags</label>
@@ -330,11 +350,11 @@ class UnconnectedOwnerEditDetails extends Component {
                 value={this.state.tag}
               />
               {autocompleteBox}
-              <span>example: "vegan, fancy, eco-friendly, ..."</span>
+              <button className="add" onClick={this.handleOnclick}>
+                Add
+              </button>
+              <span>Example: "vegan, fancy, eco-friendly, ..."</span>
             </li>
-            <button className="add" onClick={this.handleOnclick}>
-              Add
-            </button>
             <div className="tag-container">
               {this.state.tags.map((tag, i) => {
                 return (
@@ -354,12 +374,46 @@ class UnconnectedOwnerEditDetails extends Component {
                 );
               })}
             </div>
-            <li>
-              <label>Add images</label>
-              <input type="file" onChange={this.handleFiles} multiple />
-              <span> max number : 3</span>
-            </li>
-            <div>
+            <div className="last-file">
+              <input
+                className="custom-file-input"
+                type="file"
+                onChange={this.handleFiles}
+                multiple
+              />
+              <span>Three pictures in total</span>
+              {this.state.imagesPreview.map(image => {
+                return (
+                  <img className="file-preview" src={image} height="100px" />
+                );
+              })}
+            </div>
+
+            <div className="image-preview-container">
+              {this.state.images.map(image => {
+                return (
+                  <div className="image-container">
+                    <button
+                      className="delete-image-button"
+                      onClick={() => {
+                        this.deleteImage(image);
+                      }}
+                    >
+                      <img src="/close.png" height="10px" />
+                    </button>
+                    <img
+                      className="image-preview"
+                      onClick={() => {
+                        this.deleteImage(image);
+                      }}
+                      src={image}
+                      height="100px"
+                    />
+                  </div>
+                );
+              })}
+            </div>
+            <div className="submit-container">
               <input className="submit" type="submit" value="Submit Changes" />
             </div>
           </ul>

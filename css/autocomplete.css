@@ -38,7 +38,7 @@
 }
 
 .form-style {
-  max-width: 400px;
+  max-width: 60%;
   margin: 50px auto;
   background: #fff;
   border-radius: 2px;
@@ -57,6 +57,7 @@
   border: 1px solid #f5c396;
   margin-bottom: 30px;
   border-radius: 3px;
+  position: relative;
 }
 .form-style li:last-child {
   border: none;
@@ -64,14 +65,12 @@
   text-align: center;
 }
 .form-style li > label {
-  display: block;
-  float: left;
-  margin-top: -19px;
+  position: absolute;
+  top: -20px;
   background: #ffffff;
-  height: 14px;
   padding: 2px 5px 2px 5px;
-  color: #f5c396;
-  font-size: 14px;
+  color: #ba5a31;
+  font-size: 20px;
   overflow: hidden;
   font-family: "Cardo", serif;
 }
@@ -85,11 +84,12 @@
   display: block;
   outline: none;
   border: none;
-  height: 25px;
+  height: 40px;
+  margin-bottom: 9px;
   line-height: 25px;
   font-size: 15px;
   padding: 0;
-  color: #ba5a31;
+  color: #584d3d;
   font-family: "Cardo", serif;
 }
 
@@ -99,9 +99,9 @@
   border: none;
   border-radius: 3px;
   height: 25px;
-  line-height: 25px;
+  line-height: 40px;
   font-size: 15px;
-  color: #ba5a31;
+  color: #584d3d;
   font-family: "Cardo", serif;
 }
 
@@ -109,7 +109,7 @@
   display: block;
   outline: none;
   border: none;
-  color: #ba5a31;
+  color: #584d3d;
   font-family: "Cardo", serif;
 }
 
@@ -120,25 +120,29 @@
   padding: 3px;
   margin: 0 -9px -9px -9px;
   text-align: center;
-  color: #ba5a31;
+  color: #584d3d;
   font-family: "Cardo", serif;
-  font-size: 11px;
+  font-size: 15px;
 }
 .form-style textarea {
   resize: none;
 }
 .form-style input[type="submit"] {
-  background: #f5c396;
   border: none;
-  padding: 10px 20px 10px 20px;
+  background-color: #ba5a31;
+  color: white;
+  font-size: 16px;
+  padding: 15px 100px 15px 100px;
   border-radius: 2px;
-  color: #ba5a31;
-  margin-left: 130px;
 }
 .form-style input[type="submit"]:hover {
-  background: #ba5a31;
-  color: #f5c396;
+  background-color: #d69f73;
   cursor: pointer;
+}
+
+.submit-container {
+  display: flex;
+  justify-content: center;
 }
 
 .childAuto {
@@ -230,6 +234,7 @@
 
 .custom-file-input {
   color: transparent;
+  /* opacity: 0; */
   margin: 20px 10px 0px 80px;
 }
 
