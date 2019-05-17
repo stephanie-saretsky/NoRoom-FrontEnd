@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 let path = "http://localhost:4000/";
 import "../../css/owner-layout.css";
 import ClickableChair from "./ClickableChair.jsx";
 import ClickableTable from "./ClickableTable.jsx";
 
-class OwnerLayout extends Component {
+class UnconnectedOwnerLayout extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,6 +42,36 @@ class OwnerLayout extends Component {
       });
   };
 
+  editLayout = () => {
+    fetch(path + "edit-layout", {
+      credentials: "include"
+    })
+      .then(header => {
+        return header.text();
+      })
+      .then(body => {
+        let parsed = JSON.parse(body);
+        if (parsed.success) {
+          this.props.dispatch({ type: "edit-layout" });
+        }
+      });
+  };
+
+  editDetails = () => {
+    fetch(path + "edit-details", {
+      credentials: "include"
+    })
+      .then(header => {
+        return header.text();
+      })
+      .then(body => {
+        let parsed = JSON.parse(body);
+        if (parsed.success) {
+          this.props.dispatch({ type: "edit-details" });
+        }
+      });
+  };
+
   render = () => {
     return (
       <div className="owner-container">
@@ -74,10 +105,11 @@ class OwnerLayout extends Component {
                 Click on a seat to turn it orange and indicate it has been
                 taken.
               </p>
+              <button onClick={this.editLayout}>Edit Layout</button>
             </div>
           </div>
           <h2 className="instructions-title">{this.state.name + ":"}</h2>
-          <div className="details">
+          <div className="details-owner-cafe">
             <div className="taken-images">
               {this.state.images.map(image => {
                 return <img height="300px" src={image} />;
@@ -87,11 +119,14 @@ class OwnerLayout extends Component {
               <p className="taken-p">{"Description: " + this.state.desc}</p>
               <p className="taken-p">{"Address: " + this.state.address}</p>
             </div>
+            <button onClick={this.editDetails}>Edit Café Details</button>
           </div>
         </div>
       </div>
     );
   };
 }
+
+let OwnerLayout = connect()(UnconnectedOwnerLayout);
 
 export default OwnerLayout;

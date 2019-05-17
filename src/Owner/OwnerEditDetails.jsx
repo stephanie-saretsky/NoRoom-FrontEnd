@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import "../../css/autocomplete.css";
 let path = "http://localhost:4000/";
 
-class UnconnectedEditDetails extends Component {
+class UnconnectedOwnerEditDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,6 +31,30 @@ class UnconnectedEditDetails extends Component {
         let parsed = JSON.parse(response);
         this.setState({ elements: parsed.elements });
       });
+    fetch(path + "edit-details", {
+      credentials: "include"
+    })
+      .then(header => {
+        return header.text();
+      })
+      .then(body => {
+        let parsed = JSON.parse(body);
+        if (parsed.success) {
+          let cafe = parsed.cafe;
+          console.log("tags", cafe.tags);
+          this.setState({
+            name: cafe.name,
+            description: cafe.desc,
+            address: cafe.address,
+            city: cafe.city,
+            code: cafe.code,
+            country: cafe.country,
+            tel: cafe.number,
+            web: cafe.url,
+            tags: cafe.tags
+          });
+        }
+      });
   };
 
   autoValue = c => {
@@ -50,11 +74,6 @@ class UnconnectedEditDetails extends Component {
 
   handleOnclick = () => {
     event.preventDefault();
-    if (this.state.tag.trim().length == 0) {
-      alert("Please enter a correct tag");
-      event.preventDefault();
-      return;
-    }
     this.setState(
       { tags: this.state.tags.concat(this.state.tag), tag: "" },
       () => {
@@ -143,7 +162,7 @@ class UnconnectedEditDetails extends Component {
     data.append("tags", JSON.stringify(tags));
     data.append("number", this.state.tel);
     data.append("url", this.state.web);
-    fetch(path + "add-cafe", {
+    fetch(path + "edit-cafe", {
       method: "POST",
       body: data,
       credentials: "include"
@@ -168,7 +187,7 @@ class UnconnectedEditDetails extends Component {
           tel: undefined,
           files: undefined
         });
-        this.props.dispatch({ type: "done-details" });
+        this.props.dispatch({ type: "done-edit" });
         let APIkey = "key=AIzaSyCWyXDRjjUoo8QrnGjIZAwNj3t3QivVGhs";
         return fetch(
           "https://maps.googleapis.com/maps/api/geocode/json?address=" +
@@ -223,7 +242,7 @@ class UnconnectedEditDetails extends Component {
         <form className="form-style" onSubmit={this.handleSubmit}>
           <ul>
             <li>
-              <label htmlFor="name">Name</label>
+              <label for="name">Name</label>
               <input
                 type="text"
                 onChange={this.handleName}
@@ -233,10 +252,10 @@ class UnconnectedEditDetails extends Component {
               <span>Enter the name of your cafe here</span>
             </li>
             <li>
-              <label htmlFor="description">Description</label>
+              <label for="description">Description</label>
               <textarea
                 rows="4"
-                cols="30"
+                cols="50"
                 name="textarea"
                 onChange={this.handleDesc}
                 value={this.state.description}
@@ -245,7 +264,7 @@ class UnconnectedEditDetails extends Component {
               <span>Enter a description of your cafe</span>
             </li>
             <li>
-              <label htmlFor="Address">Address</label>
+              <label for="Address">Address</label>
               <input
                 type="text"
                 onChange={this.handleAddress}
@@ -255,7 +274,7 @@ class UnconnectedEditDetails extends Component {
               <span>Example: 433 Mayor St</span>
             </li>
             <li>
-              <label htmlFor="city">City</label>
+              <label for="city">City</label>
               <input
                 type="text"
                 onChange={this.handleCity}
@@ -265,7 +284,7 @@ class UnconnectedEditDetails extends Component {
               <span>Enter the city of your cafe</span>
             </li>
             <li>
-              <label htmlFor="postal code">Postcode</label>
+              <label for="postal code">Postcode</label>
               <input
                 type="text"
                 onChange={this.handlePostCode}
@@ -275,7 +294,7 @@ class UnconnectedEditDetails extends Component {
               <span>Enter the postcode of your cafe</span>
             </li>
             <li>
-              <label htmlFor="country">Country</label>
+              <label for="country">Country</label>
               <input
                 type="text"
                 onChange={this.handleCountry}
@@ -285,7 +304,7 @@ class UnconnectedEditDetails extends Component {
               <span>Enter the country of your cafe</span>
             </li>
             <li>
-              <label htmlFor="phone number">Phone number</label>
+              <label for="phone number">Phone number</label>
               <input
                 type="tel"
                 onChange={this.handleNum}
@@ -295,7 +314,7 @@ class UnconnectedEditDetails extends Component {
               <span>example: (514) 764-3589 </span>
             </li>
             <li>
-              <label htmlFor="website">Cafe website</label>
+              <label for="website">Cafe website</label>
               <input
                 type="text"
                 onChange={this.handleWeb}
@@ -304,18 +323,18 @@ class UnconnectedEditDetails extends Component {
               <span>example: www.moncafe.com</span>
             </li>
             <li className="vertical-flex">
-              <label htmlFor="tags">Tags</label>
+              <label for="tags">Tags</label>
               <input
                 type="text"
                 onChange={this.handleTags}
                 value={this.state.tag}
               />
               {autocompleteBox}
-              <button className="add" onClick={this.handleOnclick}>
-                Add
-              </button>
               <span>example: "vegan, fancy, eco-friendly, ..."</span>
             </li>
+            <button className="add" onClick={this.handleOnclick}>
+              Add
+            </button>
             <div className="tag-container">
               {this.state.tags.map((tag, i) => {
                 return (
@@ -335,17 +354,13 @@ class UnconnectedEditDetails extends Component {
                 );
               })}
             </div>
-            <div className="last-file">
-              <input
-                className="custom-file-input"
-                type="file"
-                onChange={this.handleFiles}
-                multiple
-              />
-              <span>maximum of 3 files</span>
-            </div>
+            <li>
+              <label>Add images</label>
+              <input type="file" onChange={this.handleFiles} multiple />
+              <span> max number : 3</span>
+            </li>
             <div>
-              <input className="submit" type="submit" value="Add Your Cafe" />
+              <input className="submit" type="submit" value="Submit Changes" />
             </div>
           </ul>
         </form>
@@ -360,6 +375,6 @@ let mapStateToProps = st => {
   };
 };
 
-let EditDetails = connect(mapStateToProps)(UnconnectedEditDetails);
+let OwnerEditDetails = connect(mapStateToProps)(UnconnectedOwnerEditDetails);
 
-export default EditDetails;
+export default OwnerEditDetails;
