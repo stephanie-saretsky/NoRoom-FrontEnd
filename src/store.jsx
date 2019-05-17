@@ -19,6 +19,12 @@ let reducer = (state, action) => {
   if (action.type === "done-details") {
     return { ...state, layoutMode: true };
   }
+  if (action.type === "edit-layout") {
+    return { ...state, editMode: true };
+  }
+  if (action.type === "edit-details") {
+    return { ...state, editMode: true, layoutMode: false };
+  }
   if (action.type === "cafe-results") {
     return { ...state, cafes: action.cafes };
   }

@@ -19,6 +19,7 @@ class UnconnectedCafeDetails extends Component {
   }
 
   componentDidMount = () => {
+    window.scrollTo(0, 0);
     let cafeId = this.props.cafeId;
     let data = new FormData();
     data.append("cafeId", cafeId);
