@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import EditLayout from "./EditLayout.jsx";
 import EditDetails from "./EditDetails.jsx";
+import OwnerEditDetails from "./OwnerEditDetails.jsx";
 let path = "http://localhost:4000/";
 
 class UnconnectedOwnerEdit extends Component {
@@ -19,6 +20,9 @@ class UnconnectedOwnerEdit extends Component {
       .then(body => {
         let parsed = JSON.parse(body);
         if (parsed.success) {
+          if (parsed.secondEdit) {
+            this.props.dispatch({ type: "edit-details" });
+          }
           if (parsed.details) {
             this.props.dispatch({ type: "done-details" });
           }
@@ -29,6 +33,8 @@ class UnconnectedOwnerEdit extends Component {
   render = () => {
     if (this.props.layout) {
       return <EditLayout />;
+    } else if (this.props.secondEdit) {
+      return <OwnerEditDetails />;
     } else {
       return <EditDetails />;
     }
@@ -38,7 +44,8 @@ class UnconnectedOwnerEdit extends Component {
 let mapStateToProps = st => {
   return {
     layout: st.layoutMode,
-    username: st.username
+    username: st.username,
+    secondEdit: st.secondEditMode
   };
 };
 

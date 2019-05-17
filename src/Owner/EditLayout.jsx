@@ -27,6 +27,25 @@ class UnconnectedEditLayout extends Component {
     return "" + Math.floor(Math.random() * 1000000);
   };
 
+  componentDidMount = () => {
+    fetch(path + "edit-layout", {
+      credentials: "include"
+    })
+      .then(header => {
+        return header.text();
+      })
+      .then(body => {
+        let parsed = JSON.parse(body);
+        if (parsed.success) {
+          let chairs = parsed.chairs;
+          let tables = parsed.tables;
+          if (chairs !== undefined && tables !== undefined) {
+            this.setState({ chairs: chairs, tables: tables });
+          }
+        }
+      });
+  };
+
   click = (index, evt, type, id) => {
     this.setState({
       clicked: index,

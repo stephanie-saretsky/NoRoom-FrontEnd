@@ -30,7 +30,9 @@ class UnconnectedOwner extends Component {
   };
 
   render = () => {
-    if (this.props.edit) {
+    console.log("edit", this.props.edit);
+    console.log("second", this.props.secondEdit);
+    if (this.props.edit || this.props.secondEdit) {
       return <OwnerEdit />;
     } else {
       return <OwnerLayout />;
@@ -41,7 +43,8 @@ class UnconnectedOwner extends Component {
 let mapStateToProps = st => {
   return {
     edit: st.editMode,
-    username: st.username
+    username: st.username,
+    secondEdit: st.secondEditMode
   };
 };
 
