@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: flex-start;
   padding: 30px;
-  background-color: rgba(250, 242, 237, 0.6);
+  background-color: rgba(244, 227, 216, 0.6);
 }
 
 .cafe-card {
@@ -19,7 +19,7 @@
   width: 400px;
   line-height: 2.5;
   font-size: 16px;
-  border: solid rgba(250, 242, 237, 0.6);
+  border: solid rgba(244, 227, 216, 0.6);
   background-color: white;
 }
 
