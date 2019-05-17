@@ -54,29 +54,29 @@ class UnconnectedHomepage extends Component {
   render = () => {
     return (
       <div>
-        <div style={{ height: "80vh" }}>
+        <div style={{ height: "55vh" }}>
           <div className="hero-image">
-            <h1 className="home-head">Is There Room At Your Fave Café?</h1>
             <form className="search" onSubmit={this.handleSubmit}>
               <input
                 type="text"
                 className="searchTerm"
                 value={this.state.searchInput}
                 onChange={this.handleChange}
-                placeholder="Search cafés..."
+                placeholder="Is there room in your favourite café?"
               />
             </form>
           </div>
         </div>
-        <h2 className="featCafe">Featured Cafés</h2>
         <ul className="list-container">
           {this.props.cafes.map(cafe => (
             <CafeCard cafe={cafe} />
           ))}
         </ul>
-        <Link className="seeMore" to={"/cafes"}>
-          See more
-        </Link>
+        <div className="linkBack">
+          <Link className="button seeMore" to={"/cafes"}>
+            SEE ALL CAFÉS
+          </Link>
+        </div>
       </div>
     );
   };

@@ -1,25 +1,20 @@
 .list-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 1px;
-  grid-row-gap: 1px;
-  margin: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .cafe-card {
-  align-items: center;
-  max-width: 3000px;
-  margin: 36px auto;
-  padding: 20px;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   justify-content: center;
-  padding: 20px;
-  line-height: 2.5;
-  background: none;
-  font-size: 18px;
+  align-items: center;
+  margin: 25px;
   position: relative;
+  width: 400px;
+  line-height: 2.5;
+  font-size: 18px;
 }
 
 .cafe-photo {
@@ -34,12 +29,8 @@
 }
 
 .search-list {
-  width: 20%;
-  position: absolute;
-  top: 18.3%;
-  left: 20%;
-  transform: translate(-50%, -50%);
-  /* background-color: rgba(208, 205, 205, 0.9); */
+  display: flex;
+  width: 25%;
   padding: 20px 38px 20px 20px;
 }
 
@@ -55,7 +46,7 @@
   height: 20px;
   outline: none;
   color: #584d3d;
-  font-size: 16px;
+  font-size: 14px;
   font-family: "Cardo", serif;
   font-style: italic;
 }
@@ -68,8 +59,8 @@
 .button-left {
   background-color: rgba(236, 200, 175, 0.7);
   position: absolute;
-  top: 137px;
-  left: 20px;
+  top: 117px;
+  left: 0px;
   height: 30px;
   width: 22px;
   z-index: 1;
@@ -88,8 +79,8 @@
 .button-right {
   background-color: rgba(236, 200, 175, 0.7);
   z-index: 1;
-  top: 137px;
-  left: 398px;
+  top: 117px;
+  right: 0px;
   height: 30px;
   width: 22px;
   z-index: 1;

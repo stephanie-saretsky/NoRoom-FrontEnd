@@ -41,6 +41,7 @@ class CafeCard extends Component {
     const { cafe } = this.props;
 
     return (
+      // <div className="col">
       <div className="cafe-card">
         <button className="button-left" onClick={this.moveLeft}>
           &lt;
@@ -55,6 +56,7 @@ class CafeCard extends Component {
           <button className="button">Is There Room?</button>
         </Link>
       </div>
+      // </div>
     );
   }
 }
