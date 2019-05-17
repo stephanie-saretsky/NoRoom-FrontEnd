@@ -43,7 +43,7 @@
   background: #fff;
   border-radius: 2px;
   padding: 20px;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Cardo", serif;
 }
 
 .form-style ul {
@@ -73,7 +73,7 @@
   color: #f5c396;
   font-size: 14px;
   overflow: hidden;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Cardo", serif;
 }
 .form-style input[type="text"],
 .form-style input[type="number"],
@@ -90,7 +90,7 @@
   font-size: 15px;
   padding: 0;
   color: #ba5a31;
-  font-family: "Montserrat", "Times New Roman", Times, serif;
+  font-family: "Cardo", serif;
 }
 
 .form-style input[type="file"] {
@@ -102,7 +102,7 @@
   line-height: 25px;
   font-size: 15px;
   color: #ba5a31;
-  font-family: "Montserrat", "Times New Roman", Times, serif;
+  font-family: "Cardo", serif;
 }
 
 .form-style textarea {
@@ -110,7 +110,7 @@
   outline: none;
   border: none;
   color: #ba5a31;
-  font-family: "Montserrat", "Times New Roman", Times, serif;
+  font-family: "Cardo", serif;
 }
 
 .form-style select:focus,
@@ -121,7 +121,7 @@
   margin: 0 -9px -9px -9px;
   text-align: center;
   color: #ba5a31;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Cardo", serif;
   font-size: 11px;
 }
 .form-style textarea {
