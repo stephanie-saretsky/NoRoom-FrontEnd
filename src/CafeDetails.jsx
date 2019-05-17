@@ -67,6 +67,7 @@ class UnconnectedCafeDetails extends Component {
     let cafe = this.state.cafe;
     let chairs = this.state.chairs;
     let tables = this.state.tables;
+    let reviews = this.state.reviews;
     let seatsAvailable = chairs.length;
     let seatDiv = (
       <div className="p-container">
@@ -194,6 +195,17 @@ class UnconnectedCafeDetails extends Component {
               <p>
                 <a href={cafe.url}>Website</a>
               </p>
+              <Link
+                to={{
+                  pathname: "/reviews/" + cafe._id.toString(),
+                  state: {
+                    name: cafe.name,
+                    reviews: reviews
+                  }
+                }}
+              >
+                Reviews
+              </Link>
             </div>
           </div>
         </div>
