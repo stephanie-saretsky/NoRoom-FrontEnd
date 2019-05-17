@@ -1,19 +1,194 @@
 .vertical-flex {
   display: flex;
   flex-direction: column;
-  width: 20%;
 }
 .autocomplete-container {
   position: relative;
+  left: -10px;
+  top: 1px;
+  color: #f5c396;
+  margin-right: -18px;
+  max-width: 400px;
 }
 
 .autocomplete-box {
-  border: 1px solid;
+  border-left: 1px solid #f5c396;
+  border-right: 1px solid #f5c396;
+  border-bottom: 1px solid #f5c396;
+  border-radius: 2px;
   position: absolute;
   background-color: white;
+  width: 100%;
 }
 
 .autocomplete-box :hover {
   cursor: pointer;
-  background-color: pink;
+  background-color: #fef9f4;
+  color: #f5c396;
+}
+
+.title {
+  display: block;
+  text-align: center;
+  padding: 0;
+  margin: 0px 0px 20px 0px;
+  font-size: 40px;
+  font-weight: 40;
+}
+
+.form-style {
+  max-width: 400px;
+  margin: 50px auto;
+  background: #fff;
+  border-radius: 2px;
+  padding: 20px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.form-style ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.form-style li {
+  display: block;
+  padding: 9px;
+  border: 1px solid #f5c396;
+  margin-bottom: 30px;
+  border-radius: 3px;
+}
+.form-style li:last-child {
+  border: none;
+  margin-bottom: 0px;
+  text-align: center;
+}
+.form-style li > label {
+  display: block;
+  float: left;
+  margin-top: -19px;
+  background: #ffffff;
+  height: 14px;
+  padding: 2px 5px 2px 5px;
+  color: #f5c396;
+  font-size: 14px;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.form-style input[type="text"],
+.form-style input[type="number"],
+.form-style input[type="url"],
+.form-style input[type="tel"],
+.form-style input[type="file"],
+.form-style select {
+  box-sizing: border-box;
+  width: 100%;
+  display: block;
+  outline: none;
+  border: none;
+  height: 25px;
+  line-height: 25px;
+  font-size: 15px;
+  padding: 0;
+  color: #ba5a31;
+  font-family: "Montserrat", "Times New Roman", Times, serif;
+}
+
+.form-style textarea {
+  display: block;
+  outline: none;
+  border: none;
+  color: #ba5a31;
+  font-family: "Montserrat", "Times New Roman", Times, serif;
+}
+
+.form-style select:focus,
+.form-style li > span {
+  background: #f5c396;
+  display: block;
+  padding: 3px;
+  margin: 0 -9px -9px -9px;
+  text-align: center;
+  color: #ba5a31;
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+}
+.form-style textarea {
+  resize: none;
+}
+.form-style input[type="submit"] {
+  background: #f5c396;
+  border: none;
+  padding: 10px 20px 10px 20px;
+  border-radius: 3px;
+  color: #ba5a31;
+}
+.form-style input[type="submit"]:hover {
+  background: #ba5a31;
+  color: #f5c396;
+}
+
+.childAuto {
+  width: 100%;
+}
+
+.tag {
+  background: #fef9f4;
+  color: #ba5a31;
+  margin: 10px;
+  border: 1px solid #f5c396;
+  border-radius: 2px;
+  position: relative;
+  padding-right: 20px;
+}
+
+.tag p {
+  margin: 3px 8px 3px 7px;
+  font-weight: bold;
+  color: #f5c396;
+  margin-right: 0;
+}
+
+.tag button {
+  border: none;
+  background: #fef9f4;
+  color: #f5c396;
+  margin-left: 2px;
+  margin-right: 0px;
+  font-weight: bold;
+  padding-right: 0px;
+}
+
+.tag button:hover {
+  color: #ba5a319f;
+}
+
+button .add {
+  border: none;
+  background: #fef9f4;
+  color: #f5c396;
+  margin-left: 2px;
+  margin-right: 0px;
+  font-weight: bold;
+  padding-right: 0px;
+}
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.delete-tag {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  background: #fef9f4;
+  border: #ba5a319f;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  line-height: 0;
 }

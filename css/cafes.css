@@ -10,7 +10,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10px;
+  margin: 25px;
   position: relative;
   width: 400px;
   line-height: 2.5;
@@ -103,4 +103,8 @@ button-right:hover {
 
 button-left:hover {
   background-color: rgba(186, 90, 49, 0.9);
+}
+
+.global {
+  min-height: calc(100vh - 90px);
 }
