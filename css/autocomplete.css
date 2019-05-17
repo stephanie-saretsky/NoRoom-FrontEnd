@@ -138,6 +138,7 @@
 .form-style input[type="submit"]:hover {
   background: #ba5a31;
   color: #f5c396;
+  cursor: pointer;
 }
 
 .childAuto {
