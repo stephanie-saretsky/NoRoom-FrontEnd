@@ -14,16 +14,21 @@ let reducer = (state, action) => {
     };
   }
   if (action.type === "done-edit") {
-    return { ...state, editMode: false };
+    return {
+      ...state,
+      editMode: false,
+      layoutMode: false,
+      secondEditMode: false
+    };
   }
   if (action.type === "done-details") {
     return { ...state, layoutMode: true };
   }
   if (action.type === "edit-layout") {
-    return { ...state, editMode: true };
+    return { ...state, editMode: true, layoutMode: true };
   }
   if (action.type === "edit-details") {
-    return { ...state, editMode: true, layoutMode: false };
+    return { ...state, secondEditMode: true };
   }
   if (action.type === "cafe-results") {
     return { ...state, cafes: action.cafes };
@@ -43,7 +48,8 @@ let store = createStore(
     search: "",
     username: "",
     cafeId: "",
-    cafes: []
+    cafes: [],
+    secondEditMode: false
   },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

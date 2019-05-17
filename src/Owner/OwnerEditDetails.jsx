@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import "../../css/autocomplete.css";
 let path = "http://localhost:4000/";
 
-class UnconnectedEditDetails extends Component {
+class UnconnectedOwnerEditDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -162,7 +162,7 @@ class UnconnectedEditDetails extends Component {
     data.append("tags", JSON.stringify(tags));
     data.append("number", this.state.tel);
     data.append("url", this.state.web);
-    fetch(path + "add-cafe", {
+    fetch(path + "edit-cafe", {
       method: "POST",
       body: data,
       credentials: "include"
@@ -187,7 +187,7 @@ class UnconnectedEditDetails extends Component {
           tel: undefined,
           files: undefined
         });
-        this.props.dispatch({ type: "done-details" });
+        this.props.dispatch({ type: "done-edit" });
         let APIkey = "key=AIzaSyCWyXDRjjUoo8QrnGjIZAwNj3t3QivVGhs";
         return fetch(
           "https://maps.googleapis.com/maps/api/geocode/json?address=" +
@@ -208,13 +208,7 @@ class UnconnectedEditDetails extends Component {
               credentials: "include",
               method: "POST",
               body: data
-            })
-              .then(responseHeader => {
-                return responseHeader.text();
-              })
-              .then(responseBody => {
-                return responseBody;
-              });
+            });
           });
       });
   };
@@ -366,7 +360,7 @@ class UnconnectedEditDetails extends Component {
               <span> max number : 3</span>
             </li>
             <div>
-              <input className="submit" type="submit" value="Add Your Cafe" />
+              <input className="submit" type="submit" value="Submit Changes" />
             </div>
           </ul>
         </form>
@@ -381,6 +375,6 @@ let mapStateToProps = st => {
   };
 };
 
-let EditDetails = connect(mapStateToProps)(UnconnectedEditDetails);
+let OwnerEditDetails = connect(mapStateToProps)(UnconnectedOwnerEditDetails);
 
-export default EditDetails;
+export default OwnerEditDetails;

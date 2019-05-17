@@ -31,30 +31,6 @@ class UnconnectedEditDetails extends Component {
         let parsed = JSON.parse(response);
         this.setState({ elements: parsed.elements });
       });
-    fetch(path + "edit-details", {
-      credentials: "include"
-    })
-      .then(header => {
-        return header.text();
-      })
-      .then(body => {
-        let parsed = JSON.parse(body);
-        if (parsed.success) {
-          let cafe = parsed.cafe;
-          console.log("tags", cafe.tags);
-          this.setState({
-            name: cafe.name,
-            description: cafe.desc,
-            address: cafe.address,
-            city: cafe.city,
-            code: cafe.code,
-            country: cafe.country,
-            tel: cafe.number,
-            web: cafe.url,
-            tags: cafe.tags
-          });
-        }
-      });
   };
 
   autoValue = c => {
@@ -208,13 +184,7 @@ class UnconnectedEditDetails extends Component {
               credentials: "include",
               method: "POST",
               body: data
-            })
-              .then(responseHeader => {
-                return responseHeader.text();
-              })
-              .then(responseBody => {
-                return responseBody;
-              });
+            });
           });
       });
   };
