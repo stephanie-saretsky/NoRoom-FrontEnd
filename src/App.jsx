@@ -40,23 +40,28 @@ class UnconnectedApp extends Component {
   };
 
   renderCafes = () => {
-    return <AllCafes />;
+    return (
+      <div>
+        <NavBar searchEnabled={true} />
+        <AllCafes />
+      </div>
+    );
   };
 
   renderCafeDetails = routerData => {
     let cafeId = routerData.match.params.cid;
 
-    return <CafeDetails cafeId={cafeId} />;
+    return (
+      <div>
+        <NavBar />
+        <CafeDetails cafeId={cafeId} />
+      </div>
+    );
   };
 
   render = () => {
-    let optionalNav = <NavBar />;
-    if (this.props.loggedIn) {
-      optionalNav = "";
-    }
     return (
       <BrowserRouter>
-        {optionalNav}
         <div className="global">
           <Route exact={true} path="/" render={this.renderHomepage} />
           <Route exact={true} path="/cafes" render={this.renderCafes} />

@@ -8,15 +8,8 @@ import CafeCard from "./CafeCard.jsx";
 let path = "http://localhost:4000/";
 
 class UnconnectedAllCafes extends Component {
-  constructor() {
-    super();
-    this.state = {
-      searchInput: "",
-      mapView: false
-    };
-  }
-
   componentDidMount = () => {
+    window.scrollTo(0, 0);
     console.log("cafe list rendering");
     if (this.props.homeSearch === "") {
       fetch(path + "cafes", {
@@ -56,69 +49,12 @@ class UnconnectedAllCafes extends Component {
     }
   };
 
-  handleChange = event => {
-    console.log(event.target.value);
-    let newInput = event.target.value;
-    this.setState({ searchInput: newInput });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    let search = this.state.searchInput;
-    fetch(path + "search-cafe?search=" + search)
-      .then(response => response.text())
-      .then(response => {
-        let parsedResponse = JSON.parse(response);
-        console.log("Response", parsedResponse);
-        if (parsedResponse.success) {
-          console.log("array of search", parsedResponse.cafes);
-          this.props.dispatch({
-            type: "cafe-results",
-            cafes: parsedResponse.cafes
-          });
-          console.log(this.props.cafes, "cafe list");
-        }
-      })
-      .catch(err => console.log(err));
-    this.setState({ searchInput: "" });
-  };
-
-  renderMap = () => {
-    if (this.state.mapView) {
-      return <Map />;
-    }
-  };
-
-  handleState = () => {
-    console.log("handle state");
-    if (!this.state.mapView) {
-      this.setState({ mapView: true });
-    } else {
-      this.setState({ mapView: false });
-    }
-  };
-
   render = () => {
     return (
       <div>
-        <form className="search-list" onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            className="searchTermList"
-            value={this.state.searchInput}
-            onChange={this.handleChange}
-            placeholder="Search cafes"
-          />
-          <button
-            type="button"
-            className="mapButton"
-            onClick={this.handleState}
-          >
-            <img src="/map.png" height="30" />
-          </button>
-        </form>
-
-        {this.renderMap()}
+        <div style={{ height: "55vh", width: "screen.width * 0.9" }}>
+          <Map />
+        </div>
         <ul className="list-container">
           {this.props.cafes.map(cafe => (
             <CafeCard cafe={cafe} />
