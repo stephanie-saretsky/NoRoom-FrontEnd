@@ -10,7 +10,8 @@ class unconnectedReviews extends Component {
     this.state = {
       reviews: [],
       response: false,
-      reviewId: ""
+      reviewId: "",
+      edit: false
     };
   }
 
@@ -50,7 +51,6 @@ class unconnectedReviews extends Component {
         return x.text();
       })
       .then(responseBody => {
-        console.log(responseBody);
         let parsed = JSON.parse(responseBody);
         this.setState({ reviews: parsed.reviews });
       });
@@ -72,7 +72,7 @@ class unconnectedReviews extends Component {
   };
 
   renderForm = x => {
-    if (this.props.loggedIn) {
+    if (this.props.loggedIn && !this.state.edit) {
       return (
         <button
           onClick={() => {
@@ -82,6 +82,14 @@ class unconnectedReviews extends Component {
           Response
         </button>
       );
+    } else if (this.state.edit) {
+      <button
+        onClick={() => {
+          this.setState({ reviewId: x });
+        }}
+      >
+        Edit
+      </button>;
     }
   };
 
@@ -103,6 +111,10 @@ class unconnectedReviews extends Component {
     }
   };
 
+  putEditTrue = () => {
+    this.setState({ edit: true });
+  };
+
   render() {
     console.log("state =>", this.state);
     return (
@@ -113,7 +125,7 @@ class unconnectedReviews extends Component {
         <ul>
           {this.state.reviews.map(review => {
             return (
-              <li>
+              <li key={"review" + review._id.toString()}>
                 <div>
                   <h4>{review.reviewerName + " :"}</h4>
                   <span>{this.renderRating(review)}</span>{" "}
@@ -128,6 +140,7 @@ class unconnectedReviews extends Component {
                         {" " + review.response[0].ownerName + " :"}
                       </h4>
                       <p>{review.response[0].response}</p>
+                      {this.putEditTrue()}
                     </div>
                   ) : null}
                 </div>
