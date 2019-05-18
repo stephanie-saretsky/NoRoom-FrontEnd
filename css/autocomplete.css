@@ -1,44 +1,49 @@
 .vertical-flex {
   display: flex;
   flex-direction: column;
-  position: relative;
-}
-.autocomplete-container {
-  position: relative;
-  left: -10px;
-  top: 1px;
-  color: #f5c396;
-  margin-right: -18px;
-  max-width: 400px;
 }
 
-.autocomplete-box {
-  border-left: 1px solid #f5c396;
-  border-right: 1px solid #f5c396;
-  border-bottom: 1px solid #f5c396;
-  border-radius: 2px;
-  position: absolute;
-  background-color: white;
+.autocomplete-container {
+  position: relative;
+  color: #8c7051;
   width: 100%;
 }
 
-.autocomplete-box :hover {
+.autocomplete-box {
+  left: -10px;
+  right: -10px;
+  top: 0px;
+  border-left: 1px solid #d69f7e;
+  border-right: 1px solid #d69f7e;
+  border-bottom: 1px solid #d69f7e;
+  border-radius: 0 0 3px 3px;
+  position: absolute;
+  background-color: white;
+}
+
+.childAuto {
+  width: 100%;
+  padding-left: 5px;
+  box-sizing: border-box;
+}
+
+.childAuto:hover {
   cursor: pointer;
-  background-color: #fef9f4;
-  color: #f5c396;
+  background-color: rgba(150, 150, 150, 0.2);
+  color: #8c7051;
 }
 
 .title {
   display: block;
   text-align: center;
   padding: 0;
-  margin: 0px 0px 20px 0px;
+  margin-top: 20px;
   font-size: 40px;
   font-weight: 40;
 }
 
 .form-style {
-  max-width: 400px;
+  max-width: 60%;
   margin: 50px auto;
   background: #fff;
   border-radius: 2px;
@@ -54,9 +59,10 @@
 .form-style li {
   display: block;
   padding: 9px;
-  border: 1px solid #f5c396;
+  border: 1px solid #d69f7e;
   margin-bottom: 30px;
   border-radius: 3px;
+  position: relative;
 }
 .form-style li:last-child {
   border: none;
@@ -64,14 +70,12 @@
   text-align: center;
 }
 .form-style li > label {
-  display: block;
-  float: left;
-  margin-top: -19px;
+  position: absolute;
+  top: -18px;
   background: #ffffff;
-  height: 14px;
   padding: 2px 5px 2px 5px;
-  color: #f5c396;
-  font-size: 14px;
+  color: #ba5a31;
+  font-size: 20px;
   overflow: hidden;
   font-family: "Cardo", serif;
 }
@@ -85,11 +89,12 @@
   display: block;
   outline: none;
   border: none;
-  height: 25px;
+  height: 40px;
+  margin-bottom: 9px;
   line-height: 25px;
   font-size: 15px;
   padding: 0;
-  color: #ba5a31;
+  color: #584d3d;
   font-family: "Cardo", serif;
 }
 
@@ -99,9 +104,9 @@
   border: none;
   border-radius: 3px;
   height: 25px;
-  line-height: 25px;
+  line-height: 40px;
   font-size: 15px;
-  color: #ba5a31;
+  color: #584d3d;
   font-family: "Cardo", serif;
 }
 
@@ -109,93 +114,86 @@
   display: block;
   outline: none;
   border: none;
-  color: #ba5a31;
+  color: #584d3d;
+  font-size: 15px;
+  height: 90px;
   font-family: "Cardo", serif;
 }
 
 .form-style select:focus,
 .form-style li > span {
-  background: #f5c396;
+  background: #d69f7e;
   display: block;
   padding: 3px;
   margin: 0 -9px -9px -9px;
   text-align: center;
-  color: #ba5a31;
+  color: #584d3d;
   font-family: "Cardo", serif;
-  font-size: 11px;
+  font-size: 15px;
 }
 .form-style textarea {
   resize: none;
 }
 .form-style input[type="submit"] {
-  background: #f5c396;
   border: none;
-  padding: 10px 20px 10px 20px;
+  background-color: #ba5a31;
+  color: white;
+  font-size: 16px;
+  padding: 15px 100px 15px 100px;
   border-radius: 2px;
-  color: #ba5a31;
-  margin-left: 130px;
 }
 .form-style input[type="submit"]:hover {
-  background: #ba5a31;
-  color: #f5c396;
+  background-color: #d69f73;
   cursor: pointer;
 }
 
-.childAuto {
-  width: 100%;
+.submit-container {
+  display: flex;
+  justify-content: center;
 }
 
 .tag {
-  background: #fef9f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
   color: #ba5a31;
   margin: 10px;
-  border: 1px solid #f5c396;
+  border: 1px solid #d69f7e;
   border-radius: 2px;
   position: relative;
-  padding-right: 20px;
+  padding: 5px 10px 5px 10px;
 }
 
 .tag p {
-  margin: 3px 8px 3px 7px;
   font-weight: bold;
-  color: #f5c396;
+  color: #ba5a31;
   margin-right: 0;
 }
 
-.tag button {
-  border: none;
-  background: #fef9f4;
-  color: #f5c396;
-  margin-left: 2px;
-  margin-right: 0px;
-  font-weight: bold;
-  padding-right: 0px;
-}
-
-.tag button:hover {
-  color: #ba5a319f;
+.add-container {
+  display: flex;
 }
 
 .add {
   border: none;
   background: transparent;
-  color: #f5c396;
+  color: #ba5a31;
   margin-left: 2px;
   margin-right: 0px;
   font-weight: bold;
   padding-right: 0px;
   z-index: 1;
-  position: absolute;
-  top: 7px;
-  left: 350px;
+  margin-bottom: 9px;
   padding: 5px;
 }
+
 .add:focus {
   outline: 0;
 }
 .add:hover {
   cursor: pointer;
-  color: #ba5a319f;
+  color: #d69f7e;
   border: none;
 }
 
@@ -209,8 +207,6 @@
   position: absolute;
   top: -7px;
   right: -7px;
-  background: transparent;
-  color: transparent;
   width: 16px;
   height: 16px;
   border-radius: 50%;
@@ -219,17 +215,22 @@
   align-items: center;
   font-size: 12px;
   line-height: 0;
-}
-
-.delete-tag:hover {
   cursor: pointer;
   background: #fef9f4;
-  color: #f5c396;
-  border: 0.5px solid #f5c396;
+  color: #969696;
+  border: 0.5px solid #969696;
 }
+
+/* .delete-tag:hover {
+  cursor: pointer;
+  background: #fef9f4;
+  color: #969696;
+  border: 0.5px solid #969696;
+} */
 
 .custom-file-input {
   color: transparent;
+  /* opacity: 0; */
   margin: 20px 10px 0px 80px;
 }
 
@@ -243,7 +244,7 @@
 .custom-file-input::before {
   content: "Add images";
   color: #ba5a31;
-  background-color: #f5c396;
+  background-color: #d69f7e;
   border-radius: 3px;
   cursor: pointer;
   font-size: 10pt;
@@ -251,7 +252,7 @@
 }
 .custom-file-input:hover::before {
   background-color: #ba5a31;
-  color: #f5c396;
+  color: #d69f7e;
 }
 .custom-file-input:active {
   outline: 0;

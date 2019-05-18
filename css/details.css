@@ -38,6 +38,10 @@
   padding: 10px;
 }
 
+/* .text-background {
+  background-color: rgba(150, 150, 150, 0.2);
+} */
+
 .details-contact {
   display: flex;
   flex-direction: column;
