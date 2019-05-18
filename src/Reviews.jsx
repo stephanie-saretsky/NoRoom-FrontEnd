@@ -71,35 +71,31 @@ class unconnectedReviews extends Component {
     return stars;
   };
 
-  renderForm = x => {
-    console.log("reviews", this.state.reviews);
-    this.state.reviews.forEach(review => {
-      if (review.response[0].edit === false) {
-        return (
-          <button
-            onClick={() => {
-              this.setState({ response: true, reviewId: x });
-            }}
-          >
-            Response
-          </button>
-        );
-      } else if (review.response[0].edit === true) {
-        return (
-          <button
-            onClick={() => {
-              this.setState({
-                response: false,
-                reviewId: x,
-                editResponse: true
-              });
-            }}
-          >
-            Edit
-          </button>
-        );
-      }
-    });
+  renderForm = (x, y) => {
+    if (!y) {
+      return (
+        <button
+          onClick={() => {
+            this.setState({ response: true, reviewId: x });
+          }}
+        >
+          Reply
+        </button>
+      );
+    } else if (y) {
+      return (
+        <button
+          onClick={() => {
+            this.setState({
+              response: false,
+              reviewId: x
+            });
+          }}
+        >
+          Edit
+        </button>
+      );
+    }
   };
 
   renderClose = () => {
@@ -136,7 +132,16 @@ class unconnectedReviews extends Component {
           <div>
             <h4>{review.reviewerName + " :"}</h4>
             <span>{this.renderRating(review)}</span> <p>{review.review}</p>
-            {this.renderForm(review._id.toString())}
+            {review.response.length > 0 ? (
+              <div>
+                {this.renderForm(
+                  review._id.toString(),
+                  review.response[0].edit
+                )}
+              </div>
+            ) : (
+              <div>{this.renderForm(review._id.toString(), false)}</div>
+            )}
           </div>
           <div>
             {review.response.length > 0 ? (
