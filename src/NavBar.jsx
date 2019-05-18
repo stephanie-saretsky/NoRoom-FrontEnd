@@ -31,8 +31,8 @@ class UnconnectedNavBar extends Component {
     }
     return (
       <div className="bar">
-        <Link to={"/"}>
-          <img src="/logo.png" height="80px" />
+        <Link className="nav-logo" to={"/"}>
+          <img src="/nav-logo3.png" height="50px" />
         </Link>
         {searchEnabled}
         <div className="cafes">

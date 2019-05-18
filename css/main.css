@@ -159,3 +159,14 @@ p {
   padding: 40px;
   margin: -24px, -48px;
 }
+
+.logo-main {
+  position: absolute;
+  z-index: 10;
+  left: 10px;
+  top: 10px;
+}
+
+.nav-logo {
+  margin-left: 10px;
+}
