@@ -208,8 +208,7 @@ class UnconnectedCafeDetails extends Component {
                   to={{
                     pathname: "/reviews/" + cafe._id.toString(),
                     state: {
-                      name: cafe.name,
-                      reviews: reviews
+                      name: cafe.name
                     }
                   }}
                 >

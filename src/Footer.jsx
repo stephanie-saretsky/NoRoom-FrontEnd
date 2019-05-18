@@ -28,6 +28,8 @@ class UnconnectedFooter extends Component {
         if (parsed.success) {
           this.props.dispatch({ type: "logout-success" });
         }
+        this.props.history.push("/");
+        return;
       });
   };
 
