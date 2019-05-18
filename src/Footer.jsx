@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Popup from "./Owner-Popup.jsx";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import "../css/footer.css";
 let path = "http://localhost:4000/";
@@ -66,6 +67,6 @@ let mapStatToProps = st => {
   };
 };
 
-let Footer = connect(mapStatToProps)(UnconnectedFooter);
+let Footer = connect(mapStatToProps)(withRouter(UnconnectedFooter));
 
 export default Footer;

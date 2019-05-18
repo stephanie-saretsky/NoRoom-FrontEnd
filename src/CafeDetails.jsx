@@ -72,7 +72,6 @@ class UnconnectedCafeDetails extends Component {
     let cafe = this.state.cafe;
     let chairs = this.state.chairs;
     let tables = this.state.tables;
-    let reviews = this.state.reviews;
     let seatsAvailable = chairs.length;
     let seatDiv = (
       <div className="p-container">
