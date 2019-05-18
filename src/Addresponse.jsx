@@ -31,6 +31,7 @@ class UnconnectedAddresponse extends Component {
     data.append("response", this.state.response);
     data.append("reviewId", this.state.reviewId);
     data.append("ownerName", this.state.name);
+    data.append("edit", true);
     fetch(path + "add-response", {
       method: "POST",
       body: data,

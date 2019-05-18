@@ -213,7 +213,7 @@ class UnconnectedCafeDetails extends Component {
                       pathname: "/reviews/" + cafe._id.toString(),
                       state: {
                         name: cafe.name,
-                        reviews: reviews
+                        reviews: this.state.reviews
                       }
                     }}
                   >

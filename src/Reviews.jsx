@@ -11,7 +11,7 @@ class unconnectedReviews extends Component {
       reviews: [],
       response: false,
       reviewId: "",
-      edit: false
+      editResponse: false
     };
   }
 
@@ -72,34 +72,50 @@ class unconnectedReviews extends Component {
   };
 
   renderForm = x => {
-    if (this.props.loggedIn && !this.state.edit) {
-      return (
-        <button
-          onClick={() => {
-            this.setState({ response: true, reviewId: x });
-          }}
-        >
-          Response
-        </button>
-      );
-    } else if (this.state.edit) {
-      <button
-        onClick={() => {
-          this.setState({ reviewId: x });
-        }}
-      >
-        Edit
-      </button>;
-    }
+    console.log("reviews", this.state.reviews);
+    this.state.reviews.forEach(review => {
+      if (review.response[0].edit === false) {
+        return (
+          <button
+            onClick={() => {
+              this.setState({ response: true, reviewId: x });
+            }}
+          >
+            Response
+          </button>
+        );
+      } else if (review.response[0].edit === true) {
+        return (
+          <button
+            onClick={() => {
+              this.setState({
+                response: false,
+                reviewId: x,
+                editResponse: true
+              });
+            }}
+          >
+            Edit
+          </button>
+        );
+      }
+    });
+  };
+
+  renderClose = () => {
+    this.setState({ response: false });
   };
 
   renderResponse = () => {
     if (this.state.response) {
       return (
-        <Addresponse
-          reviewId={this.state.reviewId}
-          renderReviews={this.takeReviews}
-        />
+        <div>
+          <Addresponse
+            reviewId={this.state.reviewId}
+            renderReviews={this.takeReviews}
+          />
+          <button onClick={this.renderClose}>close</button>
+        </div>
       );
     } else if (!this.props.loggedIn) {
       return (
@@ -108,46 +124,43 @@ class unconnectedReviews extends Component {
           renderReviews={this.takeReviews}
         />
       );
+    } else {
+      // return <Editreview />;
     }
   };
 
-  putEditTrue = () => {
-    this.setState({ edit: true });
+  renderReviewsResponses = () => {
+    return this.state.reviews.map(review => {
+      return (
+        <li key={"review" + review._id.toString()}>
+          <div>
+            <h4>{review.reviewerName + " :"}</h4>
+            <span>{this.renderRating(review)}</span> <p>{review.review}</p>
+            {this.renderForm(review._id.toString())}
+          </div>
+          <div>
+            {review.response.length > 0 ? (
+              <div>
+                <h4>
+                  Response:
+                  {" " + review.response[0].ownerName + " :"}
+                </h4>
+                <p>{review.response[0].response}</p>
+              </div>
+            ) : null}
+          </div>
+        </li>
+      );
+    });
   };
 
   render() {
-    console.log("state =>", this.state);
     return (
       <div>
         <h1>{this.props.name}</h1>
         <span>{this.renderRatingTwo(this.renderAverage())}</span>
         <h2>Reviews</h2>
-        <ul>
-          {this.state.reviews.map(review => {
-            return (
-              <li key={"review" + review._id.toString()}>
-                <div>
-                  <h4>{review.reviewerName + " :"}</h4>
-                  <span>{this.renderRating(review)}</span>{" "}
-                  <p>{review.review}</p>
-                  {this.renderForm(review._id.toString())}
-                </div>
-                <div>
-                  {review.response.length > 0 ? (
-                    <div>
-                      <h4>
-                        Response:
-                        {" " + review.response[0].ownerName + " :"}
-                      </h4>
-                      <p>{review.response[0].response}</p>
-                      {this.putEditTrue()}
-                    </div>
-                  ) : null}
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+        <ul>{this.renderReviewsResponses()}</ul>
         {this.renderResponse()}
       </div>
     );
