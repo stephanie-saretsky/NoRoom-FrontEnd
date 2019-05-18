@@ -130,7 +130,8 @@ class UnconnectedCafeDetails extends Component {
                   className="section-content details-text"
                   style={{
                     backgroundImage: "url('" + cafe.images[0] + "')",
-                    backgroundPosition: "center"
+                    backgroundPosition: "center",
+                    backgroundSize: "cover"
                   }}
                 >
                   <h1 className="room-title">
