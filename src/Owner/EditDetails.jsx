@@ -291,8 +291,9 @@ class UnconnectedEditDetails extends Component {
                 onChange={this.handleNum}
                 value={this.state.tel}
                 required
+                placeholder="Format: (514) 764-3589"
               />
-              <span>Format: (514) 764-3589 </span>
+              <span> </span>
             </li>
             <li>
               <label htmlFor="website">Café website</label>
@@ -300,21 +301,26 @@ class UnconnectedEditDetails extends Component {
                 type="text"
                 onChange={this.handleWeb}
                 value={this.state.web}
+                placeholder="Format: www.moncafe.com"
               />
-              <span>Format: www.moncafe.com</span>
+              <span />
             </li>
             <li className="vertical-flex">
               <label htmlFor="tags">Tags</label>
-              <input
-                type="text"
-                onChange={this.handleTags}
-                value={this.state.tag}
-              />
+              <div className="add-container">
+                <input
+                  type="text"
+                  onChange={this.handleTags}
+                  value={this.state.tag}
+                  placeholder="Example: vegan, cozy, eco-friendly, ..."
+                />
+
+                <button className="add" onClick={this.handleOnclick}>
+                  Add
+                </button>
+              </div>
               {autocompleteBox}
-              <button className="add" onClick={this.handleOnclick}>
-                Add
-              </button>
-              <span>Example: "vegan, fancy, eco-friendly, ..."</span>
+              <span />
             </li>
             <div className="tag-container">
               {this.state.tags.map((tag, i) => {

@@ -127,7 +127,13 @@ class UnconnectedCafeDetails extends Component {
           <div className="section">
             <div className="main-details">
               <div className="section-wrapper">
-                <div className="section-content details-text">
+                <div
+                  className="section-content details-text"
+                  style={{
+                    backgroundImage: "url('" + cafe.images[0] + "')",
+                    backgroundPosition: "center"
+                  }}
+                >
                   <h1 className="room-title">
                     {"Is there room at " + cafe.name + "?"}
                   </h1>
@@ -193,28 +199,28 @@ class UnconnectedCafeDetails extends Component {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="main-details">
-            <div className="section-wrapper">
-              <div className="section-content details-contact">
-                <h2 className="contact-title">{"Contact " + cafe.name}</h2>
-                <p className="contact-p">{cafe.address}</p>
-                <p className="contact-p">{cafe.city + " " + cafe.code}</p>
-                <p className="contact-p">{cafe.number}</p>
-                <p>
-                  <a href={cafe.url}>Website</a>
-                </p>
-                <Link
-                  to={{
-                    pathname: "/reviews/" + cafe._id.toString(),
-                    state: {
-                      name: cafe.name,
-                      reviews: reviews
-                    }
-                  }}
-                >
-                  Reviews
-                </Link>
+            <div className="main-details">
+              <div className="section-wrapper">
+                <div className="section-content details-contact">
+                  <h2 className="contact-title">{"Contact " + cafe.name}</h2>
+                  <p className="contact-p">{cafe.address}</p>
+                  <p className="contact-p">{cafe.city + " " + cafe.code}</p>
+                  <p className="contact-p">{cafe.number}</p>
+                  <p>
+                    <a href={cafe.url}>Website</a>
+                  </p>
+                  <Link
+                    to={{
+                      pathname: "/reviews/" + cafe._id.toString(),
+                      state: {
+                        name: cafe.name,
+                        reviews: reviews
+                      }
+                    }}
+                  >
+                    Reviews
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
