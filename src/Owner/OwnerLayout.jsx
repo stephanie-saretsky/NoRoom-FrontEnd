@@ -4,6 +4,7 @@ let path = "http://localhost:4000/";
 import "../../css/owner-layout.css";
 import ClickableChair from "./ClickableChair.jsx";
 import ClickableTable from "./ClickableTable.jsx";
+import { Link } from "react-router-dom";
 
 class UnconnectedOwnerLayout extends Component {
   constructor(props) {
@@ -121,6 +122,14 @@ class UnconnectedOwnerLayout extends Component {
             </div>
             <button onClick={this.editDetails}>Edit Café Details</button>
           </div>
+          <Link
+            to={{
+              pathname: "/reviews/" + this.state.cafeId.toString(),
+              state: { name: this.state.name }
+            }}
+          >
+            Reviews
+          </Link>
         </div>
       </div>
     );
