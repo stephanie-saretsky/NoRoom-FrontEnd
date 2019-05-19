@@ -73,7 +73,7 @@ class unconnectedReviews extends Component {
   };
 
   renderForm = (x, y) => {
-    if (!y) {
+    if (!y && this.props.loggedIn) {
       return (
         <button
           onClick={() => {
@@ -83,7 +83,7 @@ class unconnectedReviews extends Component {
           Reply
         </button>
       );
-    } else if (y) {
+    } else if (y && this.props.loggedIn) {
       return (
         <button
           onClick={() => {
