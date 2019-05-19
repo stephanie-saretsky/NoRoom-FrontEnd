@@ -3,6 +3,7 @@ import Addreview from "./addReview.jsx";
 import { connect } from "react-redux";
 import Addresponse from "./Addresponse.jsx";
 import { withRouter } from "react-router-dom";
+import EditResponse from "./EditResponse.jsx";
 let path = "http://localhost:4000/";
 
 class unconnectedReviews extends Component {
@@ -88,8 +89,8 @@ class unconnectedReviews extends Component {
         <button
           onClick={() => {
             this.setState({
-              response: false,
-              reviewId: x
+              reviewId: x,
+              editResponse: true
             });
           }}
         >
@@ -101,6 +102,10 @@ class unconnectedReviews extends Component {
 
   renderClose = () => {
     this.setState({ response: false });
+  };
+
+  renderCloseEdit = () => {
+    this.setState({ editResponse: false });
   };
 
   renderResponse = () => {
@@ -121,9 +126,18 @@ class unconnectedReviews extends Component {
           renderReviews={this.takeReviews}
         />
       );
-    } else {
-      // return <Editreview />;
+    } else if (this.state.editResponse) {
+      return (
+        <div>
+          {this.renderEdit(this.state.reviewId, this.takeReviews)}
+          <button onClick={this.renderCloseEdit}>close</button>
+        </div>
+      );
     }
+  };
+
+  renderEdit = (x, y) => {
+    return <EditResponse reviewId={x} renderReviews={y} />;
   };
 
   renderReviewsResponses = () => {
@@ -133,16 +147,6 @@ class unconnectedReviews extends Component {
           <div>
             <h4>{review.reviewerName + " :"}</h4>
             <span>{this.renderRating(review)}</span> <p>{review.review}</p>
-            {review.response.length > 0 ? (
-              <div>
-                {this.renderForm(
-                  review._id.toString(),
-                  review.response[0].edit
-                )}
-              </div>
-            ) : (
-              <div>{this.renderForm(review._id.toString(), false)}</div>
-            )}
           </div>
           <div>
             {review.response.length > 0 ? (
@@ -154,6 +158,16 @@ class unconnectedReviews extends Component {
                 <p>{review.response[0].response}</p>
               </div>
             ) : null}
+            {review.response.length > 0 ? (
+              <div>
+                {this.renderForm(
+                  review._id.toString(),
+                  review.response[0].edit
+                )}
+              </div>
+            ) : (
+              <div>{this.renderForm(review._id.toString(), false)}</div>
+            )}
           </div>
         </li>
       );
@@ -161,6 +175,7 @@ class unconnectedReviews extends Component {
   };
 
   render() {
+    console.log("state", this.state);
     return (
       <div>
         <h1>{this.props.name}</h1>
