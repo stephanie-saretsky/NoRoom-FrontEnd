@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Addreview from "./addReview.jsx";
 import { connect } from "react-redux";
 import Addresponse from "./Addresponse.jsx";
+import { withRouter } from "react-router-dom";
 let path = "http://localhost:4000/";
 
 class unconnectedReviews extends Component {

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 let path = "http://localhost:4000/";
 
 class UnconnectedAddresponse extends Component {
@@ -47,6 +48,7 @@ class UnconnectedAddresponse extends Component {
           this.setState({ response: "", name: "", reviewId: "" }, () => {
             this.props.renderReviews();
           });
+          this.props.history.push("/");
           return;
         }
         alert("Please make sure you fill out all forms");
@@ -90,5 +92,5 @@ let mapStateToProps = st => {
   };
 };
 
-let Addresponse = connect(mapStateToProps)(UnconnectedAddresponse);
+let Addresponse = connect(mapStateToProps)(withRouter(UnconnectedAddresponse));
 export default Addresponse;
