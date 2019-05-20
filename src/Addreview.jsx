@@ -63,9 +63,8 @@ class UnconnectedAddreview extends Component {
 
   render = () => {
     return (
-      <div>
-        <div>
-          <h2>Add a review</h2>
+      <div className="add-review">
+        <div className="add-review-container">
           <div>
             <h3>{this.props.name}</h3>
             <form onSubmit={this.handleSubmit}>
