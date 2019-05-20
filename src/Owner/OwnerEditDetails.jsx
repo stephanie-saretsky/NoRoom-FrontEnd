@@ -284,8 +284,6 @@ class UnconnectedOwnerEditDetails extends Component {
             <li>
               <label for="description">Description</label>
               <textarea
-                rows="4"
-                cols="50"
                 name="textarea"
                 onChange={this.handleDesc}
                 value={this.state.description}

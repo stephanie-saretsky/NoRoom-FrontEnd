@@ -193,8 +193,11 @@ class unconnectedReviews extends Component {
             </span>
           </div>
         </div>
-        <ul>{this.renderReviewsResponses()}</ul>
-        {this.renderResponse()}
+        <div className="review-list-container">
+          <ul className="review-list">{this.renderReviewsResponses()}</ul>
+
+          {this.renderResponse()}
+        </div>
       </div>
     );
   }

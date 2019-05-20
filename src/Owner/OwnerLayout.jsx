@@ -143,7 +143,7 @@ class UnconnectedOwnerLayout extends Component {
               })}
             </div>
             <div className="instructions-taken">
-              <h2 className="instructions-title">Instructions:</h2>
+              <h2 className="instructions-title">Instructions</h2>
 
               <p className="taken-p">
                 Click on a seat to turn it orange and indicate it has been
@@ -156,7 +156,7 @@ class UnconnectedOwnerLayout extends Component {
           </div>
 
           <div className="details-owner-cafe">
-            <h2 className="information-title">Café Information: </h2>
+            <h2 className="information-title">Café Information </h2>
             <div className="push-margin">
               <div className="details-container">
                 <div className="taken-images">
@@ -208,6 +208,7 @@ class UnconnectedOwnerLayout extends Component {
                 </div>
               </div>
             </div>
+
             <div className="button-div">
               <div className="button-margin">
                 <div>

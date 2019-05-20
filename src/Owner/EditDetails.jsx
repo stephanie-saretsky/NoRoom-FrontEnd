@@ -252,8 +252,6 @@ class UnconnectedEditDetails extends Component {
             <li>
               <label htmlFor="description">Description</label>
               <textarea
-                rows="4"
-                cols="30"
                 name="textarea"
                 onChange={this.handleDesc}
                 value={this.state.description}
