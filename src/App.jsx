@@ -62,11 +62,24 @@ class UnconnectedApp extends Component {
 
   renderReviews = routerData => {
     let cafeId = routerData.match.params.rid;
-    return (
-      <div>
-        <Reviews cafeId={cafeId} name={routerData.location.state.name} />
-      </div>
-    );
+    if (this.props.loggedIn) {
+      return (
+        <div>
+          <Reviews cafeId={cafeId} name={routerData.location.state.name} />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <NavBar />
+          <Reviews cafeId={cafeId} name={routerData.location.state.name} />
+        </div>
+      );
+    }
+  };
+
+  renderNearby = routerData => {
+    let cafeId = routerData.match.params;
   };
 
   render = () => {
@@ -84,6 +97,11 @@ class UnconnectedApp extends Component {
             exact={true}
             path="/cafe/:cid"
             render={this.renderCafeDetails}
+          />
+          <Route
+            exact={true}
+            path="/search-nearby/:cid"
+            render={this.renderNearby}
           />
         </div>
         <Footer />

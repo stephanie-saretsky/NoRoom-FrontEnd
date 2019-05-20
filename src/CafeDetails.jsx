@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "../css/details.css";
+import "../css/main.css";
 import Map from "./Map.jsx";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { withRouter } from "react-router-dom";
 let path = "http://localhost:4000/";
 
 class UnconnectedCafeDetails extends Component {
@@ -116,6 +116,9 @@ class UnconnectedCafeDetails extends Component {
               <p className="room-p">
                 {"Come by in " + cafe.waitTime + " to get a seat!"}
               </p>
+              <Link className="button seeMore" to={"search-nearby/" + cafe._id}>
+                Find nearby cafés.
+              </Link>
             </div>
           );
         }
