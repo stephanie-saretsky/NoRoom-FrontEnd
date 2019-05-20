@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: flex-start;
   padding: 30px;
-  background-color: rgba(244, 227, 216, 0.6);
+  background-color: white;
 }
 
 .cafe-card {
@@ -19,14 +19,13 @@
   width: 400px;
   line-height: 2.5;
   font-size: 16px;
-  /* border: solid rgba(244, 227, 216, 0.6); */
-  background-color: white;
+  border: solid white;
+  background-color: rgba(254, 231, 217, 0.6);
 }
 
 .cafe-photo {
   width: 400px;
   height: 248px;
-  padding-bottom: 20px;
   background-color: white;
 }
 
@@ -46,7 +45,7 @@
   align-content: center;
   line-height: 1.5;
   margin: 10px 0px;
-  padding-bottom: 10px;
+  padding: 10px 0px;
 }
 
 .button-left {
@@ -108,5 +107,4 @@
 
 .global {
   min-height: calc(100vh - 40px);
-  background-color: rgba(244, 227, 216, 0.6);
 }
