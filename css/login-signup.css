@@ -36,7 +36,15 @@
   background-color: #d69f73;
 }
 
+.login-button:focus {
+  outline: none;
+}
+
 .loginSwal {
   background-color: white;
   font-family: "Montserrat", sans-serif;
+}
+
+.container-class:hover {
+  background-color: #d69f73;
 }
