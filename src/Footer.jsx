@@ -54,6 +54,12 @@ class UnconnectedFooter extends Component {
     }
     return (
       <div className="footer">
+        <div>
+          <img className="social" src="/facebook.png" height="25px" />
+          <img className="social" src="/insta.png" height="25px" />
+          <img className="social" src="/twitter.png" height="25px" />
+        </div>
+        <img src="/nav-logo3.png" height="30px" />
         {ownerButton}
         {popup}
       </div>

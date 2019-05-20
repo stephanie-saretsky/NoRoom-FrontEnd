@@ -1,12 +1,12 @@
 .footer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 10px;
   border-top: 0.1px solid #969696;
 }
 
 .owner-button {
-  position: absolute;
+  /* position: absolute; */
   margin-bottom: 10px;
   border: none;
   font-family: "Montserrat", sans-serif;
@@ -21,4 +21,8 @@
 
 .owner-button:focus {
   outline: 0;
+}
+
+.social {
+  margin: 5px;
 }

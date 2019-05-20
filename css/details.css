@@ -96,9 +96,7 @@
 }
 
 .contact-link {
-  text-decoration: none;
   font-size: 12px;
-  background-color: #ba5a31;
   font-family: "Montserrat", sans-serif;
   display: block;
   width: 100px;
@@ -111,7 +109,7 @@
 }
 
 .contact-link:hover {
-  background-color: #d69f73;
+  color: #ba5a31;
 }
 
 @media screen and (min-width: 768px) {
@@ -142,7 +140,6 @@
 
   .contact-link {
     font-size: 18px;
-    width: 200px;
   }
 
   .room-title {
@@ -179,5 +176,10 @@
   .p-container {
     padding: 20px;
     line-height: 400%;
+  }
+
+  .contact-link {
+    font-size: 28px;
+    font-family: Cardo, serif;
   }
 }
