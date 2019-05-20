@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../css/login-signup.css";
 import { withRouter } from "react-router-dom";
+import swal from "sweetalert";
 let path = "http://localhost:4000/";
 
 class UnconnectedSignup extends Component {
@@ -38,7 +39,14 @@ class UnconnectedSignup extends Component {
       .then(body => {
         let parsed = JSON.parse(body);
         if (!parsed.success) {
-          alert("Username already exists!");
+          swal({
+            title: "Oops!",
+            text: "That username is taken already",
+            icon: "error",
+            button: "Choose another name",
+            confirmButtonColor: "#999933",
+            className: "loginSwal"
+          });
           return;
         }
         return fetch(path + "login", {

@@ -50,6 +50,11 @@
   color: #ba5a31;
   text-decoration: underline;
   cursor: pointer;
+  background-color: transparent;
+}
+
+.welcome-button:focus {
+  outline: 0;
 }
 
 .close-button {

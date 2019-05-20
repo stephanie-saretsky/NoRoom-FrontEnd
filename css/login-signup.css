@@ -35,3 +35,8 @@
 .login-button:hover {
   background-color: #d69f73;
 }
+
+.loginSwal {
+  background-color: white;
+  font-family: "Montserrat", sans-serif;
+}

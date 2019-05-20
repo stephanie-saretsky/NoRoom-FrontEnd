@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../css/login-signup.css";
+import swal from "sweetalert";
 import { withRouter } from "react-router-dom";
 let path = "http://localhost:4000/";
 
@@ -38,7 +39,13 @@ class UnconnectedLogin extends Component {
       .then(body => {
         let parsed = JSON.parse(body);
         if (!parsed.success) {
-          alert("Invalid Username or Password");
+          swal({
+            title: "Oops!",
+            text: "Invalid username or password",
+            icon: "error",
+            button: "Try again",
+            className: "loginSwal"
+          });
           return;
         }
         this.props.dispatch({
