@@ -62,7 +62,6 @@ class UnconnectedApp extends Component {
 
   renderReviews = routerData => {
     let cafeId = routerData.match.params.rid;
-    console.log(routerData);
     if (this.props.loggedIn) {
       return (
         <div>
