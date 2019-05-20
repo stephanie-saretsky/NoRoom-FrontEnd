@@ -45,7 +45,6 @@
 .text-wrapper {
   background-color: rgba(225, 225, 225, 0.8);
   border-radius: 3px;
-  padding-top: 10px;
   padding-bottom: 10px;
 }
 
@@ -61,23 +60,26 @@
 
 .contact-title {
   color: white;
-  font-size: 30px;
+  font-size: 20px;
   margin-bottom: 20px;
 }
 
 .contact-p {
   color: white;
-  font-size: 20px;
+  font-size: 15px;
   margin-bottom: 20px;
+  line-height: 1;
 }
 
 .room-title {
-  font-size: 30px;
-  margin: 10px;
+  font-size: 25px;
+  margin-top: 10px;
 }
 
 .room-p {
-  font-size: 20px;
+  font-size: 15px;
+  line-height: 1.5;
+  padding-bottom: 5px;
 }
 
 .p-container {
@@ -95,16 +97,16 @@
 
 .contact-link {
   text-decoration: none;
-  font-size: 18px;
+  font-size: 12px;
   background-color: #ba5a31;
   font-family: "Montserrat", sans-serif;
   display: block;
-  width: 200px;
+  width: 100px;
   margin: 0 auto;
   text-align: center;
   color: white;
   border-radius: 2px;
-  padding: 8px;
+  padding: 5px;
   margin-bottom: 15px;
 }
 
@@ -122,7 +124,12 @@
   }
 
   .text-wrapper {
-    min-width: 364px;
+    min-width: 320px;
+    padding-top: 10px;
+  }
+
+  .room-title {
+    font-size: 30px;
   }
 
   .contact-title {
@@ -133,12 +140,18 @@
     font-size: 20px;
   }
 
+  .contact-link {
+    font-size: 18px;
+    width: 200px;
+  }
+
   .room-title {
     font-size: 40px;
   }
 
   .room-p {
     font-size: 25px;
+    line-height: 2.5;
   }
 }
 
@@ -164,7 +177,7 @@
     font-size: 30px;
   }
   .p-container {
-    padding: 30px;
+    padding: 20px;
     line-height: 400%;
   }
 }

@@ -232,7 +232,7 @@ class UnconnectedCafeDetails extends Component {
                   <p className="contact-p">{cafe.city + " " + cafe.code}</p>
                   <p className="contact-p">{cafe.number}</p>
                   <p>
-                    <a className="contact-link" href={cafe.url}>
+                    <a className="contact-link" href={cafe.url} target="_blank">
                       Website
                     </a>
                   </p>
