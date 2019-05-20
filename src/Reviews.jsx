@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Addresponse from "./Addresponse.jsx";
 import { withRouter } from "react-router-dom";
 import EditResponse from "./EditResponse.jsx";
+import "../css/reviews.css";
 let path = "http://localhost:4000/";
 
 class unconnectedReviews extends Component {
@@ -143,7 +144,7 @@ class unconnectedReviews extends Component {
   renderReviewsResponses = () => {
     return this.state.reviews.map(review => {
       return (
-        <li key={"review" + review._id.toString()}>
+        <li className="review" key={"review" + review._id.toString()}>
           <div>
             <h4>{review.reviewerName + " :"}</h4>
             <span>{this.renderRating(review)}</span> <p>{review.review}</p>
@@ -175,12 +176,23 @@ class unconnectedReviews extends Component {
   };
 
   render() {
-    console.log("state", this.state);
     return (
-      <div>
-        <h1>{this.props.name}</h1>
-        <span>{this.renderRatingTwo(this.renderAverage())}</span>
-        <h2>Reviews</h2>
+      <div className="review-container">
+        <div
+          className="splash-header"
+          style={{
+            backgroundImage: "url('/cafe.jpg')",
+            backgroundPosition: "center",
+            backgroundSize: "cover"
+          }}
+        >
+          <div className="text-splash">
+            <h1 className="cafe-title">{this.props.name + " Reviews"}</h1>
+            <span className="average-rating">
+              {this.renderRatingTwo(this.renderAverage())}
+            </span>
+          </div>
+        </div>
         <ul>{this.renderReviewsResponses()}</ul>
         {this.renderResponse()}
       </div>

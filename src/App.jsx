@@ -62,17 +62,26 @@ class UnconnectedApp extends Component {
 
   renderReviews = routerData => {
     let cafeId = routerData.match.params.rid;
+    console.log(routerData);
     if (this.props.loggedIn) {
       return (
         <div>
-          <Reviews cafeId={cafeId} name={routerData.location.state.name} />
+          <Reviews
+            cafeId={cafeId}
+            name={routerData.location.state.name}
+            image={routerData.location.state.image}
+          />
         </div>
       );
     } else {
       return (
         <div>
           <NavBar />
-          <Reviews cafeId={cafeId} name={routerData.location.state.name} />
+          <Reviews
+            cafeId={cafeId}
+            name={routerData.location.state.name}
+            image={routerData.location.state.image}
+          />
         </div>
       );
     }

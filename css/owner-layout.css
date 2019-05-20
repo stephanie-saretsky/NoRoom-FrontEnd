@@ -1,6 +1,7 @@
 .owner-container {
   display: flex;
   justify-content: center;
+  background-color: rgba(244, 227, 216, 0.6);
 }
 
 .owner-details {
@@ -9,8 +10,24 @@
 }
 
 .details-title {
-  font-size: 40px;
-  margin-bottom: 30px;
+  font-size: 30px;
+  margin: 10px;
+  color: #584d3d;
+}
+
+.title-color {
+  background-color: white;
+  border-bottom: 0.1px solid #969696;
+}
+
+.instructions-title {
+  font-size: 25px;
+}
+
+.information-title {
+  font-size: 25px;
+  margin-left: 20px;
+  margin-bottom: 20px;
 }
 
 .layout-container {
@@ -18,18 +35,27 @@
   margin: 10px 0 10px 10px;
 }
 
+.information-text {
+  background-color: white;
+  height: 300px;
+  padding: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
 .details-owner-cafe {
   display: flex;
   flex-direction: column;
   position: relative;
-  /* background-color: rgba(214, 159, 126, 0.2); */
   padding-top: 20px;
 }
 
 .button-div {
-  background-color: rgba(186, 90, 49, 0.3);
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  /* background-color: rgba(88, 77, 61, 0.3); */
 }
 
 .details-container {
@@ -38,7 +64,6 @@
 
 .taken-images {
   position: relative;
-  margin-right: 20px;
 }
 
 .layout {
@@ -48,6 +73,7 @@
   max-width: 1000px;
   border: 1px solid #969696;
   position: relative;
+  background-color: white;
 }
 
 .instructions-taken {
@@ -55,8 +81,14 @@
 }
 
 .taken-p {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   font-size: 20px;
+}
+
+.taken-tag {
+  font-size: 20px;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .button-left-owner {
@@ -171,5 +203,10 @@
 }
 
 .push-margin {
+  margin-left: 20px;
+  margin-bottom: 40px;
+}
+
+.button-margin {
   margin-left: 20px;
 }

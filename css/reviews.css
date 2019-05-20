@@ -1,0 +1,32 @@
+.review-container {
+  background-color: rgba(244, 227, 216, 0.6);
+}
+
+.splash-header {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-splash {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  background-color: rgba(225, 225, 225, 0.8);
+  width: 90%;
+  height: 80%;
+  border-radius: 3px;
+  padding-bottom: 10px;
+}
+
+.cafe-title {
+  font-size: 100px;
+  text-align: center;
+}
+
+.average-rating {
+  font-size: 30px;
+  text-align: center;
+}

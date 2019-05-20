@@ -114,6 +114,11 @@ class UnconnectedOwnerLayout extends Component {
     return (
       <div className="owner-container">
         <div className="owner-details">
+          <div className="title-color">
+            <h1 className="details-title">
+              {"Business Profile - " + this.state.name}
+            </h1>
+          </div>
           <div className="layout-container">
             <div className="layout">
               {this.state.chairs.map(chair => {
@@ -138,8 +143,9 @@ class UnconnectedOwnerLayout extends Component {
               })}
             </div>
             <div className="instructions-taken">
-              <h2 className="details-title">Instructions:</h2>
-              <p>
+              <h2 className="instructions-title">Instructions:</h2>
+
+              <p className="taken-p">
                 Click on a seat to turn it orange and indicate it has been
                 taken.
               </p>
@@ -150,8 +156,8 @@ class UnconnectedOwnerLayout extends Component {
           </div>
 
           <div className="details-owner-cafe">
+            <h2 className="information-title">Café Information: </h2>
             <div className="push-margin">
-              <h2 className="details-title">{this.state.name + ":"}</h2>
               <div className="details-container">
                 <div className="taken-images">
                   <button className="button-left-owner" onClick={this.moveLeft}>
@@ -165,7 +171,7 @@ class UnconnectedOwnerLayout extends Component {
                     &gt;
                   </button>
                 </div>
-                <div>
+                <div className="information-text">
                   <p className="taken-p">
                     Description: <span className="pink">{this.state.desc}</span>
                   </p>
@@ -191,7 +197,7 @@ class UnconnectedOwnerLayout extends Component {
                       {this.state.website}
                     </a>
                   </p>
-                  <p className="taken-p">
+                  <p className="taken-tag">
                     Tags:{" "}
                     {this.state.tags.map(tag => {
                       return (
@@ -203,7 +209,7 @@ class UnconnectedOwnerLayout extends Component {
               </div>
             </div>
             <div className="button-div">
-              <div className="push-margin">
+              <div className="button-margin">
                 <div>
                   <button
                     className="edit-layout-button button-position"

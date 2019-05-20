@@ -220,7 +220,8 @@ class UnconnectedCafeDetails extends Component {
                       pathname: "/reviews/" + cafe._id.toString(),
                       state: {
                         name: cafe.name,
-                        reviews: this.state.reviews
+                        reviews: this.state.reviews,
+                        image: cafe.images[0]
                       }
                     }}
                   >
