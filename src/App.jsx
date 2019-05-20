@@ -9,6 +9,7 @@ import Owner from "./Owner/Owner.jsx";
 import NavBar from "./NavBar.jsx";
 import CafeDetails from "./CafeDetails.jsx";
 import Reviews from "./Reviews.jsx";
+import CafesNearby from "./CafesNearby.jsx";
 let path = "http://localhost:4000/";
 
 class UnconnectedApp extends Component {
@@ -51,7 +52,6 @@ class UnconnectedApp extends Component {
 
   renderCafeDetails = routerData => {
     let cafeId = routerData.match.params.cid;
-
     return (
       <div>
         <NavBar />
@@ -88,7 +88,29 @@ class UnconnectedApp extends Component {
   };
 
   renderNearby = routerData => {
-    let cafeId = routerData.match.params;
+    console.log(routerData);
+    let cafeId = routerData.match.params.cid;
+    console.log(cafeId, "cafeId");
+    let data = new FormData();
+    data.append("cafeId", cafeId);
+    fetch(path + "search-nearby", { method: "POST", body: data })
+      .then(x => {
+        return x.text();
+      })
+      .then(responseBody => {
+        let body = JSON.parse(responseBody);
+        if (body.success) {
+          console.log("results", body.cafes);
+          this.props.dispatch({ type: "cafe-results", cafes: body.cafes });
+        }
+      });
+
+    return (
+      <div>
+        <NavBar />
+        <CafesNearby cafeId={cafeId} />
+      </div>
+    );
   };
 
   render = () => {

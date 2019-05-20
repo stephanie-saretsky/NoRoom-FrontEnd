@@ -19,7 +19,7 @@
   width: 400px;
   line-height: 2.5;
   font-size: 16px;
-  border: solid rgba(244, 227, 216, 0.6);
+  /* border: solid rgba(244, 227, 216, 0.6); */
   background-color: white;
 }
 
@@ -108,4 +108,5 @@
 
 .global {
   min-height: calc(100vh - 40px);
+  background-color: rgba(244, 227, 216, 0.6);
 }
