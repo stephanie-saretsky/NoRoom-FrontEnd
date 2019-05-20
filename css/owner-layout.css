@@ -1,7 +1,7 @@
 .owner-container {
   display: flex;
   justify-content: center;
-  background-color: rgba(244, 227, 216, 0.6);
+  background-color: #f9f9f9;
 }
 
 .owner-details {

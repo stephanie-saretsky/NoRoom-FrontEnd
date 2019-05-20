@@ -53,7 +53,7 @@ class UnconnectedApp extends Component {
   renderCafeDetails = routerData => {
     let cafeId = routerData.match.params.cid;
     return (
-      <div>
+      <div className="cafe-details-page">
         <NavBar />
         <CafeDetails cafeId={cafeId} />
       </div>
