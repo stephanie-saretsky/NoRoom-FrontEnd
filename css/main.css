@@ -115,6 +115,10 @@ p {
   background-color: #d69f73;
 }
 
+.button:focus {
+  outline: 0;
+}
+
 .hero-image {
   background-image: url("/cafe.jpg");
   height: 100%;

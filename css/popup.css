@@ -52,6 +52,10 @@
   cursor: pointer;
 }
 
+.welcome-button:focus {
+  outline: 0;
+}
+
 .close-button {
   position: absolute;
   margin-top: 5px;

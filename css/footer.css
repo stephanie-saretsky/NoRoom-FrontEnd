@@ -18,3 +18,7 @@
 .owner-button:hover {
   color: #ba5a31;
 }
+
+.owner-button:focus {
+  outline: 0;
+}

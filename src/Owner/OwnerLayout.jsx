@@ -150,69 +150,80 @@ class UnconnectedOwnerLayout extends Component {
           </div>
 
           <div className="details-owner-cafe">
-            <h2 className="details-title">{this.state.name + ":"}</h2>
-            <div className="details-container">
-              <div className="taken-images">
-                <button className="button-left-owner" onClick={this.moveLeft}>
-                  &lt;
-                </button>
-                <img src={this.state.activeImage} height="300px" />
-                <button className="button-right-owner" onClick={this.moveRight}>
-                  &gt;
-                </button>
-              </div>
-              <div>
-                <p className="taken-p">
-                  Description: <span className="pink">{this.state.desc}</span>
-                </p>
-                <p className="taken-p">
-                  Address:{" "}
-                  <span className="pink">
-                    {this.state.address +
-                      ", " +
-                      this.state.city +
-                      ", " +
-                      this.state.country +
-                      " " +
-                      this.state.code}
-                  </span>
-                </p>
-                <p className="taken-p">
-                  Phone Number:{" "}
-                  <span className="pink">{this.state.number}</span>
-                </p>
-                <p className="taken-p">
-                  {"Website: "}{" "}
-                  <a className="cafe-link" href={this.state.website}>
-                    {this.state.website}
-                  </a>
-                </p>
-                <p className="taken-p">
-                  Tags:{" "}
-                  {this.state.tags.map(tag => {
-                    return <span className="tag-span">{"#" + tag + " "}</span>;
-                  })}
-                </p>
+            <div className="push-margin">
+              <h2 className="details-title">{this.state.name + ":"}</h2>
+              <div className="details-container">
+                <div className="taken-images">
+                  <button className="button-left-owner" onClick={this.moveLeft}>
+                    &lt;
+                  </button>
+                  <img src={this.state.activeImage} height="300px" />
+                  <button
+                    className="button-right-owner"
+                    onClick={this.moveRight}
+                  >
+                    &gt;
+                  </button>
+                </div>
+                <div>
+                  <p className="taken-p">
+                    Description: <span className="pink">{this.state.desc}</span>
+                  </p>
+                  <p className="taken-p">
+                    Address:{" "}
+                    <span className="pink">
+                      {this.state.address +
+                        ", " +
+                        this.state.city +
+                        ", " +
+                        this.state.country +
+                        " " +
+                        this.state.code}
+                    </span>
+                  </p>
+                  <p className="taken-p">
+                    Phone Number:{" "}
+                    <span className="pink">{this.state.number}</span>
+                  </p>
+                  <p className="taken-p">
+                    {"Website: "}{" "}
+                    <a className="cafe-link" href={this.state.website}>
+                      {this.state.website}
+                    </a>
+                  </p>
+                  <p className="taken-p">
+                    Tags:{" "}
+                    {this.state.tags.map(tag => {
+                      return (
+                        <span className="tag-span">{"#" + tag + " "}</span>
+                      );
+                    })}
+                  </p>
+                </div>
               </div>
             </div>
-            <div>
-              <button
-                className="edit-layout-button button-position"
-                onClick={this.editDetails}
-              >
-                Edit Café Details
-              </button>
-            </div>
+            <div className="button-div">
+              <div className="push-margin">
+                <div>
+                  <button
+                    className="edit-layout-button button-position"
+                    onClick={this.editDetails}
+                  >
+                    Edit Café Details
+                  </button>
+                </div>
 
-            <Link
-              className="see-reviews-button"
-              to={{
-                pathname: "/reviews/" + this.state.cafeId.toString(),
-                state: { name: this.state.name }
-              }}
-            >
-              See Reviews for Your Café
-            </Link>
+                <Link
+                  className="see-reviews-button"
+                  to={{
+                    pathname: "/reviews/" + this.state.cafeId.toString(),
+                    state: { name: this.state.name }
+                  }}
+                >
+                  See Reviews for Your Café
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -30,8 +30,13 @@
   margin: 10px;
   cursor: pointer;
   border-radius: 2px;
+  font-family: "Montserrat", sans-serif;
 }
 
 .login-button:hover {
   background-color: #d69f73;
+}
+
+.login-button:focus {
+  outline: 0;
 }
