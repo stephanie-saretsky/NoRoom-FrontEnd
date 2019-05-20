@@ -75,6 +75,7 @@ class UnconnectedSignup extends Component {
           onChange={this.handleUsername}
           value={this.state.username}
           placeholder="Choose a username"
+          required
         />
 
         <input
@@ -83,6 +84,7 @@ class UnconnectedSignup extends Component {
           onChange={this.handlePassword}
           value={this.state.password}
           placeholder="Choose a password"
+          required
         />
         <input className="login-button" type="submit" value="Sign Up" />
       </form>
