@@ -51,7 +51,7 @@ class CafeCard extends Component {
           &gt;
         </button>
         <p className="desc">{cafe.desc}</p>
-        <Link to={"cafe/" + cafe._id}>
+        <Link to={"/cafe/" + cafe._id}>
           <button className="button">Is There Room?</button>
         </Link>
       </div>
