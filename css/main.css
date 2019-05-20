@@ -109,6 +109,7 @@ p {
   font-size: 16px;
   padding: 10px;
   border-radius: 2px;
+  font-family: "Montserrat", sans-serif;
 }
 
 .button:hover {

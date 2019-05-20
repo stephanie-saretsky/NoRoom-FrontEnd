@@ -67,7 +67,7 @@ class UnconnectedHomepage extends Component {
                 className="searchTerm"
                 value={this.state.searchInput}
                 onChange={this.handleChange}
-                placeholder="Is there room in your favourite café?"
+                placeholder="Search cafes..."
               />
             </form>
           </div>
