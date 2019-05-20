@@ -40,3 +40,8 @@
 .login-button:focus {
   outline: 0;
 }
+
+.loginSwal {
+  background-color: white;
+  font-family: "Montserrat", sans-serif;
+}

@@ -213,9 +213,12 @@ class UnconnectedCafeDetails extends Component {
                   <p className="contact-p">{cafe.city + " " + cafe.code}</p>
                   <p className="contact-p">{cafe.number}</p>
                   <p>
-                    <a href={cafe.url}>Website</a>
+                    <a className="contact-link" href={cafe.url}>
+                      Website
+                    </a>
                   </p>
                   <Link
+                    className="contact-link"
                     to={{
                       pathname: "/reviews/" + cafe._id.toString(),
                       state: {
