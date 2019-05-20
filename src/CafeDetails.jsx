@@ -134,10 +134,12 @@ class UnconnectedCafeDetails extends Component {
                     backgroundSize: "cover"
                   }}
                 >
-                  <h1 className="room-title">
-                    {"Is there room at " + cafe.name + "?"}
-                  </h1>
-                  {seatDiv}
+                  <div className="text-wrapper">
+                    <h1 className="room-title">
+                      {"Is there room at " + cafe.name + "?"}
+                    </h1>
+                    {seatDiv}
+                  </div>
                 </div>
               </div>
             </div>

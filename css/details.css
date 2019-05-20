@@ -38,9 +38,12 @@
   padding: 10px;
 }
 
-/* .text-background {
-  background-color: rgba(150, 150, 150, 0.2);
-} */
+.text-wrapper {
+  background-color: rgba(225, 225, 225, 0.8);
+  border-radius: 3px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 
 .details-contact {
   display: flex;
@@ -49,6 +52,7 @@
   align-items: center;
   background-color: #584d3d;
   padding: 10px;
+  text-align: center;
 }
 
 .contact-title {

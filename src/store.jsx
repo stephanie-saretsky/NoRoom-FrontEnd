@@ -10,7 +10,8 @@ let reducer = (state, action) => {
       loggedIn: false,
       username: "",
       editMode: true,
-      layoutMode: false
+      layoutMode: false,
+      secondEditMode: false
     };
   }
   if (action.type === "done-edit") {

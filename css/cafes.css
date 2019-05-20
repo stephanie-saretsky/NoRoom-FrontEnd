@@ -90,12 +90,20 @@
   cursor: pointer;
 }
 
-button-right:hover {
+.button-right:hover {
   background-color: rgba(186, 90, 49, 0.9);
 }
 
-button-left:hover {
+.button-left:hover {
   background-color: rgba(186, 90, 49, 0.9);
+}
+
+.button-right:focus {
+  outline: 0;
+}
+
+.button-left:focus {
+  outline: 0;
 }
 
 .global {

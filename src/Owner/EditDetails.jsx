@@ -14,6 +14,8 @@ class UnconnectedEditDetails extends Component {
       code: "",
       country: "",
       files: undefined,
+      fileMessage: "No Files Selected",
+      images: [],
       tags: [],
       tag: "",
       web: "",
@@ -118,8 +120,21 @@ class UnconnectedEditDetails extends Component {
 
   handleFiles = event => {
     let files = event.target.files;
+    let paths = [];
+    for (let i = 0; i < files.length; i++) {
+      paths.push(URL.createObjectURL(files[i]));
+    }
 
-    this.setState({ files: files });
+    let value = event.target.value;
+
+    let message = "No Files Selected";
+    if (files && files.length > 1) {
+      message = files.length + " files selected";
+    } else {
+      message = value.split("\\").pop();
+    }
+
+    this.setState({ files: files, images: paths, fileMessage: message });
   };
 
   handleSubmit = event => {
@@ -166,7 +181,9 @@ class UnconnectedEditDetails extends Component {
           country: "",
           tag: "",
           tel: undefined,
-          files: undefined
+          files: undefined,
+          fileMessage: "No Files Selected",
+          images: []
         });
         this.props.dispatch({ type: "done-details" });
         let APIkey = "key=AIzaSyCWyXDRjjUoo8QrnGjIZAwNj3t3QivVGhs";
@@ -301,7 +318,7 @@ class UnconnectedEditDetails extends Component {
                 type="text"
                 onChange={this.handleWeb}
                 value={this.state.web}
-                placeholder="Format: www.moncafe.com"
+                placeholder="Format: http://www.moncafe.com"
               />
               <span />
             </li>
@@ -342,13 +359,29 @@ class UnconnectedEditDetails extends Component {
               })}
             </div>
             <div className="last-file">
-              <input
-                className="custom-file-input"
-                type="file"
-                onChange={this.handleFiles}
-                multiple
-              />
-              <span>Three pictures in total</span>
+              <div>
+                <input
+                  className="custom-file-input"
+                  type="file"
+                  id="file"
+                  onChange={this.handleFiles}
+                  multiple
+                />
+                <label className="file-label" for="file">
+                  Add Images
+                </label>
+                <span className="file-selection">{this.state.fileMessage}</span>
+              </div>
+              <p className="file-selection-p">
+                Please upload three pictures of your café in total.
+              </p>
+              <div className="file-preview-container">
+                {this.state.images.map(image => {
+                  return (
+                    <img className="file-preview" src={image} height="100px" />
+                  );
+                })}
+              </div>
             </div>
             <div className="submit-container">
               <input className="submit" type="submit" value="Add Your Cafe" />

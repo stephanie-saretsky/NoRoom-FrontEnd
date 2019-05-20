@@ -15,8 +15,15 @@ class UnconnectedOwnerLayout extends Component {
       name: "",
       desc: "",
       address: "",
+      code: "",
+      city: "",
+      country: "",
+      number: "",
+      website: "",
+      tags: [],
       cafeId: "",
-      images: []
+      images: [],
+      activeImage: ""
     };
   }
 
@@ -37,8 +44,15 @@ class UnconnectedOwnerLayout extends Component {
           name: cafe.name,
           desc: cafe.desc,
           address: cafe.address,
+          code: cafe.code,
+          city: cafe.city,
+          country: cafe.country,
+          number: cafe.number,
+          website: cafe.url,
+          tags: cafe.tags,
           images: cafe.images,
-          cafeId: cafe._id
+          cafeId: cafe._id,
+          activeImage: cafe.images[0]
         });
       });
   };
@@ -73,6 +87,28 @@ class UnconnectedOwnerLayout extends Component {
       });
   };
 
+  moveLeft = e => {
+    e.preventDefault();
+    if (this.state.activeImage === this.state.images[0]) {
+      return this.setState({ activeImage: this.state.images[2] });
+    } else if (this.state.activeImage === this.state.images[2]) {
+      return this.setState({ activeImage: this.state.images[1] });
+    } else if (this.state.activeImage === this.state.images[1]) {
+      return this.setState({ activeImage: this.state.images[0] });
+    }
+  };
+
+  moveRight = e => {
+    e.preventDefault();
+    if (this.state.activeImage === this.state.images[0]) {
+      return this.setState({ activeImage: this.state.images[1] });
+    } else if (this.state.activeImage === this.state.images[1]) {
+      return this.setState({ activeImage: this.state.images[2] });
+    } else if (this.state.activeImage === this.state.images[2]) {
+      return this.setState({ activeImage: this.state.images[0] });
+    }
+  };
+
   render = () => {
     return (
       <div className="owner-container">
@@ -101,35 +137,82 @@ class UnconnectedOwnerLayout extends Component {
               })}
             </div>
             <div className="instructions-taken">
-              <h2 className="instructions-title">Instructions:</h2>
+              <h2 className="details-title">Instructions:</h2>
               <p>
                 Click on a seat to turn it orange and indicate it has been
                 taken.
               </p>
-              <button onClick={this.editLayout}>Edit Layout</button>
+              <button className="edit-layout-button" onClick={this.editLayout}>
+                Edit Layout
+              </button>
             </div>
           </div>
-          <h2 className="instructions-title">{this.state.name + ":"}</h2>
+
           <div className="details-owner-cafe">
-            <div className="taken-images">
-              {this.state.images.map(image => {
-                return <img height="300px" src={image} />;
-              })}
+            <h2 className="details-title">{this.state.name + ":"}</h2>
+            <div className="details-container">
+              <div className="taken-images">
+                <button className="button-left-owner" onClick={this.moveLeft}>
+                  &lt;
+                </button>
+                <img src={this.state.activeImage} height="300px" />
+                <button className="button-right-owner" onClick={this.moveRight}>
+                  &gt;
+                </button>
+              </div>
+              <div>
+                <p className="taken-p">
+                  Description: <span className="pink">{this.state.desc}</span>
+                </p>
+                <p className="taken-p">
+                  Address:{" "}
+                  <span className="pink">
+                    {this.state.address +
+                      ", " +
+                      this.state.city +
+                      ", " +
+                      this.state.country +
+                      " " +
+                      this.state.code}
+                  </span>
+                </p>
+                <p className="taken-p">
+                  Phone Number:{" "}
+                  <span className="pink">{this.state.number}</span>
+                </p>
+                <p className="taken-p">
+                  {"Website: "}{" "}
+                  <a className="cafe-link" href={this.state.website}>
+                    {this.state.website}
+                  </a>
+                </p>
+                <p className="taken-p">
+                  Tags:{" "}
+                  {this.state.tags.map(tag => {
+                    return <span className="tag-span">{"#" + tag + " "}</span>;
+                  })}
+                </p>
+              </div>
             </div>
             <div>
-              <p className="taken-p">{"Description: " + this.state.desc}</p>
-              <p className="taken-p">{"Address: " + this.state.address}</p>
+              <button
+                className="edit-layout-button button-position"
+                onClick={this.editDetails}
+              >
+                Edit Café Details
+              </button>
             </div>
-            <button onClick={this.editDetails}>Edit Café Details</button>
+
+            <Link
+              className="see-reviews-button"
+              to={{
+                pathname: "/reviews/" + this.state.cafeId.toString(),
+                state: { name: this.state.name }
+              }}
+            >
+              See Reviews for Your Café
+            </Link>
           </div>
-          <Link
-            to={{
-              pathname: "/reviews/" + this.state.cafeId.toString(),
-              state: { name: this.state.name }
-            }}
-          >
-            Reviews
-          </Link>
         </div>
       </div>
     );

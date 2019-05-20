@@ -17,6 +17,7 @@ class UnconnectedOwnerEditDetails extends Component {
       files: undefined,
       images: [],
       imagesPreview: [],
+      fileMessage: "No Files Selected",
       tags: [],
       tag: "",
       web: "",
@@ -145,7 +146,15 @@ class UnconnectedOwnerEditDetails extends Component {
       paths.push(URL.createObjectURL(files[i]));
     }
 
-    this.setState({ files: files, imagesPreview: paths });
+    let value = event.target.value;
+    let message = "No Files Selected";
+    if (files && files.length > 1) {
+      message = files.length + " files selected";
+    } else {
+      message = value.split("\\").pop();
+    }
+
+    this.setState({ files: files, imagesPreview: paths, fileMessage: message });
   };
 
   deleteImage = imagePath => {
@@ -205,7 +214,8 @@ class UnconnectedOwnerEditDetails extends Component {
           tel: undefined,
           files: undefined,
           images: [],
-          imagesPreview: []
+          imagesPreview: [],
+          fileMessage: "No Files Selected"
         });
         this.props.dispatch({ type: "done-edit" });
         let APIkey = "key=AIzaSyCWyXDRjjUoo8QrnGjIZAwNj3t3QivVGhs";
@@ -340,7 +350,7 @@ class UnconnectedOwnerEditDetails extends Component {
                 type="text"
                 onChange={this.handleWeb}
                 value={this.state.web}
-                placeholder="Format: www.moncafe.com"
+                placeholder="Format: http://www.moncafe.com"
               />
               <span />
             </li>
@@ -381,18 +391,29 @@ class UnconnectedOwnerEditDetails extends Component {
               })}
             </div>
             <div className="last-file">
-              <input
-                className="custom-file-input"
-                type="file"
-                onChange={this.handleFiles}
-                multiple
-              />
-              <span>Three pictures in total</span>
-              {this.state.imagesPreview.map(image => {
-                return (
-                  <img className="file-preview" src={image} height="100px" />
-                );
-              })}
+              <div>
+                <input
+                  className="custom-file-input"
+                  type="file"
+                  id="file"
+                  onChange={this.handleFiles}
+                  multiple
+                />
+                <label className="file-label" for="file">
+                  Add Images
+                </label>
+                <span className="file-selection">{this.state.fileMessage}</span>
+              </div>
+              <p className="file-selection-p">
+                Please upload three pictures of your café in total.
+              </p>
+              <div className="file-preview-container">
+                {this.state.imagesPreview.map(image => {
+                  return (
+                    <img className="file-preview" src={image} height="100px" />
+                  );
+                })}
+              </div>
             </div>
 
             <div className="image-preview-container">

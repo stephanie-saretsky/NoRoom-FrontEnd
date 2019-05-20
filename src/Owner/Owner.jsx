@@ -30,8 +30,6 @@ class UnconnectedOwner extends Component {
   };
 
   render = () => {
-    console.log("edit", this.props.edit);
-    console.log("second", this.props.secondEdit);
     if (this.props.edit || this.props.secondEdit) {
       return <OwnerEdit />;
     } else {
