@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Addreview from "./addReview.jsx";
 import { connect } from "react-redux";
 import Addresponse from "./Addresponse.jsx";
+import { withRouter } from "react-router-dom";
+import EditResponse from "./EditResponse.jsx";
 let path = "http://localhost:4000/";
 
 class unconnectedReviews extends Component {
@@ -10,7 +12,8 @@ class unconnectedReviews extends Component {
     this.state = {
       reviews: [],
       response: false,
-      reviewId: ""
+      reviewId: "",
+      editResponse: false
     };
   }
 
@@ -50,7 +53,6 @@ class unconnectedReviews extends Component {
         return x.text();
       })
       .then(responseBody => {
-        console.log(responseBody);
         let parsed = JSON.parse(responseBody);
         this.setState({ reviews: parsed.reviews });
       });
@@ -71,27 +73,51 @@ class unconnectedReviews extends Component {
     return stars;
   };
 
-  renderForm = x => {
-    if (this.props.loggedIn) {
+  renderForm = (x, y) => {
+    if (!y && this.props.loggedIn) {
       return (
         <button
           onClick={() => {
             this.setState({ response: true, reviewId: x });
           }}
         >
-          Response
+          Reply
+        </button>
+      );
+    } else if (y && this.props.loggedIn) {
+      return (
+        <button
+          onClick={() => {
+            this.setState({
+              reviewId: x,
+              editResponse: true
+            });
+          }}
+        >
+          Edit
         </button>
       );
     }
   };
 
+  renderClose = () => {
+    this.setState({ response: false });
+  };
+
+  renderCloseEdit = () => {
+    this.setState({ editResponse: false });
+  };
+
   renderResponse = () => {
     if (this.state.response) {
       return (
-        <Addresponse
-          reviewId={this.state.reviewId}
-          renderReviews={this.takeReviews}
-        />
+        <div>
+          <Addresponse
+            reviewId={this.state.reviewId}
+            renderReviews={this.takeReviews}
+          />
+          <button onClick={this.renderClose}>close</button>
+        </div>
       );
     } else if (!this.props.loggedIn) {
       return (
@@ -100,41 +126,62 @@ class unconnectedReviews extends Component {
           renderReviews={this.takeReviews}
         />
       );
+    } else if (this.state.editResponse) {
+      return (
+        <div>
+          {this.renderEdit(this.state.reviewId, this.takeReviews)}
+          <button onClick={this.renderCloseEdit}>close</button>
+        </div>
+      );
     }
   };
 
+  renderEdit = (x, y) => {
+    return <EditResponse reviewId={x} renderReviews={y} />;
+  };
+
+  renderReviewsResponses = () => {
+    return this.state.reviews.map(review => {
+      return (
+        <li key={"review" + review._id.toString()}>
+          <div>
+            <h4>{review.reviewerName + " :"}</h4>
+            <span>{this.renderRating(review)}</span> <p>{review.review}</p>
+          </div>
+          <div>
+            {review.response.length > 0 ? (
+              <div>
+                <h4>
+                  Response:
+                  {" " + review.response[0].ownerName + " :"}
+                </h4>
+                <p>{review.response[0].response}</p>
+              </div>
+            ) : null}
+            {review.response.length > 0 ? (
+              <div>
+                {this.renderForm(
+                  review._id.toString(),
+                  review.response[0].edit
+                )}
+              </div>
+            ) : (
+              <div>{this.renderForm(review._id.toString(), false)}</div>
+            )}
+          </div>
+        </li>
+      );
+    });
+  };
+
   render() {
-    console.log("state =>", this.state);
+    console.log("state", this.state);
     return (
       <div>
         <h1>{this.props.name}</h1>
         <span>{this.renderRatingTwo(this.renderAverage())}</span>
         <h2>Reviews</h2>
-        <ul>
-          {this.state.reviews.map(review => {
-            return (
-              <li>
-                <div>
-                  <h4>{review.reviewerName + " :"}</h4>
-                  <span>{this.renderRating(review)}</span>{" "}
-                  <p>{review.review}</p>
-                  {this.renderForm(review._id.toString())}
-                </div>
-                <div>
-                  {review.response.length > 0 ? (
-                    <div>
-                      <h4>
-                        Response:
-                        {" " + review.response[0].ownerName + " :"}
-                      </h4>
-                      <p>{review.response[0].response}</p>
-                    </div>
-                  ) : null}
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+        <ul>{this.renderReviewsResponses()}</ul>
         {this.renderResponse()}
       </div>
     );

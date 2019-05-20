@@ -4,6 +4,7 @@ let path = "http://localhost:4000/";
 import "../../css/owner-layout.css";
 import ClickableChair from "./ClickableChair.jsx";
 import ClickableTable from "./ClickableTable.jsx";
+import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 class UnconnectedOwnerLayout extends Component {
@@ -219,6 +220,6 @@ class UnconnectedOwnerLayout extends Component {
   };
 }
 
-let OwnerLayout = connect()(UnconnectedOwnerLayout);
+let OwnerLayout = connect()(withRouter(UnconnectedOwnerLayout));
 
 export default OwnerLayout;

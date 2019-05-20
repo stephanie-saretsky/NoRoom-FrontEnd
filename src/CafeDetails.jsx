@@ -3,6 +3,7 @@ import "../css/details.css";
 import Map from "./Map.jsx";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 let path = "http://localhost:4000/";
 
 class UnconnectedCafeDetails extends Component {

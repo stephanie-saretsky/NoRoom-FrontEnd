@@ -61,12 +61,12 @@ class UnconnectedFooter extends Component {
   };
 }
 
-let mapStatToProps = st => {
+let mapStateToProps = st => {
   return {
     login: st.loggedIn
   };
 };
 
-let Footer = connect(mapStatToProps)(withRouter(UnconnectedFooter));
+let Footer = connect(mapStateToProps)(withRouter(UnconnectedFooter));
 
 export default Footer;

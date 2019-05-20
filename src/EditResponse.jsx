@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 let path = "http://localhost:4000/";
 
-class UnconnectedAddresponse extends Component {
+class UnconnectedEditResponse extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,11 +14,25 @@ class UnconnectedAddresponse extends Component {
   }
 
   componentDidMount = () => {
-    console.log("props=>", this.props);
-    this.setState({
-      reviewId: this.props.reviewId,
-      name: this.props.ownerName
-    });
+    console.log("this.props", this.props);
+    let data = new FormData();
+    data.append("reviewId", this.props.reviewId);
+    fetch(path + "get-response", {
+      method: "POST",
+      body: data,
+      credentials: "include"
+    })
+      .then(x => {
+        return x.text();
+      })
+      .then(responseBody => {
+        let parsed = JSON.parse(responseBody);
+        // this.setState({
+        //   response: parsed.response,
+        //   name: parsed.ownerName,
+        //   reviewId: parsed.reviewId
+        // });
+      });
   };
 
   handleChangeResponse = event => {
@@ -30,10 +43,8 @@ class UnconnectedAddresponse extends Component {
     event.preventDefault();
     let data = new FormData();
     data.append("response", this.state.response);
-    data.append("reviewId", this.state.reviewId);
-    data.append("ownerName", this.state.name);
-    data.append("edit", true);
-    fetch(path + "add-response", {
+    data.append("reviewId", this.props.reviewId);
+    fetch(path + "edit-response", {
       method: "POST",
       body: data,
       credentials: "include"
@@ -60,7 +71,7 @@ class UnconnectedAddresponse extends Component {
     return (
       <div>
         <div>
-          <h2>Add a response</h2>
+          <h2>Edit response</h2>
           <div>
             <form onSubmit={this.handleSubmit}>
               <div>
@@ -92,5 +103,8 @@ let mapStateToProps = st => {
   };
 };
 
-let Addresponse = connect(mapStateToProps)(withRouter(UnconnectedAddresponse));
-export default Addresponse;
+let EditResponse = connect(mapStateToProps)(
+  withRouter(UnconnectedEditResponse)
+);
+
+export default EditResponse;
