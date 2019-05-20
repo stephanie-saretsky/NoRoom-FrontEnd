@@ -116,8 +116,8 @@ class UnconnectedCafeDetails extends Component {
               <p className="room-p">
                 {"Come by in " + cafe.waitTime + " to get a seat!"}
               </p>
-              <Link className="button seeMore" to={"search-nearby/" + cafe._id}>
-                Find nearby cafés.
+              <Link className="nearby" to={"/search-nearby/" + cafe._id}>
+                FIND NEARBY CAFÉS
               </Link>
             </div>
           );
