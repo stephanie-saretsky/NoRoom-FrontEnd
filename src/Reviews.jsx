@@ -177,6 +177,10 @@ class unconnectedReviews extends Component {
     });
   };
 
+  backProfile = () => {
+    this.props.history.push("/");
+  };
+
   render() {
     return (
       <div>
@@ -201,6 +205,11 @@ class unconnectedReviews extends Component {
             {this.renderResponse()}
           </div>
         </div>
+        <div className="back-button">
+          <button className="button" onClick={this.backProfile}>
+            Back to Profile
+          </button>
+        </div>
       </div>
     );
   }
@@ -210,6 +219,6 @@ let mapStateToProps = st => {
   return { loggedIn: st.loggedIn };
 };
 
-let Reviews = connect(mapStateToProps)(unconnectedReviews);
+let Reviews = connect(mapStateToProps)(withRouter(unconnectedReviews));
 
 export default Reviews;

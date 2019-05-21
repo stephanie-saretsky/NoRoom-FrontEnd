@@ -55,6 +55,7 @@
 .button-div {
   padding-top: 5px;
   padding-bottom: 5px;
+  margin-left: 20px;
   /* background-color: rgba(88, 77, 61, 0.3); */
 }
 
@@ -71,7 +72,7 @@
   min-width: 1000px;
   max-height: 730px;
   max-width: 1000px;
-  border: 1px solid #969696;
+  border: 1px solid #707070;
   position: relative;
   background-color: white;
 }
@@ -187,19 +188,19 @@
 }
 
 .tag-span {
-  border: 1px solid #969696;
-  color: #969696;
+  border: 1px solid #707070;
+  color: #707070;
   padding: 5px;
   margin: 10px;
   font-size: 15px;
 }
 
 .cafe-link {
-  color: #969696;
+  color: #707070;
 }
 
 .pink {
-  color: #969696;
+  color: #707070;
 }
 
 .push-margin {

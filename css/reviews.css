@@ -121,6 +121,13 @@
   font-size: 15px;
 }
 
+.back-button {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
 @media screen and (min-width: 768px) {
   .text-splash {
     top: 20%;
