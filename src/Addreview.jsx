@@ -68,94 +68,98 @@ class UnconnectedAddreview extends Component {
 
   render = () => {
     return (
-      <div className="add-review">
-        <div className="add-review-container">
-          <div>
-            <h3>{this.props.name}</h3>
-            <form onSubmit={this.handleSubmit}>
-              <div>
-                <p>Your name:</p>
-                <input
-                  type="text"
-                  onChange={this.handleChangeName}
-                  value={this.state.name}
-                  required
-                />
-              </div>
-              <div className="rate-cafe">
-                <p>Rating:</p>
-                <section>
-                  <label>
-                    <input
-                      type="radio"
-                      name="review"
-                      value="1"
-                      checked={this.state.ratingInput === "1"}
-                      onChange={this.handleRadioChange}
-                    />
-                    1
-                  </label>
-                  <label>
-                    <input
-                      type="radio"
-                      name="review"
-                      value="2"
-                      checked={this.state.ratingInput === "2"}
-                      onChange={this.handleRadioChange}
-                    />
-                    2
-                  </label>
-                  <label>
-                    <input
-                      type="radio"
-                      name="review"
-                      value="3"
-                      checked={this.state.ratingInput === "3"}
-                      onChange={this.handleRadioChange}
-                    />
-                    3
-                  </label>
-                  <label>
-                    <input
-                      type="radio"
-                      name="review"
-                      value="4"
-                      checked={this.state.ratingInput === "4"}
-                      onChange={this.handleRadioChange}
-                    />
-                    4
-                  </label>
-                  <label>
-                    <input
-                      type="radio"
-                      name="review"
-                      value="5"
-                      checked={this.state.ratingInput === "5"}
-                      onChange={this.handleRadioChange}
-                    />
-                    5
-                  </label>
-                </section>
-              </div>
-              <div>
-                <p>Review: </p>
-                <textarea
-                  className="text-add"
-                  rows="5"
-                  cols="30"
-                  name="textarea"
-                  value={this.state.review}
-                  onChange={this.handleChangeReview}
-                  required
-                />
-              </div>
+      <div className="form-container">
+        <form className="add-review-container" onSubmit={this.handleSubmit}>
+          <div className="reviewer-rating-name">
+            <input
+              type="text"
+              className="reviewer-input"
+              onChange={this.handleChangeName}
+              value={this.state.name}
+              placeholder="Your Name"
+              required
+            />
 
-              <div className="add-button-container">
-                <input className="add-item-button" type="submit" value="Add" />
-              </div>
-            </form>
+            <div className="rate-cafe">
+              <span className="cancel-align rating">
+                <input
+                  type="radio"
+                  name="review"
+                  value="1"
+                  id="rating1"
+                  checked={this.state.ratingInput === "1"}
+                  onChange={this.handleRadioChange}
+                />
+                <label for="rating1"> 1</label>
+
+                <input
+                  type="radio"
+                  name="review"
+                  value="2"
+                  id="rating2"
+                  checked={this.state.ratingInput === "2"}
+                  onChange={this.handleRadioChange}
+                />
+                <label for="rating2">2</label>
+
+                <input
+                  type="radio"
+                  name="review"
+                  value="3"
+                  id="rating3"
+                  checked={this.state.ratingInput === "3"}
+                  onChange={this.handleRadioChange}
+                />
+                <label for="rating3"> 3</label>
+
+                <input
+                  type="radio"
+                  name="review"
+                  value="4"
+                  id="rating4"
+                  checked={this.state.ratingInput === "4"}
+                  onChange={this.handleRadioChange}
+                />
+                <label for="rating4"> 4</label>
+
+                <input
+                  type="radio"
+                  name="review"
+                  value="5"
+                  id="rating5"
+                  checked={this.state.ratingInput === "5"}
+                  onChange={this.handleRadioChange}
+                />
+                <label for="rating5"> 5</label>
+              </span>
+            </div>
           </div>
-        </div>
+          <div>
+            <textarea
+              className="text-add review-add"
+              name="textarea"
+              value={this.state.review}
+              placeholder="Share your experience at this café"
+              onChange={this.handleChangeReview}
+              required
+            />
+          </div>
+          <div className="add-review-button-container">
+            <div className="add-button-container">
+              <input
+                className="add-item-button button small-button"
+                type="submit"
+                value="Post Review"
+              />
+            </div>
+            <button
+              className="button small-button"
+              onClick={this.props.changePopup}
+            >
+              Back
+            </button>
+          </div>
+        </form>
       </div>
     );
   };
