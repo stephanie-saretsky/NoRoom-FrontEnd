@@ -5,7 +5,8 @@ class ClickableChair extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      taken: ""
+      taken: "",
+      time: ""
     };
   }
 
@@ -49,9 +50,20 @@ class ClickableChair extends Component {
                 }
               });
               if (amountTaken === amountOfChairs) {
-                let waitTime = window.prompt(
-                  "Your café is full! What is the approximate wait time?"
-                );
+                swal.fire({
+                  title:
+                    "Your café is full! What is the approximate wait time?",
+                  input: "text",
+                  inputValidator: value => {
+                    if (!value) {
+                      return "Nothing";
+                    }
+                    this.setState({ time: value });
+                  }
+                });
+                // let waitTime = window.prompt(
+                //   "Your café is full! What is the approximate wait time?"
+                // );
                 let data = new FormData();
                 data.append("waitTime", waitTime);
                 fetch(path + "wait-time", {
