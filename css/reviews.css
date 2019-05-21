@@ -129,6 +129,7 @@
   font-size: 15px;
   font-family: "Cardo", serif;
   color: #584d3d;
+  box-sizing: border-box;
 }
 
 .text-add:focus {
@@ -146,10 +147,11 @@
 }
 
 .add-review-container {
-  width: 100%;
+  width: 90%;
 }
 
 .review-add {
+  height: 130px;
   width: 100%;
 }
 
@@ -157,6 +159,7 @@
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+  width: 101%;
 }
 
 .small-button {
@@ -187,11 +190,10 @@
 
 .rate-cafe {
   margin-top: 20px;
-  width: 50%;
+  width: 150px;
 }
 
 .rating {
-  /* overflow: hidden; */
   vertical-align: bottom;
   display: inline-block;
   width: auto;
@@ -249,14 +251,6 @@
     min-width: 500px;
     max-height: 350px;
     min-height: 350px;
-  }
-
-  .add-review-container {
-    width: 90%;
-  }
-
-  .review-add {
-    height: 130px;
   }
 }
 

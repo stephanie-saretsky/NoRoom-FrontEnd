@@ -240,7 +240,12 @@ class UnconnectedCafeDetails extends Component {
                       Website
                     </a>
                   </p>
-                  <button onClick={this.togglePopup}>Reviews</button>
+                  <button
+                    className="button reviews-button"
+                    onClick={this.togglePopup}
+                  >
+                    Reviews
+                  </button>
                   {popup}
                   {/* <Link
                     className="contact-link"

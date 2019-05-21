@@ -116,6 +116,11 @@
   color: #ba5a31;
 }
 
+.reviews-button {
+  padding: 5px 40px 5px 40px;
+  font-size: 13px;
+}
+
 @media screen and (min-width: 768px) {
   .main-details {
     width: inherit;
@@ -154,6 +159,11 @@
   .room-p {
     font-size: 25px;
     line-height: 2.5;
+  }
+
+  .reviews-button {
+    padding: 8px 40px 8px 40px;
+    font-size: 20px;
   }
 }
 

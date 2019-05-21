@@ -59,7 +59,7 @@ class UnconnectedHomepage extends Component {
             <img
               className="logo-main"
               src={"/logo-flipped.png"}
-              height="200px"
+              height="150px"
             />
             <form className="search" onSubmit={this.handleSubmit}>
               <input
