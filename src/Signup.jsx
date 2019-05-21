@@ -39,13 +39,16 @@ class UnconnectedSignup extends Component {
       .then(body => {
         let parsed = JSON.parse(body);
         if (!parsed.success) {
-          swal({
+          swal.fire({
             title: "Oops!",
+            type: "error",
             text: "That username is taken already",
-            icon: "error",
-            button: "Choose another name",
-            confirmButtonColor: "#999933",
-            className: "loginSwal"
+            confirmButtonText: "Choose another name",
+            confirmButtonColor: "#ba5a31",
+            customClass: {
+              container: "login-container",
+              confirmButton: "swal-login-button"
+            }
           });
           return;
         }
