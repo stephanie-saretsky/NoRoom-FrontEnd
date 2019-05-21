@@ -81,36 +81,16 @@ class UnconnectedAddreview extends Component {
             />
 
             <div className="rate-cafe">
-              <span className="cancel-align rating">
+              <span className="rating">
                 <input
                   type="radio"
                   name="review"
-                  value="1"
-                  id="rating1"
-                  checked={this.state.ratingInput === "1"}
+                  value="5"
+                  id="rating5"
+                  checked={this.state.ratingInput === "5"}
                   onChange={this.handleRadioChange}
                 />
-                <label for="rating1"> 1</label>
-
-                <input
-                  type="radio"
-                  name="review"
-                  value="2"
-                  id="rating2"
-                  checked={this.state.ratingInput === "2"}
-                  onChange={this.handleRadioChange}
-                />
-                <label for="rating2">2</label>
-
-                <input
-                  type="radio"
-                  name="review"
-                  value="3"
-                  id="rating3"
-                  checked={this.state.ratingInput === "3"}
-                  onChange={this.handleRadioChange}
-                />
-                <label for="rating3"> 3</label>
+                <label for="rating5" />
 
                 <input
                   type="radio"
@@ -120,17 +100,37 @@ class UnconnectedAddreview extends Component {
                   checked={this.state.ratingInput === "4"}
                   onChange={this.handleRadioChange}
                 />
-                <label for="rating4"> 4</label>
+                <label for="rating4" />
 
                 <input
                   type="radio"
                   name="review"
-                  value="5"
-                  id="rating5"
-                  checked={this.state.ratingInput === "5"}
+                  value="3"
+                  id="rating3"
+                  checked={this.state.ratingInput === "3"}
                   onChange={this.handleRadioChange}
                 />
-                <label for="rating5"> 5</label>
+                <label for="rating3" />
+
+                <input
+                  type="radio"
+                  name="review"
+                  value="2"
+                  id="rating2"
+                  checked={this.state.ratingInput === "2"}
+                  onChange={this.handleRadioChange}
+                />
+                <label for="rating2" />
+
+                <input
+                  type="radio"
+                  name="review"
+                  value="1"
+                  id="rating1"
+                  checked={this.state.ratingInput === "1"}
+                  onChange={this.handleRadioChange}
+                />
+                <label for="rating1" />
               </span>
             </div>
           </div>
