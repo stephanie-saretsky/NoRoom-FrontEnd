@@ -11,7 +11,7 @@
 
 .section-wrapper {
   position: relative;
-  margin: 10px;
+  margin-bottom: 10px;
   min-width: 320px;
   padding-bottom: 73%;
   display: block;
@@ -119,6 +119,7 @@
 
   .section-wrapper {
     min-width: 364px;
+    margin: 10px;
   }
 
   .text-wrapper {
@@ -155,6 +156,7 @@
 @media screen and (min-width: 1024px) {
   .section-wrapper {
     width: 650px;
+    margin: 10px;
   }
   .contact-title {
     font-size: 50px;
