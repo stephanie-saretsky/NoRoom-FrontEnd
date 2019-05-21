@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import swal from "sweetalert2";
 let path = "http://localhost:4000/";
 
 class UnconnectedAddreview extends Component {
@@ -50,14 +51,16 @@ class UnconnectedAddreview extends Component {
       .then(responseBody => {
         let body = JSON.parse(responseBody);
         if (body.success) {
-          alert("Thank you for your review");
+          swal.fire({
+            title: "Thank for you reply",
+            type: "success",
+            confirmButtonColor: "#ba5a31"
+          });
           this.setState({ review: "", name: "", cafeId: "" }, () => {
             this.props.renderReviews();
           });
           return;
         }
-        alert("Please make sure you fill out all forms");
-        return;
       });
   };
 

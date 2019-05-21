@@ -46,7 +46,7 @@ class UnconnectedAddresponse extends Component {
         let body = JSON.parse(responseBody);
         if (body.success) {
           swal.fire({
-            title: "Thank for adding a review!",
+            title: "Thank for you reply",
             type: "success",
             confirmButtonColor: "#ba5a31"
           });
