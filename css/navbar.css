@@ -1,6 +1,6 @@
 .bar {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   border-bottom: 0.1px solid #969696;
   height: 60px;
@@ -12,13 +12,17 @@
   margin-right: 30px;
 }
 
+.logo {
+  height: 25px;
+}
+
 .allCafes {
   text-decoration: none;
-  font-size: 16px;
+  font-size: 11px;
   background-color: #ba5a31;
   font-family: "Montserrat", sans-serif;
   display: block;
-  width: 100px;
+  width: 70px;
   margin: 0 auto;
   text-align: center;
 }
@@ -32,7 +36,7 @@
 }
 
 .searchTermList {
-  width: 100px;
+  width: 80px;
   background-size: 20px;
   background-color: white;
   border-top: 0.5px solid rgba(87, 77, 61, 0.2);
@@ -42,10 +46,10 @@
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 8px;
-  height: 20px;
+  height: 15px;
   outline: none;
   color: #584d3d;
-  font-size: 15px;
+  font-size: 12px;
   font-family: "Cardo", serif;
   font-style: italic;
   padding-right: 0;
@@ -56,8 +60,8 @@
   background-image: url("/magnifying-glass.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 25px;
-  width: 10%;
+  background-size: 10px;
+  width: 20px;
   border-radius: 2px;
   border-top: 0.5px solid rgba(87, 77, 61, 0.2);
   border-right: 0.5px solid rgba(87, 77, 61, 0.2);
@@ -78,24 +82,40 @@
 }
 
 @media screen and (min-width: 768px) {
-  .bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
   .searchTermList {
     width: 490px;
+    font-size: 16px;
+    height: 20px;
+  }
+
+  .logo {
+    height: 40px;
+  }
+
+  .allCafes {
+    width: 100px;
+    font-size: 16px;
   }
 }
 
 @media screen and (min-width: 1024px) {
-  .bar {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
   .searchTermList {
     width: 490px;
+    font-size: 16px;
+    height: 20px;
+  }
+
+  .logo {
+    height: 40px;
+  }
+
+  .allCafes {
+    width: 100px;
+    font-size: 16px;
+  }
+
+  .submit-search {
+    background-size: 25px;
+    width: 10%;
   }
 }
