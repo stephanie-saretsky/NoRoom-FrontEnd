@@ -44,4 +44,9 @@
   align-items: center;
 }
 
+.submit-search-home:hover {
+  cursor: pointer;
+  background-color: #584d3dde;
+}
+
 /* rgb(244, 227, 216) */
