@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Popup from "./Owner-Popup.jsx";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import "../css/footer.css";
 let path = "http://localhost:4000/";
@@ -55,11 +55,13 @@ class UnconnectedFooter extends Component {
     return (
       <div className="footer">
         <div>
-          <img className="social" src="/facebook.png" height="25px" />
-          <img className="social" src="/insta.png" height="25px" />
-          <img className="social" src="/twitter.png" height="25px" />
+          <img className="social" src="/facebook.png" />
+          <img className="social" src="/insta.png" />
+          <img className="social" src="/twitter.png" />
         </div>
-        <img src="/nav-logo3.png" height="30px" />
+        <Link to={"/"}>
+          <img className="foot-logo" src="/nav-logo3.png" />
+        </Link>
         {ownerButton}
         {popup}
       </div>
