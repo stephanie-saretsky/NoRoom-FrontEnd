@@ -59,7 +59,7 @@ class UnconnectedFooter extends Component {
           <img className="social" src="/insta.png" />
           <img className="social" src="/twitter.png" />
         </div>
-        <Link className="nav-logo" to={"/"}>
+        <Link to={"/"}>
           <img className="foot-logo" src="/nav-logo3.png" />
         </Link>
         {ownerButton}
