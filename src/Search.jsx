@@ -45,6 +45,7 @@ class UnconnectedSearch extends Component {
           onChange={this.handleChange}
           placeholder="Search cafes"
         />
+        <input className="submit-search" type="submit" value=" " />
       </form>
     );
   };
