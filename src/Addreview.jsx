@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import swal from "sweetalert2";
+import { withRouter } from "react-router-dom";
 let path = "http://localhost:4000/";
 
 class UnconnectedAddreview extends Component {
@@ -160,5 +161,5 @@ class UnconnectedAddreview extends Component {
   };
 }
 
-let Addreview = connect()(UnconnectedAddreview);
+let Addreview = connect()(withRouter(UnconnectedAddreview));
 export default Addreview;
