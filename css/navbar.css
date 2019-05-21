@@ -32,18 +32,47 @@
 }
 
 .searchTermList {
-  width: 500px;
-  background-image: url("/search.png");
-  background-repeat: no-repeat;
-  background-position: 97% 50%;
+  width: 490px;
   background-size: 20px;
-  background-color: #ecc8af;
-  border: 1px solid #584d3d;
-  padding: 8px;
+  background-color: white;
+  border-top: 0.5px solid rgba(87, 77, 61, 0.2);
+  border-bottom: 0.5px solid rgba(87, 77, 61, 0.2);
+  border-left: 0.5px solid rgba(87, 77, 61, 0.2);
+  border-right: 1px solid white;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 8px;
   height: 20px;
   outline: none;
   color: #584d3d;
   font-size: 15px;
   font-family: "Cardo", serif;
   font-style: italic;
+  padding-right: 0;
+  margin-right: -6px;
+}
+
+.submit-search {
+  background-image: url("/magnifying-glass.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 25px;
+  width: 10%;
+  border-radius: 2px;
+  border-top: 0.5px solid rgba(87, 77, 61, 0.2);
+  border-right: 0.5px solid rgba(87, 77, 61, 0.2);
+  border-bottom: 0.5px solid rgba(87, 77, 61, 0.2);
+  border-left: 1px solid rgba(87, 77, 61, 0.2);
+  background-color: #584d3d;
+  padding: 0;
+  margin: 0;
+}
+
+.submit-search:hover {
+  cursor: pointer;
+  background-color: #584d3dde;
+}
+
+.submit-search:focus {
+  outline: none;
 }

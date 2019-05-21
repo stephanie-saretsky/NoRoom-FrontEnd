@@ -5,14 +5,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px 38px 20px 20px;
+  display: flex;
 }
 
 .searchTerm {
   width: 100%;
-  background-image: url("/search.png");
-  background-repeat: no-repeat;
-  background-position: 97% 50%;
-  background-size: 50px;
   background-color: rgb(244, 227, 216);
   border: solid 1px rgba(87, 77, 61, 0.42);
   border-right: solid 1px rgba(87, 77, 61, 0.42);
@@ -24,4 +21,18 @@
   font-family: "Cardo", serif;
   font-style: italic;
   border-radius: 46px;
+  margin-right: -9%;
+}
+
+.submit-search-home {
+  background-image: url("/magnifying-glass.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 25px;
+  width: 10%;
+  position: relative;
+  bottom: 20%;
+  border-top-right-radius: 46px;
+  border-bottom-right-radius: 46px;
+  align-items: center;
 }

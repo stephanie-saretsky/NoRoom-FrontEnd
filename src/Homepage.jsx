@@ -69,6 +69,7 @@ class UnconnectedHomepage extends Component {
                 onChange={this.handleChange}
                 placeholder="Search cafes..."
               />
+              <input className="submit-search-home" type="submit" value=" " />
             </form>
           </div>
         </div>
