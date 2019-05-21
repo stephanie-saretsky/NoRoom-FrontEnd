@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import swal from "sweetalert2";
 let path = "http://localhost:4000/";
 
 class UnconnectedEditResponse extends Component {
@@ -55,15 +56,17 @@ class UnconnectedEditResponse extends Component {
       .then(responseBody => {
         let body = JSON.parse(responseBody);
         if (body.success) {
-          alert("Thank you for the response");
+          swal.fire({
+            title: "Your response has been edited",
+            type: "success",
+            confirmButtonColor: "#ba5a31"
+          });
           this.setState({ response: "", name: "", reviewId: "" }, () => {
             this.props.renderReviews();
           });
           this.props.history.push("/");
           return;
         }
-        alert("Please make sure you fill out all forms");
-        return;
       });
   };
 

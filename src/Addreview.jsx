@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import swal from "sweetalert2";
+import { withRouter } from "react-router-dom";
 let path = "http://localhost:4000/";
 
 class UnconnectedAddreview extends Component {
@@ -50,14 +52,17 @@ class UnconnectedAddreview extends Component {
       .then(responseBody => {
         let body = JSON.parse(responseBody);
         if (body.success) {
-          alert("Thank you for your review");
+          swal.fire({
+            title: "Thanks for your review",
+            type: "success",
+            confirmButtonColor: "#ba5a31"
+          });
           this.setState({ review: "", name: "", cafeId: "" }, () => {
             this.props.renderReviews();
           });
+          this.props.history.push("/");
           return;
         }
-        alert("Please make sure you fill out all forms");
-        return;
       });
   };
 
@@ -156,5 +161,5 @@ class UnconnectedAddreview extends Component {
   };
 }
 
-let Addreview = connect()(UnconnectedAddreview);
+let Addreview = connect()(withRouter(UnconnectedAddreview));
 export default Addreview;

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import swal from "sweetalert2";
 let path = "http://localhost:4000/";
 
 class UnconnectedAddresponse extends Component {
@@ -44,15 +45,17 @@ class UnconnectedAddresponse extends Component {
       .then(responseBody => {
         let body = JSON.parse(responseBody);
         if (body.success) {
-          alert("Thank you for the response");
+          swal.fire({
+            title: "Thank for you reply",
+            type: "success",
+            confirmButtonColor: "#ba5a31"
+          });
           this.setState({ response: "", name: "", reviewId: "" }, () => {
             this.props.renderReviews();
           });
           this.props.history.push("/");
           return;
         }
-        alert("Please make sure you fill out all forms");
-        return;
       });
   };
 
