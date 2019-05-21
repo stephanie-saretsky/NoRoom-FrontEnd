@@ -118,8 +118,8 @@ class unconnectedReviews extends Component {
           <Addresponse
             reviewId={this.state.reviewId}
             renderReviews={this.takeReviews}
+            closePopup={this.renderClose}
           />
-          <button onClick={this.renderClose}>close</button>
         </div>
       );
     } else if (!this.props.loggedIn) {
@@ -131,16 +131,19 @@ class unconnectedReviews extends Component {
       );
     } else if (this.state.editResponse) {
       return (
-        <div>
-          {this.renderEdit(this.state.reviewId, this.takeReviews)}
-          <button onClick={this.renderCloseEdit}>close</button>
-        </div>
+        <div>{this.renderEdit(this.state.reviewId, this.takeReviews)}</div>
       );
     }
   };
 
   renderEdit = (x, y) => {
-    return <EditResponse reviewId={x} renderReviews={y} />;
+    return (
+      <EditResponse
+        reviewId={x}
+        renderReviews={y}
+        closePopup={this.renderCloseEdit}
+      />
+    );
   };
 
   renderReviewsResponses = () => {

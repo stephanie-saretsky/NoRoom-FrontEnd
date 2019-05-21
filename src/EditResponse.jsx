@@ -72,27 +72,34 @@ class UnconnectedEditResponse extends Component {
 
   render = () => {
     return (
-      <div>
-        <div>
-          <h2>Edit response</h2>
-          <div>
+      <div className="popup">
+        <div className="popup_inner">
+          <div className="form-container">
             <form onSubmit={this.handleSubmit}>
               <div>
-                <p>response: </p>
+                <h2 className="edit-title">Edit response</h2>
                 <textarea
                   className="text-add"
                   rows="5"
                   cols="30"
                   name="textarea"
                   value={this.state.response}
+                  placeholder="Edit your response to this review"
                   onChange={this.handleChangeResponse}
                   required
                 />
               </div>
-              <div>
-                <input type="submit" value="Add" />
+              <div className="submit-edit-div">
+                <input
+                  className="button submit-edit"
+                  type="submit"
+                  value="Submit"
+                />
               </div>
             </form>
+          </div>
+          <div className="close-button-reviews" onClick={this.props.closePopup}>
+            <img src="/close.png" height="10px" />
           </div>
         </div>
       </div>

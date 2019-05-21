@@ -112,12 +112,12 @@ class unconnectedReviewsPopup extends Component {
 
   renderResponse = () => {
     return (
-      <div>
+      <div className="add-review-container">
         <Addreview
           cafeId={this.props.cafeId}
           renderReviews={this.takeReviews}
+          changePopup={this.changePopup}
         />
-        <button onClick={this.changePopup}>Done</button>
       </div>
     );
   };
@@ -166,48 +166,47 @@ class unconnectedReviewsPopup extends Component {
 
   render() {
     let popup = (
-      <div className="review-container">
-        <div
-          className="splash-header"
-          style={{
-            backgroundImage: "url('" + this.props.image + "')",
-            backgroundPosition: "center",
-            backgroundSize: "cover"
-          }}
-        >
-          <div className="text-splash">
-            <h1 className="cafe-title">{this.props.name}</h1>
-            <span className="average-rating">
-              {this.renderRatingTwo(this.renderAverage())}
-            </span>
+      <div className="popup-inner-reviews">
+        <div className="review-container">
+          <div
+            className="splash-header"
+            style={{
+              backgroundImage: "url('" + this.props.image + "')",
+              backgroundPosition: "center",
+              backgroundSize: "cover"
+            }}
+          >
+            <div className="text-splash">
+              <h1 className="cafe-title">{this.props.name}</h1>
+              <span className="average-rating">
+                {this.renderRatingTwo(this.renderAverage())}
+              </span>
+            </div>
           </div>
-        </div>
 
-        <div className="review-list-container">
-          <ul className="review-list">{this.renderReviewsResponses()}</ul>
+          <div className="review-list-container">
+            <ul className="review-list">{this.renderReviewsResponses()}</ul>
+          </div>
+          <button className="button button-margin" onClick={this.changePopup}>
+            Add Review
+          </button>
         </div>
-        <button className="button button-margin" onClick={this.changePopup}>
-          Add Review
-        </button>
+        <div className="close-button-reviews" onClick={this.props.closePopup}>
+          <img src="/close.png" height="10px" />
+        </div>
       </div>
     );
     if (this.state.addReview) {
-      popup = this.renderResponse();
-    }
-    return (
-      <div className="popup">
-        <div className="popup-inner-reviews">
-          {popup}
-          <div className="close-button-reviews">
-            <img
-              src="/close.png"
-              height="10px"
-              onClick={this.props.closePopup}
-            />
+      popup = (
+        <div className="popup-inner-add-review ">
+          {this.renderResponse()}
+          <div className="close-button-reviews" onClick={this.props.closePopup}>
+            <img src="/close.png" height="10px" />
           </div>
         </div>
-      </div>
-    );
+      );
+    }
+    return <div className="popup">{popup}</div>;
   }
 }
 
