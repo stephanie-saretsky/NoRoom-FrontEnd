@@ -36,9 +36,6 @@ class UnconnectedNavBar extends Component {
         </Link>
         {searchEnabled}
         <div className="cafes">
-          {/* {if(window.location.href === path + "cafes" ) {
-          this.props.history.push("/cafes")
-        }}  */}
           <button onClick={this.allCafes} className="button allCafes">
             All Cafes
           </button>

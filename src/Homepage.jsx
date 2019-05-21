@@ -56,11 +56,9 @@ class UnconnectedHomepage extends Component {
       <div>
         <div style={{ height: "60vh" }}>
           <div className="hero-image">
-            <img
-              className="logo-main"
-              src={"/logo-flipped.png"}
-              height="150px"
-            />
+            <div className="logo-container">
+              <img className="logo-main" src={"/logo.png"} height="150px" />
+            </div>
             <form className="search" onSubmit={this.handleSubmit}>
               <input
                 type="text"
