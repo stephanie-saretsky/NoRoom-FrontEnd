@@ -1,10 +1,11 @@
 .search {
-  width: 60%;
+  width: 325px;
   position: absolute;
   top: 50%;
   left: 50%;
+  right: 50%;
   transform: translate(-50%, -50%);
-  padding: 20px 38px 20px 20px;
+  padding: 20px 20px 20px 20px;
   display: flex;
 }
 
@@ -16,31 +17,30 @@
   border-left: 0.5px solid rgba(87, 77, 61, 0.2);
   border-right: 1px solid white;
   padding: 8px 20px;
-  height: 60px;
   outline: none;
   color: #584d3d;
   font-size: 25px;
   font-family: "Cardo", serif;
   font-style: italic;
-  border-radius: 45px;
-  margin-right: -9%;
+  border-radius: 5px;
+  margin-right: -15%;
 }
 
 .submit-search-home {
+  width: 60px;
   background-image: url("/magnifying-glass.png");
   background-repeat: no-repeat;
   background-position: center;
   background-color: #faddc8;
   background-size: 30px;
-  width: 90px;
   position: relative;
   bottom: 20%;
   border-top: 0.5px solid rgba(87, 77, 61, 0.2);
   border-right: 0.5px solid rgba(87, 77, 61, 0.2);
   border-bottom: 0.5px solid rgba(87, 77, 61, 0.2);
   border-left: 1px solid rgba(87, 77, 61, 0.2);
-  border-top-right-radius: 45px;
-  border-bottom-right-radius: 45px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
   align-items: center;
 }
 
@@ -49,4 +49,32 @@
   background-color: rgba(254, 231, 217);
 }
 
-/* rgb(244, 227, 216) */
+@media screen and (min-width: 768px) {
+  .submit-search-home {
+    width: 90px;
+  }
+
+  .searchTerm {
+    width: 100%;
+    height: 60px;
+  }
+
+  .search {
+    width: 490px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .submit-search-home {
+    width: 90px;
+    margin-left: 10px;
+  }
+
+  .searchTerm {
+    width: 100%;
+    height: 60px;
+  }
+  .search {
+    width: 600px;
+  }
+}
