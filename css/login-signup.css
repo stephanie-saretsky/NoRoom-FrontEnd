@@ -56,3 +56,7 @@
 .swal-login-button:hover {
   background-color: #d69f73 !important;
 }
+
+.toast-class {
+  color: #584d3d !important;
+}
