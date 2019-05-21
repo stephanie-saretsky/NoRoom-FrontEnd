@@ -21,10 +21,10 @@ class unconnectedReviews extends Component {
   renderRatingTwo = x => {
     let stars = [];
     for (let i = 0; i < x; i++) {
-      stars = stars.concat("✿");
+      stars = stars.concat(<img src="/stars.png" height="25px" />);
     }
     for (let j = 0; j < 5 - x; j++) {
-      stars = stars.concat("❀");
+      stars = stars.concat(<img src="/stars2.png" height="25px" />);
     }
     return stars;
   };
@@ -66,10 +66,10 @@ class unconnectedReviews extends Component {
   renderRating = props => {
     let stars = [];
     for (let i = 0; i < props.rating; i++) {
-      stars = stars.concat("✿");
+      stars = stars.concat(<img src="/stars.png" height="15px" />);
     }
     for (let j = 0; j < 5 - props.rating; j++) {
-      stars = stars.concat("❀");
+      stars = stars.concat(<img src="/stars2.png" height="15px" />);
     }
     return stars;
   };
@@ -81,6 +81,7 @@ class unconnectedReviews extends Component {
           onClick={() => {
             this.setState({ response: true, reviewId: x });
           }}
+          className="button reply-button"
         >
           Reply
         </button>
@@ -94,8 +95,9 @@ class unconnectedReviews extends Component {
               editResponse: true
             });
           }}
+          className="button edit-button"
         >
-          Edit
+          Edit Response
         </button>
       );
     }
@@ -146,17 +148,17 @@ class unconnectedReviews extends Component {
       return (
         <li className="review" key={"review" + review._id.toString()}>
           <div>
-            <h4>{review.reviewerName + " :"}</h4>
-            <span>{this.renderRating(review)}</span> <p>{review.review}</p>
+            <div className="review-name-rating">
+              <h4 className="reviewer">{review.reviewerName}</h4>
+              <span>{this.renderRating(review)}</span>
+            </div>
+            <p className="review-p">{review.review}</p>
           </div>
           <div>
             {review.response.length > 0 ? (
-              <div>
-                <h4>
-                  Response:
-                  {" " + review.response[0].ownerName + " :"}
-                </h4>
-                <p>{review.response[0].response}</p>
+              <div className="review-response">
+                <h4 className="response-name">Your response</h4>
+                <p className="response">{review.response[0].response}</p>
               </div>
             ) : null}
             {review.response.length > 0 ? (
@@ -187,7 +189,7 @@ class unconnectedReviews extends Component {
               backgroundSize: "cover"
             }}
           />
-          <div className="text-splash">
+          <div className="text-splash owner-splash">
             <h1 className="cafe-title">{this.props.name}</h1>
             <span className="average-rating">
               {this.renderRatingTwo(this.renderAverage())}

@@ -63,9 +63,8 @@ class UnconnectedAddreview extends Component {
 
   render = () => {
     return (
-      <div>
-        <div>
-          <h2>Add a review</h2>
+      <div className="add-review">
+        <div className="add-review-container">
           <div>
             <h3>{this.props.name}</h3>
             <form onSubmit={this.handleSubmit}>
@@ -78,8 +77,63 @@ class UnconnectedAddreview extends Component {
                   required
                 />
               </div>
+              <div className="rate-cafe">
+                <p>Rating:</p>
+                <section>
+                  <label>
+                    <input
+                      type="radio"
+                      name="review"
+                      value="1"
+                      checked={this.state.ratingInput === "1"}
+                      onChange={this.handleRadioChange}
+                    />
+                    1
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="review"
+                      value="2"
+                      checked={this.state.ratingInput === "2"}
+                      onChange={this.handleRadioChange}
+                    />
+                    2
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="review"
+                      value="3"
+                      checked={this.state.ratingInput === "3"}
+                      onChange={this.handleRadioChange}
+                    />
+                    3
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="review"
+                      value="4"
+                      checked={this.state.ratingInput === "4"}
+                      onChange={this.handleRadioChange}
+                    />
+                    4
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="review"
+                      value="5"
+                      checked={this.state.ratingInput === "5"}
+                      onChange={this.handleRadioChange}
+                    />
+                    5
+                  </label>
+                </section>
+              </div>
               <div>
-                <p>Comment: </p>
+                <p>Review: </p>
                 <textarea
                   className="text-add"
                   rows="5"
@@ -90,59 +144,7 @@ class UnconnectedAddreview extends Component {
                   required
                 />
               </div>
-              Rating:
-              <section>
-                <label>
-                  <input
-                    type="radio"
-                    name="review"
-                    value="1"
-                    checked={this.state.ratingInput === "1"}
-                    onChange={this.handleRadioChange}
-                  />
-                  1
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="review"
-                    value="2"
-                    checked={this.state.ratingInput === "2"}
-                    onChange={this.handleRadioChange}
-                  />
-                  2
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="review"
-                    value="3"
-                    checked={this.state.ratingInput === "3"}
-                    onChange={this.handleRadioChange}
-                  />
-                  3
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="review"
-                    value="4"
-                    checked={this.state.ratingInput === "4"}
-                    onChange={this.handleRadioChange}
-                  />
-                  4
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="review"
-                    value="5"
-                    checked={this.state.ratingInput === "5"}
-                    onChange={this.handleRadioChange}
-                  />
-                  5
-                </label>
-              </section>
+
               <div className="add-button-container">
                 <input className="add-item-button" type="submit" value="Add" />
               </div>

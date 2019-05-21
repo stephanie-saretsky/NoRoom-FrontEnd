@@ -14,17 +14,18 @@ class unconnectedReviewsPopup extends Component {
       reviews: [],
       response: false,
       reviewId: "",
-      editResponse: false
+      editResponse: false,
+      addReview: false
     };
   }
 
   renderRatingTwo = x => {
     let stars = [];
     for (let i = 0; i < x; i++) {
-      stars = stars.concat("✿");
+      stars = stars.concat(<img src="/stars.png" height="25px" />);
     }
     for (let j = 0; j < 5 - x; j++) {
-      stars = stars.concat("❀");
+      stars = stars.concat(<img src="/stars2.png" height="25px" />);
     }
     return stars;
   };
@@ -66,10 +67,10 @@ class unconnectedReviewsPopup extends Component {
   renderRating = props => {
     let stars = [];
     for (let i = 0; i < props.rating; i++) {
-      stars = stars.concat("✿");
+      stars = stars.concat(<img src="/stars.png" height="15px" />);
     }
     for (let j = 0; j < 5 - props.rating; j++) {
-      stars = stars.concat("❀");
+      stars = stars.concat(<img src="/stars2.png" height="15px" />);
     }
     return stars;
   };
@@ -110,31 +111,15 @@ class unconnectedReviewsPopup extends Component {
   };
 
   renderResponse = () => {
-    if (this.state.response) {
-      return (
-        <div>
-          <Addresponse
-            reviewId={this.state.reviewId}
-            renderReviews={this.takeReviews}
-          />
-          <button onClick={this.renderClose}>close</button>
-        </div>
-      );
-    } else if (!this.props.loggedIn) {
-      return (
+    return (
+      <div>
         <Addreview
           cafeId={this.props.cafeId}
           renderReviews={this.takeReviews}
         />
-      );
-    } else if (this.state.editResponse) {
-      return (
-        <div>
-          {this.renderEdit(this.state.reviewId, this.takeReviews)}
-          <button onClick={this.renderCloseEdit}>close</button>
-        </div>
-      );
-    }
+        <button onClick={this.changePopup}>Done</button>
+      </div>
+    );
   };
 
   renderEdit = (x, y) => {
@@ -146,17 +131,17 @@ class unconnectedReviewsPopup extends Component {
       return (
         <li className="review" key={"review" + review._id.toString()}>
           <div>
-            <h4>{review.reviewerName + " :"}</h4>
-            <span>{this.renderRating(review)}</span> <p>{review.review}</p>
+            <div className="review-name-rating">
+              <h4 className="reviewer">{review.reviewerName}</h4>
+              <span>{this.renderRating(review)}</span>
+            </div>
+            <p className="review-p">{review.review}</p>
           </div>
           <div>
             {review.response.length > 0 ? (
-              <div>
-                <h4>
-                  Response:
-                  {" " + review.response[0].ownerName + " :"}
-                </h4>
-                <p>{review.response[0].response}</p>
+              <div className="review-response">
+                <h4 className="response-name">Response from the owner</h4>
+                <p className="response">{review.response[0].response}</p>
               </div>
             ) : null}
             {review.response.length > 0 ? (
@@ -175,33 +160,44 @@ class unconnectedReviewsPopup extends Component {
     });
   };
 
+  changePopup = () => {
+    this.setState({ addReview: !this.state.addReview });
+  };
+
   render() {
+    let popup = (
+      <div className="review-container">
+        <div
+          className="splash-header"
+          style={{
+            backgroundImage: "url('" + this.props.image + "')",
+            backgroundPosition: "center",
+            backgroundSize: "cover"
+          }}
+        >
+          <div className="text-splash">
+            <h1 className="cafe-title">{this.props.name}</h1>
+            <span className="average-rating">
+              {this.renderRatingTwo(this.renderAverage())}
+            </span>
+          </div>
+        </div>
+
+        <div className="review-list-container">
+          <ul className="review-list">{this.renderReviewsResponses()}</ul>
+        </div>
+        <button className="button button-margin" onClick={this.changePopup}>
+          Add Review
+        </button>
+      </div>
+    );
+    if (this.state.addReview) {
+      popup = this.renderResponse();
+    }
     return (
       <div className="popup">
         <div className="popup-inner-reviews">
-          <div className="review-container">
-            <div
-              className="splash-header"
-              style={{
-                backgroundImage: "url('" + this.props.image + "')",
-                backgroundPosition: "center",
-                backgroundSize: "cover"
-              }}
-            >
-              <div className="text-splash">
-                <h1 className="cafe-title">{this.props.name}</h1>
-                <span className="average-rating">
-                  {this.renderRatingTwo(this.renderAverage())}
-                </span>
-              </div>
-            </div>
-
-            <div className="review-list-container">
-              <ul className="review-list">{this.renderReviewsResponses()}</ul>
-
-              {this.renderResponse()}
-            </div>
-          </div>
+          {popup}
           <div className="close-button-reviews">
             <img
               src="/close.png"

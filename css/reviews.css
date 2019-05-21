@@ -17,14 +17,14 @@
 .text-splash {
   position: absolute;
   z-index: 10;
-  top: 0;
+  top: 10%;
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: center;
   padding: 10px 0 20px 0;
   margin: 10px 0 0 0;
-  padding-bottom: 10px;
+  padding: 20px;
   width: 70%;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -37,21 +37,88 @@
 }
 
 .average-rating {
-  font-size: 30px;
   text-align: center;
 }
 
 .review-list-container {
-  margin: 100px 0 0 0;
+  margin: 50px 0 0 0;
   width: 95%;
 }
 
+.review-title {
+  color: #ba5a31;
+  font-family: "Montserrat", sans-serif;
+}
+
 .review {
-  padding: 0 0 20px 0;
+  padding: 20px 0 20px 0;
+  border-top: 1px solid rgba(150, 150, 150, 0.3);
 }
 
 .review-list {
   list-style-type: none;
+  text-align: justify;
+  margin: 0 20px 0 20px;
+}
+
+.add-review {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.add-review-container {
+  display: flex;
+}
+
+.review-name-rating {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.review-p {
+  color: #707070;
+}
+
+.reviewer {
+  color: #584d3d;
+  font-size: 20px;
+}
+
+.button-margin {
+  margin: 20px 0 20px 0;
+}
+
+.review-response {
+  margin-top: 10px;
+  margin-left: 20px;
+  padding-left: 15px;
+  border-left: 2px solid rgba(150, 150, 150, 0.6);
+}
+
+.response-name {
+  color: #584d3d;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.response {
+  color: #707070;
+}
+
+.edit-button {
+  margin-left: 35px;
+  margin-top: 10px;
+  padding: 5px 15px 5px 15px;
+  font-size: 15px;
+}
+
+.reply-button {
+  margin-top: 10px;
+  padding: 5px 15px 5px 15px;
+  font-size: 15px;
 }
 
 @media screen and (min-width: 768px) {
@@ -59,10 +126,14 @@
     top: 20%;
   }
 
+  .review-list-container {
+    margin: 110px 0 0 0;
+  }
+
   .popup-inner-reviews {
-    width: 50%;
-    left: 25%;
-    right: 25%;
+    width: 90%;
+    left: 0;
+    right: 0;
     top: 25%;
     bottom: 25%;
   }
@@ -73,11 +144,26 @@
     top: 20%;
   }
 
+  .review-list-container {
+    margin: 110px 0 0 0;
+  }
+
   .popup-inner-reviews {
     width: 50%;
     left: 25%;
     right: 25%;
     top: 25%;
     bottom: 25%;
+    animation-name: review-popup;
+    animation-duration: 300ms;
+  }
+
+  @keyframes review-popup {
+    from {
+      top: 0;
+    }
+    to {
+      top: 25%;
+    }
   }
 }
