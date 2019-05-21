@@ -27,6 +27,20 @@
   z-index: 20;
 }
 
+.popup-inner-reviews {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 90%;
+  width: 100%;
+  overflow: scroll;
+  background: white;
+  z-index: 20;
+}
+
 .form-container {
   width: 100%;
   height: 100%;
@@ -57,9 +71,25 @@
   outline: 0;
 }
 
+.welcome-button:focus {
+  outline: 0;
+}
+
 .close-button {
   position: absolute;
   margin-top: 5px;
   padding-right: 10px;
   cursor: pointer;
+}
+
+.close-button-reviews {
+  position: absolute;
+  cursor: pointer;
+  border: 1px solid #969696;
+  background-color: white;
+  right: 5px;
+  top: 5px;
+  z-index: 100;
+  padding: 5px 9px 5px 9px;
+  border-radius: 50%;
 }

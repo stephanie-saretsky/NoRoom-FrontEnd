@@ -7,7 +7,7 @@ import EditResponse from "./EditResponse.jsx";
 import "../css/reviews.css";
 let path = "http://localhost:4000/";
 
-class unconnectedReviews extends Component {
+class unconnectedReviewsPopup extends Component {
   constructor() {
     super();
     this.state = {
@@ -177,26 +177,37 @@ class unconnectedReviews extends Component {
 
   render() {
     return (
-      <div>
-        <div className="review-container">
-          <div
-            className="splash-header"
-            style={{
-              backgroundImage: "url('/cafe.jpg')",
-              backgroundPosition: "center",
-              backgroundSize: "cover"
-            }}
-          />
-          <div className="text-splash">
-            <h1 className="cafe-title">{this.props.name}</h1>
-            <span className="average-rating">
-              {this.renderRatingTwo(this.renderAverage())}
-            </span>
-          </div>
-          <div className="review-list-container">
-            <ul className="review-list">{this.renderReviewsResponses()}</ul>
+      <div className="popup">
+        <div className="popup-inner-reviews">
+          <div className="review-container">
+            <div
+              className="splash-header"
+              style={{
+                backgroundImage: "url('" + this.props.image + "')",
+                backgroundPosition: "center",
+                backgroundSize: "cover"
+              }}
+            >
+              <div className="text-splash">
+                <h1 className="cafe-title">{this.props.name}</h1>
+                <span className="average-rating">
+                  {this.renderRatingTwo(this.renderAverage())}
+                </span>
+              </div>
+            </div>
 
-            {this.renderResponse()}
+            <div className="review-list-container">
+              <ul className="review-list">{this.renderReviewsResponses()}</ul>
+
+              {this.renderResponse()}
+            </div>
+          </div>
+          <div className="close-button-reviews">
+            <img
+              src="/close.png"
+              height="10px"
+              onClick={this.props.closePopup}
+            />
           </div>
         </div>
       </div>
@@ -208,6 +219,6 @@ let mapStateToProps = st => {
   return { loggedIn: st.loggedIn };
 };
 
-let Reviews = connect(mapStateToProps)(unconnectedReviews);
+let ReviewsPopup = connect(mapStateToProps)(unconnectedReviewsPopup);
 
-export default Reviews;
+export default ReviewsPopup;

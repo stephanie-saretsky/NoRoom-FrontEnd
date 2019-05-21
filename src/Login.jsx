@@ -43,10 +43,12 @@ class UnconnectedLogin extends Component {
             title: "Oops!",
             type: "error",
             text: "Invalid username or password",
-            icon: "error",
             confirmButtonText: "Try again",
             confirmButtonColor: "#ba5a31",
-            customClass: { container: "container-class" }
+            customClass: {
+              container: "login-container",
+              confirmButton: "swal-login-button"
+            }
           });
           return;
         }

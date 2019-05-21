@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../css/login-signup.css";
 import { withRouter } from "react-router-dom";
-import swal from "sweetalert";
+import swal from "sweetalert2";
 let path = "http://localhost:4000/";
 
 class UnconnectedSignup extends Component {
@@ -60,9 +60,28 @@ class UnconnectedSignup extends Component {
           .then(responseBody => {
             let body = JSON.parse(responseBody);
             if (!body.success) {
-              alert("login failed");
+              swal.fire({
+                title: "Oops!",
+                type: "error",
+                text: "Invalid username or password",
+                icon: "error",
+                confirmButtonText: "Try again",
+                confirmButtonColor: "#ba5a31",
+                customClass: { container: "container-class" }
+              });
               return;
             }
+            const Toast = swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000
+            });
+
+            Toast.fire({
+              type: "success",
+              title: "Signed in successfully"
+            });
             this.props.dispatch({
               type: "login-success",
               username: username

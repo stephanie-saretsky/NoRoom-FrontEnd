@@ -1,7 +1,7 @@
 .owner-container {
   display: flex;
   justify-content: center;
-  margin: 10px 0 0 10px;
+  background-color: white;
 }
 
 .owner-details {
@@ -10,20 +10,52 @@
 }
 
 .details-title {
-  font-size: 40px;
-  margin-bottom: 30px;
+  font-size: 30px;
+  margin: 10px;
+  color: #584d3d;
+}
+
+.title-color {
+  background-color: white;
+  border-bottom: 0.1px solid #969696;
+}
+
+.instructions-title {
+  font-size: 25px;
+}
+
+.information-title {
+  font-size: 25px;
+  margin-left: 20px;
+  margin-bottom: 20px;
 }
 
 .layout-container {
   display: flex;
-  margin-bottom: 20px;
+  margin: 10px 0 10px 10px;
+}
+
+.information-text {
+  background-color: rgba(254, 231, 217, 0.6);
+  height: 300px;
+  padding: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
 }
 
 .details-owner-cafe {
   display: flex;
   flex-direction: column;
   position: relative;
-  margin-left: 20px;
+  padding-top: 20px;
+}
+
+.button-div {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  /* background-color: rgba(88, 77, 61, 0.3); */
 }
 
 .details-container {
@@ -32,7 +64,6 @@
 
 .taken-images {
   position: relative;
-  margin-right: 20px;
 }
 
 .layout {
@@ -42,6 +73,7 @@
   max-width: 1000px;
   border: 1px solid #969696;
   position: relative;
+  background-color: white;
 }
 
 .instructions-taken {
@@ -49,8 +81,14 @@
 }
 
 .taken-p {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   font-size: 20px;
+}
+
+.taken-tag {
+  font-size: 20px;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .button-left-owner {
@@ -135,6 +173,7 @@
   padding: 10px 70px 10px 70px;
   border-radius: 2px;
   margin-top: 20px;
+  margin-bottom: 10px;
   text-decoration: none;
   font-family: "Montserrat", sans-serif;
 }
@@ -148,17 +187,26 @@
 }
 
 .tag-span {
-  border: 1px solid #d69f7e;
-  color: #d69f7e;
+  border: 1px solid #969696;
+  color: #969696;
   padding: 5px;
   margin: 10px;
   font-size: 15px;
 }
 
 .cafe-link {
-  color: #d69f7e;
+  color: #969696;
 }
 
 .pink {
-  color: #d69f7e;
+  color: #969696;
+}
+
+.push-margin {
+  margin-left: 20px;
+  margin-bottom: 40px;
+}
+
+.button-margin {
+  margin-left: 20px;
 }

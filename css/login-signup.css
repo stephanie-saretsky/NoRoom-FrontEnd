@@ -30,6 +30,7 @@
   margin: 10px;
   cursor: pointer;
   border-radius: 2px;
+  font-family: "Montserrat", sans-serif;
 }
 
 .login-button:hover {
@@ -37,14 +38,21 @@
 }
 
 .login-button:focus {
-  outline: none;
+  outline: 0;
 }
 
-.loginSwal {
-  background-color: white;
+.login-container {
   font-family: "Montserrat", sans-serif;
 }
 
-.container-class:hover {
-  background-color: #d69f73;
+.swal2-content {
+  color: #584d3d !important;
+}
+
+.swal2-title {
+  color: #584d3d !important;
+}
+
+.swal-login-button:hover {
+  background-color: #d69f73 !important;
 }

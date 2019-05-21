@@ -53,7 +53,11 @@ class UnconnectedEditDetails extends Component {
   handleOnclick = () => {
     event.preventDefault();
     if (this.state.tag.trim().length == 0) {
-      alert("Please enter a correct tag");
+      swal.fire({
+        title: "Please enter a correct tag",
+        type: "error",
+        confirmButtonColor: "#ba5a31"
+      });
       event.preventDefault();
       return;
     }
@@ -252,8 +256,6 @@ class UnconnectedEditDetails extends Component {
             <li>
               <label htmlFor="description">Description</label>
               <textarea
-                rows="4"
-                cols="30"
                 name="textarea"
                 onChange={this.handleDesc}
                 value={this.state.description}

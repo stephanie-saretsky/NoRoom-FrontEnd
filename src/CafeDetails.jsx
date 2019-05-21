@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../css/details.css";
 import "../css/main.css";
 import Map from "./Map.jsx";
+import ReviewsPopup from "./Reviews-Popup.jsx";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 let path = "http://localhost:4000/";
@@ -15,7 +16,8 @@ class UnconnectedCafeDetails extends Component {
       chairs: [],
       tables: [],
       height: 0,
-      width: 0
+      width: 0,
+      showPopup: false
     };
   }
 
@@ -65,15 +67,22 @@ class UnconnectedCafeDetails extends Component {
     this.intervalId = setInterval(updater, 500);
   };
 
-  componentDidUpdate = () => {
-    clearInterval(this.intervalId);
+  togglePopup = () => {
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
   };
+
+  // componentDidUpdate = () => {
+  //   clearInterval(this.intervalId);
+  // };
 
   render = () => {
     let cafe = this.state.cafe;
     let chairs = this.state.chairs;
     let tables = this.state.tables;
     let seatsAvailable = chairs.length;
+    let popup = "";
     let seatDiv = (
       <div className="p-container">
         <p className="room-p">
@@ -83,6 +92,16 @@ class UnconnectedCafeDetails extends Component {
         <p className="room-p">Come visit!</p>
       </div>
     );
+    if (this.state.showPopup) {
+      popup = (
+        <ReviewsPopup
+          cafeId={cafe._id.toString()}
+          name={cafe.name}
+          image={cafe.images[0]}
+          closePopup={this.togglePopup}
+        />
+      );
+    }
     chairs.map(chair => {
       if (chair.taken) {
         seatsAvailable--;
@@ -213,19 +232,25 @@ class UnconnectedCafeDetails extends Component {
                   <p className="contact-p">{cafe.city + " " + cafe.code}</p>
                   <p className="contact-p">{cafe.number}</p>
                   <p>
-                    <a href={cafe.url}>Website</a>
+                    <a className="contact-link" href={cafe.url} target="_blank">
+                      Website
+                    </a>
                   </p>
-                  <Link
+                  <button onClick={this.togglePopup}>Reviews</button>
+                  {popup}
+                  {/* <Link
+                    className="contact-link"
                     to={{
                       pathname: "/reviews/" + cafe._id.toString(),
                       state: {
                         name: cafe.name,
-                        reviews: this.state.reviews
+                        reviews: this.state.reviews,
+                        image: cafe.images[0]
                       }
                     }}
                   >
                     Reviews
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>

@@ -53,7 +53,7 @@ class UnconnectedApp extends Component {
   renderCafeDetails = routerData => {
     let cafeId = routerData.match.params.cid;
     return (
-      <div>
+      <div className="cafe-details-page">
         <NavBar />
         <CafeDetails cafeId={cafeId} />
       </div>
@@ -65,14 +65,22 @@ class UnconnectedApp extends Component {
     if (this.props.loggedIn) {
       return (
         <div>
-          <Reviews cafeId={cafeId} name={routerData.location.state.name} />
+          <Reviews
+            cafeId={cafeId}
+            name={routerData.location.state.name}
+            image={routerData.location.state.image}
+          />
         </div>
       );
     } else {
       return (
         <div>
           <NavBar />
-          <Reviews cafeId={cafeId} name={routerData.location.state.name} />
+          <Reviews
+            cafeId={cafeId}
+            name={routerData.location.state.name}
+            image={routerData.location.state.image}
+          />
         </div>
       );
     }
