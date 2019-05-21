@@ -230,9 +230,9 @@ class UnconnectedCafeDetails extends Component {
                   <h2 className="contact-title">{"Contact " + cafe.name}</h2>
                   <p className="contact-p">{cafe.address}</p>
                   <p className="contact-p">{cafe.city + " " + cafe.code}</p>
-                  <p className="contact-p">
-                    <a href={"tel:+1" + cafe.number}>
-                      <font color="FFFFFF">{cafe.number}</font>
+                  <p>
+                    <a className="contact-link" href={"tel:+1" + cafe.number}>
+                      {cafe.number}
                     </a>
                   </p>
                   <p>
