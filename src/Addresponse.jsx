@@ -53,8 +53,8 @@ class UnconnectedAddresponse extends Component {
           this.setState({ response: "", name: "", reviewId: "" }, () => {
             this.props.renderReviews();
           });
-          this.props.history.push("/");
-          return;
+          // this.props.history.push("/");
+          // return;
         }
       });
   };

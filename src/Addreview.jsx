@@ -60,8 +60,8 @@ class UnconnectedAddreview extends Component {
           this.setState({ review: "", name: "", cafeId: "" }, () => {
             this.props.renderReviews();
           });
-          this.props.history.push("/");
-          return;
+          // this.props.history.push("/");
+          // return;
         }
       });
   };
