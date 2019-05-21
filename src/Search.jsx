@@ -24,14 +24,11 @@ class UnconnectedSearch extends Component {
       .then(response => response.text())
       .then(response => {
         let parsedResponse = JSON.parse(response);
-        console.log("Response", parsedResponse);
         if (parsedResponse.success) {
-          console.log("array of search", parsedResponse.cafes);
           this.props.dispatch({
             type: "cafe-results",
             cafes: parsedResponse.cafes
           });
-          console.log(this.props.cafes, "cafe list");
         }
       })
       .catch(err => console.log(err));
