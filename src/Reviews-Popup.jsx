@@ -192,7 +192,7 @@ class unconnectedReviewsPopup extends Component {
       </div>
     );
     if (this.state.addReview) {
-      popup = <div>{this.renderResponse()}</div>;
+      popup = this.renderResponse();
     }
     return (
       <div className="popup">
