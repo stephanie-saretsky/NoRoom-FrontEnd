@@ -133,8 +133,7 @@ class UnconnectedCafeDetails extends Component {
                 {" " + cafe.name + "."}
               </p>
               <p className="room-p">
-                {"Come by in "}{" "}
-                <span className="redish">{cafe.waitTime + " min"}</span>
+                {"Come by in "} <span className="red">{cafe.waitTime}</span>
                 {" to get a seat!"}
               </p>
               <Link className="nearby" to={"/search-nearby/" + cafe._id}>

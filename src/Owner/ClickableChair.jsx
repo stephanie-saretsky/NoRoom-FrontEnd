@@ -55,11 +55,11 @@ class UnconnectedClickableChair extends Component {
               if (amountTaken === amountOfChairs) {
                 swal.fire({
                   title: "Your café is full!",
-                  text: "What is the approximate wait time, in minutes?",
+                  text: "What is the approximate wait time?",
                   input: "text",
                   type: "question",
                   confirmButtonColor: "#ba5a31",
-                  inputPlaceholder: "Example: 15 ...",
+                  inputPlaceholder: "Example: 15 minutes, 1 hour ...",
                   customClass: {
                     container: "prompt-container",
                     confirmButton: "swal-button"
