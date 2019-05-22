@@ -99,6 +99,11 @@
   color: #ba5a31;
 }
 
+.redish {
+  color: #ba5a31;
+  font-weight: 700;
+}
+
 .contact-link {
   font-size: 12px;
   font-family: "Montserrat", sans-serif;

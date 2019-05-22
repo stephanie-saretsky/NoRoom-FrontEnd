@@ -37,6 +37,9 @@ let reducer = (state, action) => {
   if (action.type === "search-input") {
     return { ...state, search: action.search };
   }
+  if (action.type === "waiting-time") {
+    return { ...state, time: action.value };
+  }
   return state;
 };
 
@@ -50,7 +53,8 @@ let store = createStore(
     username: "",
     cafeId: "",
     cafes: [],
-    secondEditMode: false
+    secondEditMode: false,
+    time: ""
   },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import swal from "sweetalert2";
+import { connect } from "react-redux";
+import "../../css/chairs.css";
 let path = "http://localhost:4000/";
 
-class ClickableChair extends Component {
+class UnconnectedClickableChair extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,25 +54,29 @@ class ClickableChair extends Component {
               });
               if (amountTaken === amountOfChairs) {
                 swal.fire({
-                  title:
-                    "Your café is full! What is the approximate wait time?",
+                  title: "Your café is full!",
+                  text: "What is the approximate wait time, in minutes?",
                   input: "text",
+                  type: "question",
+                  confirmButtonColor: "#ba5a31",
+                  inputPlaceholder: "Example: 15 ...",
+                  customClass: {
+                    container: "prompt-container",
+                    confirmButton: "swal-button"
+                  },
                   inputValidator: value => {
                     if (!value) {
                       return "Nothing";
                     }
-                    this.setState({ time: value });
+                    let data = new FormData();
+                    let waitTime = value;
+                    data.append("waitTime", waitTime);
+                    fetch(path + "wait-time", {
+                      method: "POST",
+                      body: data,
+                      credentials: "include"
+                    });
                   }
-                });
-                // let waitTime = window.prompt(
-                //   "Your café is full! What is the approximate wait time?"
-                // );
-                let data = new FormData();
-                data.append("waitTime", waitTime);
-                fetch(path + "wait-time", {
-                  method: "POST",
-                  body: data,
-                  credentials: "include"
                 });
               }
             });
@@ -97,5 +104,12 @@ class ClickableChair extends Component {
     );
   };
 }
+let mapStateToProps = st => {
+  return {
+    time: st.time
+  };
+};
+
+let ClickableChair = connect(mapStateToProps)(UnconnectedClickableChair);
 
 export default ClickableChair;

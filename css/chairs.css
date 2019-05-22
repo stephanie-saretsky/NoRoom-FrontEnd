@@ -1,0 +1,16 @@
+swal2-content {
+  color: #584d3d !important;
+}
+
+.swal2-title .prompt-container {
+  color: #584d3d !important;
+}
+
+.swal2-content {
+  color: #ba5a31 !important;
+  font-family: "Montserrat", sans-serif;
+}
+
+.swal-button:hover {
+  background-color: #d69f73 !important;
+}
